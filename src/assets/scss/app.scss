@@ -1,0 +1,10 @@
+@import './_variables.scss';
+@import './_fonts.scss';
+@import './libs/normalize.scss';
+
+@import './components/all.scss';
+
+body {
+	background: $black;
+	font-family: 'Poppins', sans-serif;
+}
