@@ -8,23 +8,34 @@ import { FaHouse } from 'react-icons/fa6'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick-theme.css'
 import 'slick-carousel/slick/slick.css'
-import mermaidTitle from '../assets/img/movies/titles/the-little-mermaid-title.png'
-import { headerSlider } from '../data/headerSlider'
+import NextArrow from '../components/arrows/NextArrow'
+import PrevArrow from '../components/arrows/PrevArrow'
+import { headerSliderSlides } from '../data/headerSliderSlides'
 
 const Home: FC = () => {
+	const [activeSlide, setActiveSlide] = useState<number>(1)
+	const [countSlide, setCountSlide] = useState<number>(1)
 	var settings = {
+		dots: true,
+		infinite: true,
 		centerMode: true,
 		centerPadding: '60px',
 		draggable: false,
 		slidesToShow: 3,
+		nextArrow: (
+			<NextArrow countSlide={countSlide} setCountSlide={setCountSlide} />
+		),
+		prevArrow: (
+			<PrevArrow countSlide={countSlide} setCountSlide={setCountSlide} />
+		),
 		responsive: [
 			{
-				breakpoint: 768,
+				breakpoint: 1024,
 				settings: {
 					arrows: false,
 					centerMode: true,
 					centerPadding: '40px',
-					slidesToShow: 3,
+					slidesToShow: 1,
 				},
 			},
 			{
@@ -39,22 +50,26 @@ const Home: FC = () => {
 		],
 	}
 
-	const [activeSlide, setActiveSlide] = useState<number>(1)
-	console.log(headerSlider[0])
-
 	const changeBg = (bg: string, title?: string) => {
 		console.log('in')
 	}
 
 	useEffect(() => {
-		/*let elements: NodeListOf<HTMLDivElement> =
-			document.querySelectorAll('.carousel')
-		var instance = M.Carousel.init(
-			elements,
-			{ enableTouch: false },
-			{ dragged: false }
-		)*/
-	}, [])
+		let c: number
+		console.log('active b', activeSlide)
+
+		if (countSlide % 5 === 0) {
+			console.log(countSlide % 5)
+			c = 5
+		} else {
+			c = countSlide % 5
+		}
+		console.log('countSlide', c)
+		setActiveSlide(c - 1)
+		console.log('active', activeSlide)
+	}, [countSlide])
+
+	console.log('active outside', activeSlide)
 	return (
 		<div className='Home'>
 			<header className='header'>
@@ -89,30 +104,22 @@ const Home: FC = () => {
 			<div
 				className='banner'
 				style={{
-					background:
-						'https://avatars.mds.yandex.net/i?id=2e2fb44ddfd794b9dd31246170fe09eb_l-8219252-images-thumbs&n=13',
+					background: `url(${headerSliderSlides[activeSlide].bgImg}) no-repeat`,
 				}}
 			>
 				<div className='banner__content active'>
-					<img
-						src={mermaidTitle}
-						className='banner__content-title'
-						alt='title'
-					/>
+					<h2 className='banner__content-title'>
+						{headerSliderSlides[activeSlide].title}
+					</h2>
 					<h4>
-						<span>2023</span>
+						<span>{headerSliderSlides[activeSlide].ageIssue}</span>
 						<span>
-							<i>12+</i>
+							<i>{headerSliderSlides[activeSlide].ageLimit}+</i>
 						</span>
-						<span>2h 14m</span>
-						<span>Romance</span>
+						<span>{headerSliderSlides[activeSlide].duration}</span>
+						<span>{headerSliderSlides[activeSlide].genre}</span>
 					</h4>
-					<p>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, nisi
-						nostrum ipsa sed animi autem nemo fugit accusamus voluptatem iste
-						enim id vero possimus incidunt, impedit eligendi corporis voluptates
-						vel.
-					</p>
+					<p>{headerSliderSlides[activeSlide].desc}</p>
 					<div className='banner__content-buttons'>
 						<a href='#'>
 							<AiFillPlayCircle /> Watch
@@ -126,7 +133,7 @@ const Home: FC = () => {
 				<div className='carousel-box'>
 					<div className='carousel'>
 						<Slider {...settings}>
-							{headerSlider.map((item, index) => (
+							{headerSliderSlides.map((item, index) => (
 								<div
 									key={index}
 									className='carousel-item'

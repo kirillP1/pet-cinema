@@ -6,11 +6,13 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	background: url('https://avatars.mds.yandex.net/i?id=2e2fb44ddfd794b9dd31246170fe09eb_l-8219252-images-thumbs&n=13')
-		no-repeat;
-	background-size: cover;
-	background-position: center;
+	background-size: cover !important;
+	background-position: center !important;
 	overflow: hidden;
+
+	@media (max-width: 1024px) {
+		display: block;
+	}
 
 	&::before {
 		content: '';
@@ -37,7 +39,11 @@
 			transform: scale(1);
 		}
 		&-title {
-			max-width: 250px;
+			color: $white;
+			letter-spacing: 1px;
+			font-weight: 800;
+			font-size: 40px;
+			margin-bottom: 32px;
 		}
 		h4 {
 			color: $gray;
@@ -124,9 +130,14 @@
 			}
 			.slick-arrow {
 				z-index: 10;
+				opacity: 1;
+				transition: $fast-transition;
 				&:before {
 					font-size: 64px;
 					opacity: 1;
+				}
+				&:disabled {
+					opacity: 0.6;
 				}
 			}
 			.slick-next {
