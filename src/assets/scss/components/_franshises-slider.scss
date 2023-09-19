@@ -1,0 +1,94 @@
+.franchises-slider {
+	padding: 100px 0;
+	height: 100vh;
+	&__header {
+		color: $white;
+		letter-spacing: 1px;
+		font-weight: 800;
+		font-size: 40px;
+		text-align: center;
+		margin-bottom: 40px;
+	}
+	&__layer {
+		position: absolute;
+		inset: 0;
+		background-size: cover;
+		background-position: center;
+		will-change: transform;
+		height: 100vh;
+		width: 100%;
+		&:before {
+			content: '';
+			position: absolute;
+			inset: 0;
+			z-index: 1;
+			box-shadow: inset 0 0 250px rgb(0 0 0 / 0.3);
+		}
+	}
+	&__item {
+		overflow: hidden;
+	}
+	&__wrapper {
+		will-change: transform;
+		transform-style: preserve-3d;
+	}
+	&__buttons {
+		&:after {
+			color: $white;
+		}
+	}
+	&__text-wrapper {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		overflow: hidden;
+		position: relative;
+		height: 100%;
+	}
+	&__text {
+		z-index: 1;
+		transition: $medium-transition;
+		will-change: transform;
+		font-weight: 900;
+
+		position: relative;
+		text-align: center;
+		width: 50%;
+		font-size: 50px;
+		backdrop-filter: blur(10px);
+		padding: 20px;
+		border: 2px solid $white;
+		.franchises-slider__title {
+			color: $white;
+			transition: $medium-transition;
+		}
+		&:hover {
+			background: $white;
+			cursor: pointer;
+			transform: scale(1.05);
+			backdrop-filter: blur(10px);
+			.franchises-slider__title {
+				box-shadow: none;
+				color: $black;
+			}
+		}
+	}
+	.swiper-slide {
+		height: 100vh;
+	}
+	.swiper-button-next,
+	.swiper-button-prev {
+		color: $white;
+		transition: $medium-transition;
+		&:hover {
+			transform: scale(1.2);
+		}
+	}
+	.swiper-button-next {
+		right: 5vw;
+	}
+	.swiper-button-prev {
+		left: 5vw;
+	}
+}

@@ -17,7 +17,7 @@ const PrevArrow: FC<IArrow> = props => {
 		setIsDisabled(true)
 		setTimeout(() => {
 			setIsDisabled(false)
-		}, 600)
+		}, 1100)
 	}
 
 	return (

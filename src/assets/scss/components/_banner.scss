@@ -2,7 +2,7 @@
 	position: relative;
 	width: 100%;
 	min-height: 100vh;
-	padding: 0px 100px;
+
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -25,7 +25,16 @@
 		height: 100%;
 		background: $black-lighter1;
 	}
-
+	&__background {
+		height: 100%;
+		width: 100%;
+		position: absolute;
+		z-index: -1;
+		background-size: cover !important;
+		background-position: center !important;
+		will-change: transform;
+		transition: transform $long-cubic-transition;
+	}
 	&__content {
 		position: relative;
 		max-width: 550px;
@@ -33,6 +42,7 @@
 		visibility: hidden;
 		transform: scale(0);
 		transition: $medium-transition;
+		padding-left: 100px;
 		&.active {
 			display: block;
 			visibility: visible;
@@ -106,6 +116,7 @@
 		position: relative;
 		max-width: 850px;
 		margin-left: 70px;
+		padding-right: 100px;
 		display: flex;
 		justify-content: center;
 		align-items: center;

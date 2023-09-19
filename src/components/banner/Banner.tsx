@@ -8,13 +8,15 @@ import PrevArrow from '../arrows/PrevArrow'
 const Banner = () => {
 	const [activeSlide, setActiveSlide] = useState<number>(1)
 	const [countSlide, setCountSlide] = useState<number>(1)
+	const [scrollTop, setScrollTop] = useState<number>(0)
+
 	var settings = {
-		dots: true,
 		infinite: true,
 		centerMode: true,
 		centerPadding: '60px',
 		draggable: false,
 		slidesToShow: 3,
+		speed: 1000,
 		nextArrow: (
 			<NextArrow countSlide={countSlide} setCountSlide={setCountSlide} />
 		),
@@ -43,34 +45,36 @@ const Banner = () => {
 		],
 	}
 
-	const changeBg = (bg: string, title?: string) => {
-		console.log('in')
-	}
-
 	useEffect(() => {
 		let c: number
-		console.log('active b', activeSlide)
 
 		if (countSlide % 5 === 0) {
-			console.log(countSlide % 5)
 			c = 5
 		} else {
 			c = countSlide % 5
 		}
-		console.log('countSlide', c)
 		setActiveSlide(c - 1)
-		console.log('active', activeSlide)
 	}, [countSlide])
 
-	console.log('active outside', activeSlide)
+	useEffect(() => {
+		window.addEventListener('scroll', e => {
+			setScrollTop(window.scrollY)
+		})
+	}, [])
+
 	return (
-		<div
-			className='banner'
-			style={{
-				background: `url(${headerSliderSlides[activeSlide].bgImg}) no-repeat`,
-			}}
-		>
-			<div className='banner__content active'>
+		<div className='banner'>
+			<div
+				className='banner__background'
+				style={{
+					transform: `translate3d(0, calc((${scrollTop}px) / 3.6), 0)`,
+					background: `url(${headerSliderSlides[activeSlide].bgImg}) no-repeat`,
+				}}
+			></div>
+			<div
+				className='banner__content active banner__element'
+				style={{ transform: `translate3d(0, calc((${scrollTop}px) / 7.7), 0)` }}
+			>
 				<h2 className='banner__content-title'>
 					{headerSliderSlides[activeSlide].title}
 				</h2>
@@ -88,20 +92,18 @@ const Banner = () => {
 						<AiFillPlayCircle /> Watch
 					</a>
 					<a href='#'>
-						{' '}
 						<AiOutlinePlus /> My List
 					</a>
 				</div>
 			</div>
-			<div className='carousel-box'>
+			<div
+				className='carousel-box banner__element'
+				style={{ transform: `translate3d(0, calc((${scrollTop}px) / 7.7), 0)` }}
+			>
 				<div className='carousel'>
 					<Slider {...settings}>
 						{headerSliderSlides.map((item, index) => (
-							<div
-								key={index}
-								className='carousel-item'
-								onClick={() => changeBg(item.bgImg)}
-							>
+							<div key={index} className='carousel-item'>
 								<img src={item.img} alt='' />
 							</div>
 						))}
