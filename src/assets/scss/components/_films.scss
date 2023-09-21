@@ -1,0 +1,116 @@
+.films {
+	background: $black;
+	padding-top: 120px;
+	&__container {
+		background: $white;
+		width: 85%;
+		margin: 0 auto;
+		display: flex;
+	}
+	&__filters {
+		width: 25%;
+		padding: 50px 35px;
+	}
+	&__filter {
+		&-placeholder {
+			display: none;
+			width: 100%;
+			padding: 10px;
+			border: none;
+			background: $gray-dark;
+			border-radius: 5px;
+
+			&:hover {
+				cursor: pointer;
+			}
+			svg {
+				transform: rotate(270deg);
+			}
+			&.opened {
+				svg {
+					transform: rotate(90deg);
+				}
+			}
+		}
+		&-options {
+			display: none;
+			position: absolute;
+			z-index: 1;
+			overflow: auto;
+			flex-direction: column;
+			min-width: 200px;
+			max-height: 240px;
+			margin-top: 16px;
+			border-radius: 8px;
+			background: $white;
+			-webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.06),
+				0 4px 10px rgba(0, 0, 0, 0.06);
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.06), 0 4px 10px rgba(0, 0, 0, 0.06);
+			&.active {
+				display: block;
+			}
+
+			li {
+				position: relative;
+				flex: 1 0 auto;
+				-webkit-box-sizing: border-box;
+				box-sizing: border-box;
+				min-height: 40px;
+				padding: 10px 54px 10px 20px;
+				&:hover {
+					cursor: pointer;
+					background: $gray-dark;
+				}
+				&.active {
+					background: $gray-dark;
+				}
+			}
+		}
+		&-p {
+			padding-top: 16px;
+			padding-bottom: 12px;
+			list-style: none;
+			font-size: 15px;
+			font-weight: 500;
+			line-height: 18px;
+			svg {
+				transform: rotate(270deg);
+				margin-right: 20px;
+			}
+			&:hover {
+				cursor: pointer;
+			}
+		}
+	}
+	.active {
+		.films__filter-p {
+			svg {
+				transform: rotate(90deg);
+			}
+		}
+
+		.films__filter-placeholder {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+	}
+	&__items {
+		width: 75%;
+		padding: 50px 20px;
+		display: flex;
+		flex-wrap: wrap;
+		&-item {
+			width: 20%;
+			height: 280px;
+			margin: 15px;
+			background-size: cover !important;
+			background-position: center !important;
+			transition: $fast-transition;
+			&:hover {
+				transform: scale(1.05);
+				cursor: pointer;
+			}
+		}
+	}
+}

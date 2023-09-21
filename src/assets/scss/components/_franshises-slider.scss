@@ -81,14 +81,38 @@
 	.swiper-button-prev {
 		color: $white;
 		transition: $medium-transition;
-		&:hover {
-			transform: scale(1.2);
+		&::after {
+			transition: $medium-transition;
 		}
 	}
 	.swiper-button-next {
-		right: 5vw;
+		height: 100%;
+		margin-top: 0;
+		top: 0;
+		right: 0;
+		width: 15vw;
+		&:hover {
+			-webkit-box-shadow: -100px 0px 72px -67px rgba(255, 255, 255, 1) inset;
+			-moz-box-shadow: -100px 0px 72px -67px rgba(255, 255, 255, 1) inset;
+			box-shadow: -100px 0px 72px -67px rgba(255, 255, 255, 1) inset;
+			&::after {
+				transform: scale(1.1);
+			}
+		}
 	}
 	.swiper-button-prev {
-		left: 5vw;
+		height: 100%;
+		margin-top: 0;
+		top: 0;
+		left: 0;
+		width: 15vw;
+		&:hover {
+			-webkit-box-shadow: 100px 0px 72px -67px rgba(255, 255, 255, 1) inset;
+			-moz-box-shadow: 100px 0px 72px -67px rgba(255, 255, 255, 1) inset;
+			box-shadow: 100px 0px 72px -67px rgba(255, 255, 255, 1) inset;
+			&::after {
+				transform: scale(1.1);
+			}
+		}
 	}
 }
