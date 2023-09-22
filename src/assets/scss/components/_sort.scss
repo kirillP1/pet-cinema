@@ -1,0 +1,58 @@
+.filmSort-wrapper {
+	.filmSort {
+		padding: 10px;
+		border: none;
+		background: #ececec;
+		border-radius: 5px;
+		width: 200px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		&:hover {
+			cursor: pointer;
+		}
+		svg {
+			transform: rotate(270deg);
+			transition: $fast-transition;
+		}
+		&__options {
+			display: none;
+			position: absolute;
+			z-index: 1;
+			overflow: auto;
+			flex-direction: column;
+			min-width: 200px;
+			max-height: 240px;
+			margin-top: 5px;
+			border-radius: 8px;
+			background: $white;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.06), 0 4px 10px rgba(0, 0, 0, 0.06);
+			li {
+				position: relative;
+				flex: 1 0 auto;
+				box-sizing: border-box;
+				min-height: 40px;
+				padding: 10px 54px 10px 20px;
+				background: $white;
+				transition: $fast-transition;
+				&:hover {
+					cursor: pointer;
+					background: $gray-dark;
+				}
+				&.active {
+					background: $gray-dark;
+				}
+			}
+		}
+	}
+	&.active {
+		.filmSort {
+			svg {
+				transform: rotate(90deg);
+			}
+			&__options {
+				display: block;
+			}
+		}
+	}
+}

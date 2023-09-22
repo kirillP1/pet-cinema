@@ -32,7 +32,6 @@ const FilmFilter: FC<IFilmFilter> = ({ item }) => {
 			const { target } = event
 
 			if (target instanceof Node && !rootRef.current?.contains(target)) {
-				console.log(target)
 				setIsOpen(false)
 			}
 		}

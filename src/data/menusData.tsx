@@ -12,4 +12,5 @@ export const headerMenu: IHeaderMenu[] = [
 	{ text: 'Франшизы', link: '/franchises' },
 	{ text: 'Фильмы', link: '/films' },
 	{ text: 'Сериалы', link: '/serials' },
+	{ text: 'Избранное', link: '/favorites' },
 ]

@@ -19,11 +19,13 @@
 			border: none;
 			background: $gray-dark;
 			border-radius: 5px;
-
+			justify-content: space-between;
+			align-items: center;
 			&:hover {
 				cursor: pointer;
 			}
 			svg {
+				transition: $fast-transition;
 				transform: rotate(270deg);
 			}
 			&.opened {
@@ -40,7 +42,7 @@
 			flex-direction: column;
 			min-width: 200px;
 			max-height: 240px;
-			margin-top: 16px;
+			margin-top: 5px;
 			border-radius: 8px;
 			background: $white;
 			-webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.06),
@@ -57,6 +59,7 @@
 				box-sizing: border-box;
 				min-height: 40px;
 				padding: 10px 54px 10px 20px;
+				transition: $fast-transition;
 				&:hover {
 					cursor: pointer;
 					background: $gray-dark;
@@ -76,6 +79,7 @@
 			svg {
 				transform: rotate(270deg);
 				margin-right: 20px;
+				transition: $fast-transition;
 			}
 			&:hover {
 				cursor: pointer;
@@ -91,13 +95,13 @@
 
 		.films__filter-placeholder {
 			display: flex;
-			justify-content: space-between;
-			align-items: center;
 		}
 	}
-	&__items {
+	&__items-wrapper {
 		width: 75%;
 		padding: 50px 20px;
+	}
+	&__items {
 		display: flex;
 		flex-wrap: wrap;
 		&-item {
