@@ -10,10 +10,11 @@ const Films = () => {
 
 	const [filmsData, setFilmsData] = useState<any>(headerSliderSlides)
 	const { items } = useAppSelector(state => state.kinopoisk)
+	const filter = useAppSelector(state => state.filter)
 
 	useEffect(() => {
-		dispatch(fetchKinopoisk(['id', 'poster']))
-	}, [])
+		dispatch(fetchKinopoisk(filter.year, filter.genre, filter.country))
+	}, [filter])
 
 	return (
 		<div className='films'>

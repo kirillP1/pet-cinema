@@ -1,10 +1,25 @@
-import { useEffect, useRef, useState } from 'react'
+import { FC, useEffect, useRef, useState } from 'react'
 import { MdArrowRight } from 'react-icons/md'
-const FilmSort = () => {
-	const sortList = ['По названию', 'По рейтингу', 'По дате выхода']
+import { useAppDispatch, useAppSelector } from '../../hooks/redux'
+import {
+	activeSortType,
+	setSortType,
+	sortEnum,
+} from '../../redux/slices/filterSlice'
+
+export const sortList: activeSortType[] = [
+	{ sortName: 'По популярности', sort: sortEnum.RATING },
+	{ sortName: 'По цене', sort: sortEnum.PRICE },
+	{ sortName: 'По алфавиту', sort: sortEnum.NAME },
+]
+
+const FilmSort: FC = () => {
+	const dispatch = useAppDispatch()
 
 	const [isOpenSort, setIsOpenSort] = useState(false)
-	const [selected, setSelected] = useState(sortList[0])
+	const [selected, setSelected] = useState(
+		useAppSelector(state => state.filter.activeSortType)
+	)
 
 	const onSortClick = () => {
 		isOpenSort ? setIsOpenSort(false) : setIsOpenSort(true)
@@ -12,8 +27,9 @@ const FilmSort = () => {
 
 	const rootRef = useRef<HTMLDivElement>(null)
 
-	const onOptionClick = (item: string) => {
+	const onOptionClick = (item: activeSortType) => {
 		setSelected(item)
+		dispatch(setSortType(item))
 		setIsOpenSort(false)
 	}
 
@@ -38,7 +54,7 @@ const FilmSort = () => {
 			className={`filmSort-wrapper ${isOpenSort ? 'active' : ''}`}
 		>
 			<div className={`filmSort `} onClick={() => onSortClick()}>
-				<span>{selected}</span>
+				<span>{selected.sortName}</span>
 				<MdArrowRight />
 			</div>
 			<ul className='filmSort__options'>
@@ -46,10 +62,10 @@ const FilmSort = () => {
 					<li
 						key={index}
 						className={item === selected ? 'active' : ''}
-						value={item}
+						value={item.sort}
 						onClick={() => onOptionClick(item)}
 					>
-						{item}
+						{item.sortName}
 					</li>
 				))}
 			</ul>

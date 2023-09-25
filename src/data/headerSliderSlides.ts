@@ -1,9 +1,18 @@
+interface IPoster {
+	url: string
+}
+interface IBackdrop {
+	url: string
+}
+interface ILogo {
+	url: string
+}
 type typeHeaderSliderSlides = {
 	id: number
-	poster: string
-	backdrop: string
+	poster: IPoster
+	backdrop: IBackdrop
 	name: string
-	logo?: string
+	logo?: ILogo
 	year: number
 	ageLimit: number
 	movieLength: string
@@ -14,10 +23,13 @@ export const headerSliderSlides: typeHeaderSliderSlides[] = [
 	{
 		id: 1,
 		name: 'Русалочка',
-		poster:
-			'https://avatars.mds.yandex.net/i?id=2e2fb44ddfd794b9dd31246170fe09eb_l-8219252-images-thumbs&n=13',
-		backdrop:
-			'https://avatars.mds.yandex.net/get-kinopoisk-image/4774061/292d6869-8aa5-4f87-a3a5-4e3bd846cfc3/300x450',
+		poster: {
+			url: 'https://avatars.mds.yandex.net/get-kinopoisk-image/4774061/292d6869-8aa5-4f87-a3a5-4e3bd846cfc3/300x450',
+		},
+
+		backdrop: {
+			url: 'https://avatars.mds.yandex.net/i?id=2e2fb44ddfd794b9dd31246170fe09eb_l-8219252-images-thumbs&n=13',
+		},
 		year: 2023,
 		ageLimit: 12,
 		movieLength: '134 мин',
@@ -28,10 +40,12 @@ export const headerSliderSlides: typeHeaderSliderSlides[] = [
 	{
 		id: 2,
 		name: '65',
-		poster:
-			'https://avatars.mds.yandex.net/i?id=8ceef8d84620c97078ca72cfed2cb286_l-8804196-images-thumbs&n=13',
-		backdrop:
-			'https://avatars.mds.yandex.net/get-kinopoisk-image/10893610/0e8e2384-e4eb-42e6-ae96-a42b21919fd3/300x450',
+		backdrop: {
+			url: 'https://avatars.mds.yandex.net/i?id=8ceef8d84620c97078ca72cfed2cb286_l-8804196-images-thumbs&n=13',
+		},
+		poster: {
+			url: 'https://avatars.mds.yandex.net/get-kinopoisk-image/10893610/0e8e2384-e4eb-42e6-ae96-a42b21919fd3/300x450',
+		},
 		year: 2023,
 		ageLimit: 18,
 		movieLength: '93 мин',
@@ -42,10 +56,12 @@ export const headerSliderSlides: typeHeaderSliderSlides[] = [
 	{
 		id: 3,
 		name: 'Нечто. Монстр из глубин',
-		poster:
-			'https://avatars.mds.yandex.net/i?id=1ad9f9f829191083db4fc3ba2e735584_l-5348026-images-thumbs&n=13',
-		backdrop:
-			'https://avatars.mds.yandex.net/get-kinopoisk-image/1898899/ea7242bb-09d2-4b0c-b858-04045a56e293/300x450',
+		backdrop: {
+			url: 'https://avatars.mds.yandex.net/i?id=1ad9f9f829191083db4fc3ba2e735584_l-5348026-images-thumbs&n=13',
+		},
+		poster: {
+			url: 'https://avatars.mds.yandex.net/get-kinopoisk-image/1898899/ea7242bb-09d2-4b0c-b858-04045a56e293/300x450',
+		},
 		year: 2023,
 		ageLimit: 18,
 		movieLength: '100 мин',
@@ -56,10 +72,12 @@ export const headerSliderSlides: typeHeaderSliderSlides[] = [
 	{
 		id: 4,
 		name: 'Мегалодон',
-		poster:
-			'https://avatars.mds.yandex.net/i?id=a33504f06e23358f0e1e5009ea5028ff_l-10375548-images-thumbs&n=13',
-		backdrop:
-			'https://avatars.mds.yandex.net/get-kinopoisk-image/4774061/819695e8-2ac9-496d-830e-edfaa166981b/300x450',
+		backdrop: {
+			url: 'https://avatars.mds.yandex.net/i?id=a33504f06e23358f0e1e5009ea5028ff_l-10375548-images-thumbs&n=13',
+		},
+		poster: {
+			url: 'https://avatars.mds.yandex.net/get-kinopoisk-image/4774061/819695e8-2ac9-496d-830e-edfaa166981b/300x450',
+		},
 		year: 2023,
 		ageLimit: 18,
 		movieLength: '120 мин',
@@ -70,10 +88,12 @@ export const headerSliderSlides: typeHeaderSliderSlides[] = [
 	{
 		id: 5,
 		name: 'Переводчик ',
-		poster:
-			'https://avatars.mds.yandex.net/i?id=bdf1003c96e6149ab8a686bebdacc0ee_l-7904411-images-thumbs&n=13',
-		backdrop:
-			'https://avatars.mds.yandex.net/get-kinopoisk-image/1898899/5c775217-8796-4c7a-aba8-e4c6d48a6c36/300x450',
+		backdrop: {
+			url: 'https://avatars.mds.yandex.net/i?id=bdf1003c96e6149ab8a686bebdacc0ee_l-7904411-images-thumbs&n=13',
+		},
+		poster: {
+			url: 'https://avatars.mds.yandex.net/get-kinopoisk-image/1898899/5c775217-8796-4c7a-aba8-e4c6d48a6c36/300x450',
+		},
 		year: 2022,
 		ageLimit: 18,
 		movieLength: '170 мин',

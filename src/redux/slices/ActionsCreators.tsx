@@ -4,23 +4,26 @@ import {
 	MovieFields,
 	MovieQueryBuilder,
 } from '@openmoviedb/kinopoiskdev_client'
+import { headerSliderSlides } from '../../data/headerSliderSlides'
 import { AppDispatch } from '../store'
 import {
-	kinopoisFetching,
-	kinopoisFetchingError,
-	kinopoisFetchingSuccess,
+	kinopoiskFetching,
+	kinopoiskFetchingError,
+	kinopoiskFetchingSuccess,
 } from './kinopoiskSlice'
 
 export const fetchKinopoisk =
-	(selectItems: string[]) => async (dispatch: AppDispatch) => {
+	(year?: string, genre?: string, country?: string) =>
+	async (dispatch: AppDispatch) => {
 		try {
-			console.log(selectItems)
+			genre = genre?.toLowerCase()
+			console.log(year, genre)
 
-			dispatch(kinopoisFetching())
+			dispatch(kinopoiskFetching())
 			const kp = new KinopoiskDev('1GC0C84-5Y14HKD-G1CAPDX-NHMR5YP')
 			const queryBuilder = new MovieQueryBuilder()
 			// Не работает фильтрация
-			const query: Filter<MovieFields> = {
+			let query: Filter<MovieFields> = {
 				selectFields: [
 					'id',
 					'name',
@@ -33,18 +36,27 @@ export const fetchKinopoisk =
 					'movieLength',
 					'genres',
 					'shortDescription',
+					'videos',
 				],
-				year: '2010-2023',
-				'rating.kp': '7-10',
 				page: 1,
-				limit: 10,
+				limit: 30,
 			}
+			genre !== 'Все жанры' && (query['genres.name'] = genre)
+			year !== 'Все годы' && (query.year = year)
+			country !== 'Все страны' && (query['countries.name'] = country)
+
+			console.log(query['countries.name'])
 
 			const { data, error, message } = await kp.movie.getByFilters(query)
+
+			console.log(data)
+
 			if (data) {
-				dispatch(kinopoisFetchingSuccess(data?.docs))
+				dispatch(kinopoiskFetchingSuccess(data?.docs))
+			} else {
+				dispatch(kinopoiskFetchingSuccess(headerSliderSlides))
 			}
 		} catch (e: any | unknown) {
-			dispatch(kinopoisFetchingError(e))
+			dispatch(kinopoiskFetchingError(e))
 		}
 	}

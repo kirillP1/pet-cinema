@@ -1,6 +1,8 @@
+import { ActionCreatorWithPayload } from '@reduxjs/toolkit'
 import { FC, useEffect, useRef, useState } from 'react'
 import { MdArrowRight, MdOutlineArrowForwardIos } from 'react-icons/md'
 import { IFilmFilterData } from '../../data/filmFilterData'
+import { useAppDispatch } from '../../hooks/redux'
 
 interface IFilmFilter {
 	item: IFilmFilterData
@@ -13,7 +15,7 @@ const FilmFilter: FC<IFilmFilter> = ({ item }) => {
 	const [selected, setSelected] = useState(item.placeholder)
 
 	const rootRef = useRef<HTMLDivElement>(null)
-
+	const dispatch = useAppDispatch()
 	const filterClasses = ['films__filter', isActiveFilter ? 'active' : '']
 	const optionsClasses = ['films__filter-options', isOpen ? 'active' : '']
 
@@ -23,8 +25,12 @@ const FilmFilter: FC<IFilmFilter> = ({ item }) => {
 	const onPlaceholderClick = () => {
 		isOpen ? setIsOpen(false) : setIsOpen(true)
 	}
-	const onOptionClick = (value: string) => {
+	const onOptionClick = (
+		value: string,
+		action: ActionCreatorWithPayload<string>
+	) => {
 		setSelected(value)
+		dispatch(action(value))
 		setIsOpen(false)
 	}
 	useEffect(() => {
@@ -62,7 +68,7 @@ const FilmFilter: FC<IFilmFilter> = ({ item }) => {
 							key={index}
 							className={selected === option ? 'active' : ''}
 							value={option}
-							onClick={() => onOptionClick(option)}
+							onClick={() => onOptionClick(option, item.action)}
 						>
 							{option}
 						</li>

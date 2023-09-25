@@ -34,14 +34,14 @@ const kinopoiskSlice = createSlice({
 	name: 'kinopoisk',
 	initialState,
 	reducers: {
-		kinopoisFetching(state) {
+		kinopoiskFetching(state) {
 			state.status = statusLoadingEnum.LOADING
 		},
-		kinopoisFetchingSuccess(state, action: PayloadAction<any[]>) {
+		kinopoiskFetchingSuccess(state, action: PayloadAction<any[]>) {
 			state.items = action.payload
 			state.status = statusLoadingEnum.SUCCESS
 		},
-		kinopoisFetchingError(state, action: PayloadAction<string>) {
+		kinopoiskFetchingError(state, action: PayloadAction<string>) {
 			console.log('Error:', action.payload)
 
 			state.items = []
@@ -51,8 +51,8 @@ const kinopoiskSlice = createSlice({
 })
 
 export const {
-	kinopoisFetching,
-	kinopoisFetchingSuccess,
-	kinopoisFetchingError,
+	kinopoiskFetching,
+	kinopoiskFetchingSuccess,
+	kinopoiskFetchingError,
 } = kinopoiskSlice.actions
 export default kinopoiskSlice.reducer

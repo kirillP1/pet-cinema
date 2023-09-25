@@ -17,21 +17,7 @@ const Banner = () => {
 	const itemsData = items.length !== 0 ? items : headerSliderSlides
 	//const itemsData = items
 	useEffect(() => {
-		dispatch(
-			fetchKinopoisk([
-				'id',
-				'name',
-				'rating',
-				'poster',
-				'year',
-				'backdrop',
-				'logo',
-				'ageLimit',
-				'movieLength',
-				'genres',
-				'shortDescription',
-			])
-		)
+		dispatch(fetchKinopoisk())
 	}, [])
 
 	var settings = {
@@ -86,8 +72,9 @@ const Banner = () => {
 			setScrollTop(window.scrollY)
 		})
 	}, [])
+	console.log(itemsData)
 
-	if (status === statusLoadingEnum.LOADING || itemsData.length == 0) {
+	if (status === statusLoadingEnum.LOADING || itemsData.length === 0) {
 		return <>Загрузка...</>
 	} else {
 		return (
@@ -107,7 +94,9 @@ const Banner = () => {
 				>
 					<h2 className='banner__content-title'>
 						<img
-							src={itemsData[activeSlide].logo.url}
+							src={
+								itemsData[activeSlide].logo && itemsData[activeSlide].logo.url
+							}
 							alt={itemsData[activeSlide].name}
 						/>
 					</h2>
