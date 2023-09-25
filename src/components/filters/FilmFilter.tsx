@@ -57,8 +57,9 @@ const FilmFilter: FC<IFilmFilter> = ({ item }) => {
 					<MdArrowRight />
 				</div>
 				<ul className={optionsClasses.join(' ')}>
-					{item.options.map(option => (
+					{item.options.map((option, index) => (
 						<li
+							key={index}
 							className={selected === option ? 'active' : ''}
 							value={option}
 							onClick={() => onOptionClick(option)}

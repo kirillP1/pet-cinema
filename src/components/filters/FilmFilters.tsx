@@ -5,8 +5,8 @@ import FilmFilter from './FilmFilter'
 const FilmFilters: FC = () => {
 	return (
 		<div className='films__filters'>
-			{filmFilterData.map(item => (
-				<FilmFilter item={item} />
+			{filmFilterData.map((item, index) => (
+				<FilmFilter key={index} item={item} />
 			))}
 		</div>
 	)

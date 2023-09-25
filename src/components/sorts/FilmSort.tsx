@@ -42,8 +42,9 @@ const FilmSort = () => {
 				<MdArrowRight />
 			</div>
 			<ul className='filmSort__options'>
-				{sortList.map(item => (
+				{sortList.map((item, index) => (
 					<li
+						key={index}
 						className={item === selected ? 'active' : ''}
 						value={item}
 						onClick={() => onOptionClick(item)}

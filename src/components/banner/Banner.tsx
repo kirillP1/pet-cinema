@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react'
 import { AiFillPlayCircle, AiOutlinePlus } from 'react-icons/ai'
 import Slider from 'react-slick'
 import { headerSliderSlides } from '../../data/headerSliderSlides'
+import { useAppDispatch, useAppSelector } from '../../hooks/redux'
+import { fetchKinopoisk } from '../../redux/slices/ActionsCreators'
+import { statusLoadingEnum } from '../../redux/slices/kinopoiskSlice'
 import NextArrow from '../arrows/NextArrow'
 import PrevArrow from '../arrows/PrevArrow'
 
@@ -9,6 +12,27 @@ const Banner = () => {
 	const [activeSlide, setActiveSlide] = useState<number>(1)
 	const [countSlide, setCountSlide] = useState<number>(1)
 	const [scrollTop, setScrollTop] = useState<number>(0)
+	const dispatch = useAppDispatch()
+	const { items, status } = useAppSelector(state => state.kinopoisk)
+	const itemsData = items.length !== 0 ? items : headerSliderSlides
+	//const itemsData = items
+	useEffect(() => {
+		dispatch(
+			fetchKinopoisk([
+				'id',
+				'name',
+				'rating',
+				'poster',
+				'year',
+				'backdrop',
+				'logo',
+				'ageLimit',
+				'movieLength',
+				'genres',
+				'shortDescription',
+			])
+		)
+	}, [])
 
 	var settings = {
 		infinite: true,
@@ -48,10 +72,11 @@ const Banner = () => {
 	useEffect(() => {
 		let c: number
 
-		if (countSlide % 5 === 0) {
-			c = 5
+		if (countSlide % itemsData.length === 0) {
+			c = itemsData.length
+			console.log(c)
 		} else {
-			c = countSlide % 5
+			c = countSlide % itemsData.length
 		}
 		setActiveSlide(c - 1)
 	}, [countSlide])
@@ -62,56 +87,70 @@ const Banner = () => {
 		})
 	}, [])
 
-	return (
-		<div className='banner'>
-			<div
-				className='banner__background'
-				style={{
-					transform: `translate3d(0, calc((${scrollTop}px) / 3.6), 0)`,
-					background: `url(${headerSliderSlides[activeSlide].bgImg}) no-repeat`,
-				}}
-			></div>
-			<div
-				className='banner__content active banner__element'
-				style={{ transform: `translate3d(0, calc((${scrollTop}px) / 7.7), 0)` }}
-			>
-				<h2 className='banner__content-title'>
-					{headerSliderSlides[activeSlide].title}
-				</h2>
-				<h4>
-					<span>{headerSliderSlides[activeSlide].ageIssue}</span>
-					<span>
-						<i>{headerSliderSlides[activeSlide].ageLimit}+</i>
-					</span>
-					<span>{headerSliderSlides[activeSlide].duration}</span>
-					<span>{headerSliderSlides[activeSlide].genre}</span>
-				</h4>
-				<p>{headerSliderSlides[activeSlide].desc}</p>
-				<div className='banner__content-buttons'>
-					<a href='#'>
-						<AiFillPlayCircle /> Watch
-					</a>
-					<a href='#'>
-						<AiOutlinePlus /> My List
-					</a>
+	if (status === statusLoadingEnum.LOADING || itemsData.length == 0) {
+		return <>Загрузка...</>
+	} else {
+		return (
+			<div className='banner'>
+				<div
+					className='banner__background'
+					style={{
+						transform: `translate3d(0, calc((${scrollTop}px) / 3.6), 0)`,
+						background: `url(${itemsData[activeSlide].backdrop.url}) no-repeat`,
+					}}
+				></div>
+				<div
+					className='banner__content active banner__element'
+					style={{
+						transform: `translate3d(0, calc((${scrollTop}px) / 7.7), 0)`,
+					}}
+				>
+					<h2 className='banner__content-title'>
+						<img
+							src={itemsData[activeSlide].logo.url}
+							alt={itemsData[activeSlide].name}
+						/>
+					</h2>
+					<h4>
+						<span>{itemsData[activeSlide].year}</span>
+						{
+							//<span><i>{headerSliderSlides[activeSlide].year}+</i></span>
+						}
+						<span>{itemsData[activeSlide].movieLength} минут</span>
+						<span>
+							{itemsData[activeSlide].genres.map(
+								(genre: any) => `${genre.name} `
+							)}
+						</span>
+					</h4>
+					<p>{itemsData[activeSlide].shortDescription}...</p>
+					<div className='banner__content-buttons'>
+						<a href='#'>
+							<AiFillPlayCircle /> Watch
+						</a>
+						<a href='#'>
+							<AiOutlinePlus /> My List
+						</a>
+					</div>
+				</div>
+				<div
+					className='carousel-box banner__element'
+					style={{
+						transform: `translate3d(0, calc((${scrollTop}px) / 7.7), 0)`,
+					}}
+				>
+					<div className='carousel'>
+						<Slider {...settings}>
+							{itemsData.map((item: any, index: number) => (
+								<div key={index} className='carousel-item'>
+									<img src={item.poster.url} alt='' />
+								</div>
+							))}
+						</Slider>
+					</div>
 				</div>
 			</div>
-			<div
-				className='carousel-box banner__element'
-				style={{ transform: `translate3d(0, calc((${scrollTop}px) / 7.7), 0)` }}
-			>
-				<div className='carousel'>
-					<Slider {...settings}>
-						{headerSliderSlides.map((item, index) => (
-							<div key={index} className='carousel-item'>
-								<img src={item.img} alt='' />
-							</div>
-						))}
-					</Slider>
-				</div>
-			</div>
-		</div>
-	)
+		)
+	}
 }
-
 export default Banner

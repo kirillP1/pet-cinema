@@ -1,8 +1,20 @@
+import { useEffect, useState } from 'react'
 import FilmFilters from '../components/filters/FilmFilters'
 import FilmSort from '../components/sorts/FilmSort'
 import { headerSliderSlides } from '../data/headerSliderSlides'
+import { useAppDispatch, useAppSelector } from '../hooks/redux'
+import { fetchKinopoisk } from '../redux/slices/ActionsCreators'
 
 const Films = () => {
+	const dispatch = useAppDispatch()
+
+	const [filmsData, setFilmsData] = useState<any>(headerSliderSlides)
+	const { items } = useAppSelector(state => state.kinopoisk)
+
+	useEffect(() => {
+		dispatch(fetchKinopoisk(['id', 'poster']))
+	}, [])
+
 	return (
 		<div className='films'>
 			<div className='films__container'>
@@ -11,10 +23,13 @@ const Films = () => {
 				<div className='films__items-wrapper'>
 					<FilmSort />
 					<div className='films__items'>
-						{headerSliderSlides.map(item => (
+						{items.map((item: any, index: number) => (
 							<div
 								className='films__items-item'
-								style={{ background: `url(${item.img}) no-repeat` }}
+								key={index}
+								style={{
+									background: `url(${item.poster.previewUrl}) no-repeat`,
+								}}
 							></div>
 						))}
 					</div>

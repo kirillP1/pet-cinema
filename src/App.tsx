@@ -1,13 +1,14 @@
 import { FC } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import MainLayout from './layouts/MainLayout'
+import Favorites from './pages/Favorites'
 import Films from './pages/Films'
 import Franchises from './pages/Franchises'
 import Home from './pages/Home'
+import Serials from './pages/Serials'
 import SingleFilm from './pages/SingleFilm'
 import SingleFranchise from './pages/SingleFranchise'
 import SingleSerial from './pages/SingleSerial'
-import Serials from './pages/Sireals'
 
 const App: FC = () => {
 	return (
@@ -20,6 +21,7 @@ const App: FC = () => {
 				<Route path='franchises/:id' element={<SingleFranchise />} />
 				<Route path='serials' element={<Serials />} />
 				<Route path='serials/:id' element={<SingleSerial />} />
+				<Route path='favorites' element={<Favorites />} />
 			</Route>
 		</Routes>
 	)
