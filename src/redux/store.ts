@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 
+import filmsSlice from './slices/filmsSlice'
 import filterSlice from './slices/filterSlice'
-import kinopoiskSlice from './slices/kinopoiskSlice'
 
 export const store = configureStore({
 	reducer: {
-		kinopoisk: kinopoiskSlice,
+		films: filmsSlice,
 		filter: filterSlice,
 	},
 })

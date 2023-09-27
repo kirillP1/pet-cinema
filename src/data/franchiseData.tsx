@@ -3,7 +3,7 @@ export interface IFranchiseSlider {
 	bg: string
 }
 
-export const franchiseSliderData: IFranchiseSlider[] = [
+export const franchiseData: IFranchiseSlider[] = [
 	{
 		title: 'Властелин колец',
 		bg: 'https://w.forfun.com/fetch/b0/b06271c18b7274c5d5137d75547edc01.jpeg',

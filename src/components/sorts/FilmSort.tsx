@@ -9,7 +9,6 @@ import {
 
 export const sortList: activeSortType[] = [
 	{ sortName: 'По популярности', sort: sortEnum.RATING },
-	{ sortName: 'По цене', sort: sortEnum.PRICE },
 	{ sortName: 'По алфавиту', sort: sortEnum.NAME },
 ]
 

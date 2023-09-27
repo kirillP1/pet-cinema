@@ -7,7 +7,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 // Import Swiper styles
 import 'swiper/css'
 import 'swiper/css/navigation'
-import { franchiseSliderData } from '../../data/franchiseSliderData'
+import { franchiseData } from '../../data/franchiseData'
 
 const FranchisesSlider: FC = () => {
 	return (
@@ -22,7 +22,7 @@ const FranchisesSlider: FC = () => {
 				spaceBetween={18}
 			>
 				<div className='swiper-wrapper franchises-slider__wrapper'>
-					{franchiseSliderData.map(item => (
+					{franchiseData.map(item => (
 						<SwiperSlide className='swiper-slide franchises-slider__item'>
 							<div
 								className='franchises-slider__layer'

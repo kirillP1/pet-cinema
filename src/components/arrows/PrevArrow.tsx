@@ -7,7 +7,7 @@ const PrevArrow: FC<IArrow> = props => {
 	const { className, style, onClick, countSlide, setCountSlide } = props
 	const [isDisabled, setIsDisabled] = useState<boolean>(false)
 
-	const { items } = useAppSelector(state => state.kinopoisk)
+	const { items } = useAppSelector(state => state.films)
 	const itemsData = items.length !== 0 ? items : headerSliderSlides
 
 	const arrowClick = () => {

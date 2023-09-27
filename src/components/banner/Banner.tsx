@@ -3,8 +3,8 @@ import { AiFillPlayCircle, AiOutlinePlus } from 'react-icons/ai'
 import Slider from 'react-slick'
 import { headerSliderSlides } from '../../data/headerSliderSlides'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
-import { fetchKinopoisk } from '../../redux/slices/ActionsCreators'
-import { statusLoadingEnum } from '../../redux/slices/kinopoiskSlice'
+import { fetchFilms } from '../../redux/slices/ActionsCreators'
+import { statusLoadingEnum } from '../../redux/slices/filmsSlice'
 import NextArrow from '../arrows/NextArrow'
 import PrevArrow from '../arrows/PrevArrow'
 
@@ -13,11 +13,11 @@ const Banner = () => {
 	const [countSlide, setCountSlide] = useState<number>(1)
 	const [scrollTop, setScrollTop] = useState<number>(0)
 	const dispatch = useAppDispatch()
-	const { items, status } = useAppSelector(state => state.kinopoisk)
+	const { items, status } = useAppSelector(state => state.films)
 	const itemsData = items.length !== 0 ? items : headerSliderSlides
 	//const itemsData = items
 	useEffect(() => {
-		dispatch(fetchKinopoisk())
+		dispatch(fetchFilms())
 	}, [])
 
 	var settings = {
