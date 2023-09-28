@@ -1,21 +1,16 @@
 import { Filter, MovieFields } from '@openmoviedb/kinopoiskdev_client'
+import { activeSortType } from '../../@types/filtersInterfaces'
 import { headerSliderSlides } from '../../data/headerSliderSlides'
 import { getKinopoisk } from '../../utils/kinopoisk'
 import { AppDispatch } from '../store'
+import { setFilmCountriesAll, setFilmGenresAll } from './filmFiltersSlice'
 import {
 	filmsFetching,
 	filmsFetchingError,
 	filmsFetchingSuccess,
 } from './filmsSlice'
-import {
-	activeSortType,
-	setCountriesAll,
-	setGenresAll,
-	setYearsAll,
-} from './filterSlice'
 
 const { kp, queryBuilder } = getKinopoisk()
-console.log('wrapper kino', kp, queryBuilder)
 
 export const fetchFilms =
 	(
@@ -80,7 +75,7 @@ export const getGenresAll = async (dispatch: AppDispatch) => {
 	)
 
 	if (data) {
-		dispatch(setGenresAll(data.map(item => item.name.toString())))
+		dispatch(setFilmGenresAll(data.map(item => item.name.toString())))
 	}
 
 	// Если будет ошибка, то выведем ее в консоль
@@ -94,22 +89,7 @@ export const getCountriesAll = async (dispatch: AppDispatch) => {
 	)
 
 	if (data) {
-		dispatch(setCountriesAll(data.map(item => item.name.toString())))
-	}
-
-	// Если будет ошибка, то выведем ее в консоль
-	console.log(error, message)
-}
-
-export const getYearsAll = async (dispatch: AppDispatch) => {
-	// Отправляем запрос на получение годов
-	const { data, error, message } = await kp.movie.getPossibleValuesByField(
-		'year'
-	)
-
-	if (data) {
-		console.log(data)
-		dispatch(setYearsAll(data.map(item => item.name.toString())))
+		dispatch(setFilmCountriesAll(data.map(item => item.name.toString())))
 	}
 
 	// Если будет ошибка, то выведем ее в консоль

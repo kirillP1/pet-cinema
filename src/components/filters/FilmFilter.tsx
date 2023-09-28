@@ -1,11 +1,11 @@
 import { ActionCreatorWithPayload } from '@reduxjs/toolkit'
 import { FC, useEffect, useRef, useState } from 'react'
 import { MdArrowRight, MdOutlineArrowForwardIos } from 'react-icons/md'
-import { IFilmFilterData } from '../../data/filmFilterData'
+import { IFilmsFilterData } from '../../data/filmFiltersData'
 import { useAppDispatch } from '../../hooks/redux'
 
 interface IFilmFilter {
-	item: IFilmFilterData
+	item: IFilmsFilterData
 }
 type Option = { title: string; value: string }
 
@@ -16,6 +16,7 @@ const FilmFilter: FC<IFilmFilter> = ({ item }) => {
 
 	const rootRef = useRef<HTMLDivElement>(null)
 	const dispatch = useAppDispatch()
+
 	const filterClasses = ['films__filter', isActiveFilter ? 'active' : '']
 	const optionsClasses = ['films__filter-options', isOpen ? 'active' : '']
 

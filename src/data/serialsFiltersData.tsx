@@ -1,37 +1,34 @@
 import { ActionCreatorWithPayload } from '@reduxjs/toolkit'
-import {} from 'redux'
-import filterSlice, {
-	setCountry,
-	setGenre,
-	setYear,
-} from '../redux/slices/filterSlice'
+import {
+	setSerialCountry,
+	setSerialGenre,
+	setSerialYear,
+} from '../redux/slices/serialFiltersSlice'
 
-const filter = filterSlice
-console.log(filter)
-
-export interface IFilmFilterData {
+export interface ISerialsFilterData {
 	title: string
 	placeholder: string
 	all: string[]
 	action: ActionCreatorWithPayload<string>
 }
-export const filmFilterData: IFilmFilterData[] = [
+
+export const serialsFilterData: ISerialsFilterData[] = [
 	{
 		title: 'Страны',
 		placeholder: 'Все страны',
 		all: [],
-		action: setCountry,
+		action: setSerialCountry,
 	},
 	{
 		title: 'Жанры',
 		placeholder: 'Все жанры',
 		all: [],
-		action: setGenre,
+		action: setSerialGenre,
 	},
 	{
 		title: 'Годы',
 		placeholder: 'Все годы',
 		all: [],
-		action: setYear,
+		action: setSerialYear,
 	},
 ]

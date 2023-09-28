@@ -1,12 +1,18 @@
 import { configureStore } from '@reduxjs/toolkit'
 
+import filmFiltersSlice from './slices/filmFiltersSlice'
 import filmsSlice from './slices/filmsSlice'
-import filterSlice from './slices/filterSlice'
+import filtersSlice from './slices/filtersSlice'
+import serialFiltersSlice from './slices/serialFiltersSlice'
+import serialsSlice from './slices/serialsSlice'
 
 export const store = configureStore({
 	reducer: {
+		filters: filtersSlice,
 		films: filmsSlice,
-		filter: filterSlice,
+		filmFilters: filmFiltersSlice,
+		serials: serialsSlice,
+		serialFilters: serialFiltersSlice,
 	},
 })
 

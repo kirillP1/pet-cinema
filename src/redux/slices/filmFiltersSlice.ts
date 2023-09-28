@@ -1,31 +1,22 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
+import {
+	IFilter,
+	activeSortType,
+	sortEnum,
+} from '../../@types/filtersInterfaces'
 
-export enum sortEnum {
-	RATING = 'rating',
-	NAME = 'name',
-}
-
-export interface activeSortType {
-	sortName: string
-	sort: sortEnum
-}
-
-export interface IFilter {
-	title: string
-	active: string
-	all: string[]
-}
-export interface IFilters {
+export interface IfilmFilters {
 	genres: IFilter
 	years: IFilter
 	countries: IFilter
 }
-interface filterSliceState {
-	filters: IFilters
+
+interface filmFiltersSliceState {
+	filters: IfilmFilters
 	activeSortType: activeSortType
 }
 
-const initialState: filterSliceState = {
+const initialState: filmFiltersSliceState = {
 	filters: {
 		genres: {
 			title: 'Жанры',
@@ -51,6 +42,14 @@ const initialState: filterSliceState = {
 				'2000-2009',
 				'1990-1999',
 				'1980-1989',
+				'1970-1989',
+				'1960-1969',
+				'1950-1959',
+				'1940-1949',
+				'1930-1939',
+				'1920-1929',
+				'1910-1919',
+				'1900-1909',
 			],
 		},
 		countries: {
@@ -65,41 +64,37 @@ const initialState: filterSliceState = {
 	},
 }
 
-const filterSlice = createSlice({
-	name: 'filter',
+const filmFiltersSlice = createSlice({
+	name: 'filmFilters',
 	initialState,
 	reducers: {
-		setYear: (state, action: PayloadAction<string>) => {
+		setFilmYear: (state, action: PayloadAction<string>) => {
 			state.filters.years.active = action.payload
 		},
-		setCountry: (state, action: PayloadAction<string>) => {
+		setFilmCountry: (state, action: PayloadAction<string>) => {
 			state.filters.countries.active = action.payload
 		},
-		setGenre: (state, action: PayloadAction<string>) => {
+		setFilmGenre: (state, action: PayloadAction<string>) => {
 			state.filters.genres.active = action.payload
 		},
-		setSortType: (state, action: PayloadAction<activeSortType>) => {
+		setFilmSortType: (state, action: PayloadAction<activeSortType>) => {
 			state.activeSortType = action.payload
 		},
-		setGenresAll: (state, action: PayloadAction<string[]>) => {
+		setFilmGenresAll: (state, action: PayloadAction<string[]>) => {
 			state.filters.genres.all = action.payload
 		},
-		setCountriesAll: (state, action: PayloadAction<string[]>) => {
+		setFilmCountriesAll: (state, action: PayloadAction<string[]>) => {
 			state.filters.countries.all = action.payload
-		},
-		setYearsAll: (state, action: PayloadAction<string[]>) => {
-			state.filters.years.all = action.payload
 		},
 	},
 })
 
 export const {
-	setYear,
-	setCountry,
-	setGenre,
-	setSortType,
-	setGenresAll,
-	setCountriesAll,
-	setYearsAll,
-} = filterSlice.actions
-export default filterSlice.reducer
+	setFilmYear,
+	setFilmCountry,
+	setFilmGenre,
+	setFilmSortType,
+	setFilmGenresAll,
+	setFilmCountriesAll,
+} = filmFiltersSlice.actions
+export default filmFiltersSlice.reducer

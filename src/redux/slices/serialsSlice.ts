@@ -12,25 +12,25 @@ const initialState = {
 	status: statusLoadingEnum.LOADING, // loading | success | error
 }
 
-const filmsSlice = createSlice({
-	name: 'films',
+const serialsSlice = createSlice({
+	name: 'serials',
 	initialState,
 	reducers: {
-		filmsFetching(state) {
+		serialsFetching(state) {
 			state.status = statusLoadingEnum.LOADING
 		},
-		filmsFetchingSuccess(state, action: PayloadAction<any[]>) {
+		serialsFetchingSuccess(state, action: PayloadAction<any[]>) {
 			state.items = action.payload
 			state.status = statusLoadingEnum.SUCCESS
 		},
-		filmsFetchingError(state, action: PayloadAction<string>) {
-			console.log('Error filmsSlice:', action.payload)
+		serialsFetchingError(state, action: PayloadAction<string>) {
+			console.log('Error serialsSlice:', action.payload)
 			state.items = []
 			state.status = statusLoadingEnum.ERROR
 		},
 	},
 })
 
-export const { filmsFetching, filmsFetchingSuccess, filmsFetchingError } =
-	filmsSlice.actions
-export default filmsSlice.reducer
+export const { serialsFetching, serialsFetchingSuccess, serialsFetchingError } =
+	serialsSlice.actions
+export default serialsSlice.reducer

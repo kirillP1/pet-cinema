@@ -2,19 +2,18 @@ import { FC, useEffect, useRef, useState } from 'react'
 import { MdArrowRight } from 'react-icons/md'
 import { activeSortType, sortEnum } from '../../@types/filtersInterfaces'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
-import { setFilmSortType } from '../../redux/slices/filmFiltersSlice'
+import { setSerialSortType } from '../../redux/slices/serialFiltersSlice'
 
 export const sortFilmList: activeSortType[] = [
 	{ sortName: 'По популярности', sort: sortEnum.RATING },
 	{ sortName: 'По алфавиту', sort: sortEnum.NAME },
 ]
 
-const FilmSort: FC = () => {
+const SerialSort: FC = () => {
 	const dispatch = useAppDispatch()
-
 	const [isOpenSort, setIsOpenSort] = useState(false)
 	const [selected, setSelected] = useState(
-		useAppSelector(state => state.filmFilters.activeSortType)
+		useAppSelector(state => state.serialFilters.activeSortType)
 	)
 
 	const onSortClick = () => {
@@ -25,7 +24,7 @@ const FilmSort: FC = () => {
 
 	const onOptionClick = (item: activeSortType) => {
 		setSelected(item)
-		dispatch(setFilmSortType(item))
+		dispatch(setSerialSortType(item))
 		setIsOpenSort(false)
 	}
 
@@ -47,13 +46,13 @@ const FilmSort: FC = () => {
 	return (
 		<div
 			ref={rootRef}
-			className={`filmSort-wrapper ${isOpenSort ? 'active' : ''}`}
+			className={`serialSort-wrapper ${isOpenSort ? 'active' : ''}`}
 		>
-			<div className='filmSort' onClick={() => onSortClick()}>
+			<div className='serialSort' onClick={() => onSortClick()}>
 				<span>{selected.sortName}</span>
 				<MdArrowRight />
 			</div>
-			<ul className='filmSort__options'>
+			<ul className='serialSort__options'>
 				{sortFilmList.map((item, index) => (
 					<li
 						key={index}
@@ -69,4 +68,4 @@ const FilmSort: FC = () => {
 	)
 }
 
-export default FilmSort
+export default SerialSort
