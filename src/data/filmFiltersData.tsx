@@ -1,5 +1,6 @@
 import { ActionCreatorWithPayload } from '@reduxjs/toolkit'
 import {} from 'redux'
+import { activeSortType, sortEnum } from '../@types/filtersInterfaces'
 import {
 	setFilmCountry,
 	setFilmGenre,
@@ -31,4 +32,10 @@ export const filmsFilterData: IFilmsFilterData[] = [
 		all: [],
 		action: setFilmYear,
 	},
+]
+
+export const sortFilmList: activeSortType[] = [
+	{ sortName: 'По популярности', sort: sortEnum.POPULARITY },
+	{ sortName: 'По алфавиту', sort: sortEnum.NAME },
+	{ sortName: 'По рейтингу', sort: sortEnum.RATING },
 ]

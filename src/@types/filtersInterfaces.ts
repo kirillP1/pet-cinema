@@ -1,6 +1,7 @@
 export enum sortEnum {
-	RATING = 'rating',
+	RATING = 'rating.kp',
 	NAME = 'name',
+	POPULARITY = 'votes.kp',
 }
 
 export interface activeSortType {

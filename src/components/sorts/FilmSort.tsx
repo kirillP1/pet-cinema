@@ -1,13 +1,9 @@
 import { FC, useEffect, useRef, useState } from 'react'
 import { MdArrowRight } from 'react-icons/md'
-import { activeSortType, sortEnum } from '../../@types/filtersInterfaces'
+import { activeSortType } from '../../@types/filtersInterfaces'
+import { sortFilmList } from '../../data/filmFiltersData'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import { setFilmSortType } from '../../redux/slices/filmFiltersSlice'
-
-export const sortFilmList: activeSortType[] = [
-	{ sortName: 'По популярности', sort: sortEnum.RATING },
-	{ sortName: 'По алфавиту', sort: sortEnum.NAME },
-]
 
 const FilmSort: FC = () => {
 	const dispatch = useAppDispatch()
@@ -54,7 +50,7 @@ const FilmSort: FC = () => {
 				<MdArrowRight />
 			</div>
 			<ul className='filmSort__options'>
-				{sortFilmList.map((item, index) => (
+				{sortFilmList.map((item: activeSortType, index: number) => (
 					<li
 						key={index}
 						className={item === selected ? 'active' : ''}

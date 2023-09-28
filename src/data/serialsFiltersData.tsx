@@ -1,4 +1,5 @@
 import { ActionCreatorWithPayload } from '@reduxjs/toolkit'
+import { activeSortType, sortEnum } from '../@types/filtersInterfaces'
 import {
 	setSerialCountry,
 	setSerialGenre,
@@ -31,4 +32,10 @@ export const serialsFilterData: ISerialsFilterData[] = [
 		all: [],
 		action: setSerialYear,
 	},
+]
+
+export const sortSerialList: activeSortType[] = [
+	{ sortName: 'По популярности', sort: sortEnum.POPULARITY },
+	{ sortName: 'По алфавиту', sort: sortEnum.NAME },
+	{ sortName: 'По рейтингу', sort: sortEnum.RATING },
 ]

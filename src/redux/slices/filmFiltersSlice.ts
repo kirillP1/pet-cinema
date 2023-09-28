@@ -60,7 +60,7 @@ const initialState: filmFiltersSliceState = {
 	},
 	activeSortType: {
 		sortName: 'По популярности',
-		sort: sortEnum.RATING,
+		sort: sortEnum.POPULARITY,
 	},
 }
 

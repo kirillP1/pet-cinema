@@ -1,4 +1,8 @@
-import { Filter, MovieFields } from '@openmoviedb/kinopoiskdev_client'
+import {
+	Filter,
+	MovieFields,
+	SORT_TYPE,
+} from '@openmoviedb/kinopoiskdev_client'
 import { activeSortType } from '../../@types/filtersInterfaces'
 import { headerSliderSlides } from '../../data/headerSliderSlides'
 import { getKinopoisk } from '../../utils/kinopoisk'
@@ -20,6 +24,8 @@ export const fetchFilms =
 		activeSortType?: activeSortType
 	) =>
 	async (dispatch: AppDispatch) => {
+		console.log('Start Film Fetch')
+
 		try {
 			dispatch(filmsFetching())
 			// Не работает фильтрация
@@ -28,6 +34,7 @@ export const fetchFilms =
 					'id',
 					'name',
 					'rating',
+					'votes',
 					'poster',
 					'year',
 					'backdrop',
@@ -38,25 +45,33 @@ export const fetchFilms =
 					'shortDescription',
 					'videos',
 					'countries',
+					'ag',
 				],
+				// Добавляем фильтр поиска по указанному диапазону рейтинга
+
+				'rating.kp': '7.5-10',
+				// Добавляем фильтр для поиска фильмов с постером
+				'poster.url': '!null',
+
 				type: 'movie',
 				page: 1,
 				limit: 30,
 			}
 			genre = genre?.toLowerCase()
 			console.log('Годы: ' + year, 'Жанры: ' + genre, 'Страны: ' + country)
-			genre?.toLowerCase() !== 'все жанры' && (query['genres.name'] = genre)
+			genre?.toLowerCase() !== 'все жанры' &&
+				genre &&
+				(query['genres.name'] = genre)
 			country?.toLowerCase() !== 'все страны' &&
+				country &&
 				(query['countries.name'] = country)
-			year?.toLowerCase() !== 'все годы' && (query.year = year)
-
-			/*if (activeSortType?.sort === sortEnum.RATING) {
-				query.sortField = 'raiting.kp'
-			} else if (activeSortType?.sort === sortEnum.NAME) {
-				query.sortField = 'name'
-			}*/
-
+			year?.toLowerCase() !== 'все годы' && year && (query.year = year)
+			if (activeSortType) {
+				query.sortField = activeSortType?.sort
+				query.sortType = SORT_TYPE.DESC
+			}
 			const { data, error, message } = await kp.movie.getByFilters(query)
+			console.log('action data:', data, 'query: ', query)
 
 			if (data) {
 				dispatch(filmsFetchingSuccess(data?.docs))

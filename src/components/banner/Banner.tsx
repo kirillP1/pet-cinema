@@ -14,7 +14,10 @@ const Banner = () => {
 	const [scrollTop, setScrollTop] = useState<number>(0)
 	const dispatch = useAppDispatch()
 	const { items, status } = useAppSelector(state => state.films)
-	const itemsData = items.length !== 0 ? items : headerSliderSlides
+	console.log('items', items, status)
+
+	const itemsData =
+		items.length !== 0 ? items.slice(0, 5) : headerSliderSlides.slice(0, 5)
 	//const itemsData = items
 	useEffect(() => {
 		dispatch(fetchFilms())

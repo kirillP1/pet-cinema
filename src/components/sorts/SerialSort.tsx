@@ -1,13 +1,9 @@
 import { FC, useEffect, useRef, useState } from 'react'
 import { MdArrowRight } from 'react-icons/md'
-import { activeSortType, sortEnum } from '../../@types/filtersInterfaces'
+import { activeSortType } from '../../@types/filtersInterfaces'
+import { sortSerialList } from '../../data/serialsFiltersData'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import { setSerialSortType } from '../../redux/slices/serialFiltersSlice'
-
-export const sortFilmList: activeSortType[] = [
-	{ sortName: 'По популярности', sort: sortEnum.RATING },
-	{ sortName: 'По алфавиту', sort: sortEnum.NAME },
-]
 
 const SerialSort: FC = () => {
 	const dispatch = useAppDispatch()
@@ -53,7 +49,7 @@ const SerialSort: FC = () => {
 				<MdArrowRight />
 			</div>
 			<ul className='serialSort__options'>
-				{sortFilmList.map((item, index) => (
+				{sortSerialList.map((item, index) => (
 					<li
 						key={index}
 						className={item === selected ? 'active' : ''}

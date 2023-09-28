@@ -22,8 +22,11 @@ const FranchisesSlider: FC = () => {
 				spaceBetween={18}
 			>
 				<div className='swiper-wrapper franchises-slider__wrapper'>
-					{franchiseData.map(item => (
-						<SwiperSlide className='swiper-slide franchises-slider__item'>
+					{franchiseData.map((item, index) => (
+						<SwiperSlide
+							className='swiper-slide franchises-slider__item'
+							key={index}
+						>
 							<div
 								className='franchises-slider__layer'
 								data-swiper-parallax='55%'
