@@ -13,6 +13,7 @@ import {
 	filmsFetchingError,
 	filmsFetchingSuccess,
 } from './filmsSlice'
+import { setSerialCountriesAll, setSerialGenresAll } from './serialFiltersSlice'
 
 const { kp, queryBuilder } = getKinopoisk()
 
@@ -91,6 +92,7 @@ export const getGenresAll = async (dispatch: AppDispatch) => {
 
 	if (data) {
 		dispatch(setFilmGenresAll(data.map(item => item.name.toString())))
+		dispatch(setSerialGenresAll(data.map(item => item.name.toString())))
 	}
 
 	// Если будет ошибка, то выведем ее в консоль
@@ -105,6 +107,7 @@ export const getCountriesAll = async (dispatch: AppDispatch) => {
 
 	if (data) {
 		dispatch(setFilmCountriesAll(data.map(item => item.name.toString())))
+		dispatch(setSerialCountriesAll(data.map(item => item.name.toString())))
 	}
 
 	// Если будет ошибка, то выведем ее в консоль

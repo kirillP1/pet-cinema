@@ -1,4 +1,9 @@
-import { Filter, MovieFields } from '@openmoviedb/kinopoiskdev_client'
+import {
+	Filter,
+	MovieFields,
+	SORT_TYPE,
+} from '@openmoviedb/kinopoiskdev_client'
+import { activeSortType } from '../../@types/filtersInterfaces'
 import { headerSliderSlides } from '../../data/headerSliderSlides'
 import { getKinopoisk } from '../../utils/kinopoisk'
 import { AppDispatch } from '../store'
@@ -10,39 +15,64 @@ import {
 
 const { kp, queryBuilder } = getKinopoisk()
 
-export const fetchSerials = () => async (dispatch: AppDispatch) => {
-	try {
-		dispatch(serialsFetching())
-		// Не работает фильтрация
-		let query: Filter<MovieFields> = {
-			selectFields: [
-				'id',
-				'name',
-				'rating',
-				'poster',
-				'year',
-				'backdrop',
-				'logo',
-				'ageLimit',
-				'movieLength',
-				'genres',
-				'shortDescription',
-				'videos',
-				'countries',
-			],
-			type: 'tv-series',
-			page: 1,
-			limit: 30,
-		}
+export const fetchSerials =
+	(
+		year?: string,
+		genre?: string,
+		country?: string,
+		activeSortType?: activeSortType
+	) =>
+	async (dispatch: AppDispatch) => {
+		try {
+			dispatch(serialsFetching())
+			// Не работает фильтрация
+			let query: Filter<MovieFields> = {
+				selectFields: [
+					'id',
+					'name',
+					'rating',
+					'poster',
+					'year',
+					'backdrop',
+					'logo',
+					'ageLimit',
+					'movieLength',
+					'genres',
+					'shortDescription',
+					'videos',
+					'countries',
+				],
+				// Добавляем фильтр поиска по указанному диапазону рейтинга
 
-		const { data, error, message } = await kp.movie.getByFilters(query)
+				'rating.kp': '7.5-10',
+				// Добавляем фильтр для поиска фильмов с постером
+				'poster.url': '!null',
 
-		if (data) {
-			dispatch(serialsFetchingSuccess(data?.docs))
-		} else {
-			dispatch(serialsFetchingSuccess(headerSliderSlides))
+				type: 'tv-series',
+				page: 1,
+				limit: 30,
+			}
+			genre = genre?.toLowerCase()
+			console.log('Годы: ' + year, 'Жанры: ' + genre, 'Страны: ' + country)
+			genre?.toLowerCase() !== 'все жанры' &&
+				genre &&
+				(query['genres.name'] = genre)
+			country?.toLowerCase() !== 'все страны' &&
+				country &&
+				(query['countries.name'] = country)
+			year?.toLowerCase() !== 'все годы' && year && (query.year = year)
+			if (activeSortType) {
+				query.sortField = activeSortType?.sort
+				query.sortType = SORT_TYPE.DESC
+			}
+			const { data, error, message } = await kp.movie.getByFilters(query)
+
+			if (data) {
+				dispatch(serialsFetchingSuccess(data?.docs))
+			} else {
+				dispatch(serialsFetchingSuccess(headerSliderSlides))
+			}
+		} catch (e: any | unknown) {
+			dispatch(serialsFetchingError(e))
 		}
-	} catch (e: any | unknown) {
-		dispatch(serialsFetchingError(e))
 	}
-}

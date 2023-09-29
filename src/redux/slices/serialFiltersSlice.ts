@@ -72,6 +72,8 @@ const serialFiltersSlice = createSlice({
 			state.filters.years.active = action.payload
 		},
 		setSerialCountry: (state, action: PayloadAction<string>) => {
+			console.log('Set serial country')
+
 			state.filters.countries.active = action.payload
 		},
 		setSerialGenre: (state, action: PayloadAction<string>) => {

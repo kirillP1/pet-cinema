@@ -118,10 +118,10 @@ const Banner = () => {
 					<p>{itemsData[activeSlide].shortDescription}...</p>
 					<div className='banner__content-buttons'>
 						<a href='#'>
-							<AiFillPlayCircle /> Watch
+							<AiFillPlayCircle /> Смотреть
 						</a>
 						<a href='#'>
-							<AiOutlinePlus /> My List
+							<AiOutlinePlus /> В избранное
 						</a>
 					</div>
 				</div>
