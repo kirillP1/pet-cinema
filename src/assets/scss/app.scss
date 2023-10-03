@@ -8,6 +8,9 @@
 	scrollbar-width: thin;
 	scrollbar-color: rgba(0, 0, 0, 0.5);
 }
+html {
+	scroll-behavior: smooth;
+}
 body {
 	background: $black;
 	font-family: 'Poppins', sans-serif;

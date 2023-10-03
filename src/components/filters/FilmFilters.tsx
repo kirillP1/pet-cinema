@@ -18,8 +18,11 @@ const FilmFilters: FC = () => {
 	}, [])
 
 	useEffect(() => {
-		filmsFilterData[0].all = filmFilters.filters.countries.all
-		filmsFilterData[1].all = filmFilters.filters.genres.all
+		filmsFilterData[0].all = [
+			'Все страны',
+			...filmFilters.filters.countries.all,
+		]
+		filmsFilterData[1].all = ['Все жанры', ...filmFilters.filters.genres.all]
 		filmsFilterData[2].all = filmFilters.filters.years.all
 	}, [filmFilters])
 

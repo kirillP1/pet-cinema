@@ -1,5 +1,4 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
-import { headerSliderSlides } from '../../data/headerSliderSlides'
 
 export enum statusLoadingEnum {
 	LOADING = 'loading',
@@ -8,7 +7,7 @@ export enum statusLoadingEnum {
 }
 
 const initialState = {
-	items: <any>headerSliderSlides,
+	items: <any>[],
 	status: statusLoadingEnum.LOADING, // loading | success | error
 }
 

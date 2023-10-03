@@ -10,7 +10,7 @@ export const franchiseData: IFranchiseSlider[] = [
 	},
 	{
 		title: 'Звездные войны',
-		bg: 'https://www.wallpaperup.com/uploads/wallpapers/2018/03/18/1232925/a9d64b36233bfb7b343eb8e72eb1e502.jpg',
+		bg: 'https://avatars.mds.yandex.net/get-kinopoisk-post-img/1642096/1c50cf591b3707a82679f2585bdfb794/960x540',
 	},
 	{
 		title: 'Гарри Поттер',

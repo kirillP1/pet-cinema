@@ -1,11 +1,19 @@
+import { useEffect } from 'react'
+import FilmCard from '../components/cards/FilmCard'
 import FilmFilters from '../components/filters/FilmFilters'
 import FilmsSkeleton from '../components/skeletons/FilmsSkeleton'
 import FilmSort from '../components/sorts/FilmSort'
-import { useAppSelector } from '../hooks/redux'
+import { IFilms } from '../data/filmsLocalData'
+import { useAppDispatch, useAppSelector } from '../hooks/redux'
+import { fetchFilms } from '../redux/slices/filmsActionsCreators'
 import { statusLoadingEnum } from '../redux/slices/filmsSlice'
 
 const Films = () => {
 	const { items, status } = useAppSelector(state => state.films)
+	const dispath = useAppDispatch()
+	useEffect(() => {
+		dispath(fetchFilms())
+	}, [])
 	console.log(items, status)
 
 	return (
@@ -16,18 +24,12 @@ const Films = () => {
 				<div className='films__items-wrapper'>
 					<FilmSort />
 					<div className='films__items'>
-						{items.map((item: any, index: number) =>
+						{items.map((item: IFilms, index: number) =>
 							status === statusLoadingEnum.LOADING ||
 							status === statusLoadingEnum.ERROR ? (
 								<FilmsSkeleton key={index} />
 							) : (
-								<div
-									className='films__items-item'
-									key={index}
-									style={{
-										background: `url(${item.poster.previewUrl}) no-repeat`,
-									}}
-								></div>
+								<FilmCard item={item} key={index} />
 							)
 						)}
 					</div>

@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
-import { AiFillPlayCircle, AiOutlinePlus } from 'react-icons/ai'
+import { AiFillPlayCircle, AiOutlineHeart } from 'react-icons/ai'
+import { Link } from 'react-router-dom'
 import Slider from 'react-slick'
-import { headerSliderSlides } from '../../data/headerSliderSlides'
+import { IFilms, filmsLocalData } from '../../data/filmsLocalData'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import { fetchFilms } from '../../redux/slices/filmsActionsCreators'
 import { statusLoadingEnum } from '../../redux/slices/filmsSlice'
@@ -17,7 +18,7 @@ const Banner = () => {
 	console.log('items', items, status)
 
 	const itemsData =
-		items.length !== 0 ? items.slice(0, 5) : headerSliderSlides.slice(0, 5)
+		items.length !== 0 ? items.slice(0, 5) : filmsLocalData.slice(0, 5)
 	//const itemsData = items
 	useEffect(() => {
 		dispatch(fetchFilms())
@@ -76,6 +77,7 @@ const Banner = () => {
 		})
 	}, [])
 	console.log(itemsData)
+	console.log('active', activeSlide, status)
 
 	if (status === statusLoadingEnum.LOADING || itemsData.length === 0) {
 		return <>Загрузка...</>
@@ -98,7 +100,7 @@ const Banner = () => {
 					<h2 className='banner__content-title'>
 						<img
 							src={
-								itemsData[activeSlide].logo && itemsData[activeSlide].logo.url
+								itemsData[activeSlide].logo && itemsData[activeSlide].logo?.url
 							}
 							alt={itemsData[activeSlide].name}
 						/>
@@ -117,11 +119,11 @@ const Banner = () => {
 					</h4>
 					<p>{itemsData[activeSlide].shortDescription}...</p>
 					<div className='banner__content-buttons'>
-						<a href='#'>
+						<Link to={'/films/' + itemsData[activeSlide].id}>
 							<AiFillPlayCircle /> Смотреть
-						</a>
+						</Link>
 						<a href='#'>
-							<AiOutlinePlus /> В избранное
+							<AiOutlineHeart /> В избранное
 						</a>
 					</div>
 				</div>
@@ -133,9 +135,11 @@ const Banner = () => {
 				>
 					<div className='carousel'>
 						<Slider {...settings}>
-							{itemsData.map((item: any, index: number) => (
+							{itemsData.map((item: IFilms, index: number) => (
 								<div key={index} className='carousel-item'>
-									<img src={item.poster.url} alt='' />
+									<Link to={'/films/' + item.id}>
+										<img src={item.poster.url} alt='' />
+									</Link>
 								</div>
 							))}
 						</Slider>

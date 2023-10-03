@@ -10,6 +10,10 @@
 	background-position: center !important;
 	overflow: hidden;
 
+	-webkit-box-shadow: 0px -27px 57px 24px rgba(0, 0, 0, 1) inset;
+	-moz-box-shadow: 0px -27px 57px 24px rgba(0, 0, 0, 1) inset;
+	box-shadow: 0px -27px 57px 24px rgba(0, 0, 0, 1) inset;
+
 	@media (max-width: 1024px) {
 		display: block;
 	}
@@ -111,6 +115,9 @@
 				&:nth-child(2) {
 					background: $black-lighter1;
 					border: 1px solid $black-lighter2;
+				}
+				svg {
+					margin-bottom: -3px;
 				}
 			}
 		}

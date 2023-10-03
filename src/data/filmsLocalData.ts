@@ -38,14 +38,23 @@ interface IVideo {
 	trailers: ITrailer[]
 	teasers: any[]
 }
-type typeHeaderSliderSlides = {
+interface IPerson {
+	description: string
+	enName: string
+	enProfession: string
+	id: number
+	name: string
+	photo: string
+	profession: string
+}
+export interface IFilms {
 	id: number
 	poster: IPoster
 	backdrop: IBackdrop
 	name: string
 	logo?: ILogo
 	year: number
-	ageLimit?: number
+	ageRating?: number
 	movieLength: number
 	genres: IGenre[]
 	shortDescription: string
@@ -53,8 +62,11 @@ type typeHeaderSliderSlides = {
 	votes: IVotes
 	countries: ICountry[]
 	videos: IVideo
+	description?: string
+	similarMovies?: IFilms[]
+	persons?: IPerson[]
 }
-export const headerSliderSlides: typeHeaderSliderSlides[] = [
+export const filmsLocalData: IFilms[] = [
 	{
 		rating: {
 			kp: 8.813,

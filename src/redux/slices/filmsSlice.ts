@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
-import { headerSliderSlides } from '../../data/headerSliderSlides'
+import { IFilms, filmsLocalData } from '../../data/filmsLocalData'
 
 export enum statusLoadingEnum {
 	LOADING = 'loading',
@@ -8,7 +8,8 @@ export enum statusLoadingEnum {
 }
 
 const initialState = {
-	items: <any>headerSliderSlides,
+	items: filmsLocalData as IFilms[],
+	activeFilm: [] as any,
 	status: statusLoadingEnum.LOADING, // loading | success | error
 }
 
@@ -28,9 +29,20 @@ const filmsSlice = createSlice({
 			state.items = []
 			state.status = statusLoadingEnum.ERROR
 		},
+		setActiveFilm(state, action: PayloadAction<any>) {
+			if (action.payload) {
+				state.activeFilm = action.payload
+			} else {
+				console.log('Ошибка setActiveFilm')
+			}
+		},
 	},
 })
 
-export const { filmsFetching, filmsFetchingSuccess, filmsFetchingError } =
-	filmsSlice.actions
+export const {
+	filmsFetching,
+	filmsFetchingSuccess,
+	filmsFetchingError,
+	setActiveFilm,
+} = filmsSlice.actions
 export default filmsSlice.reducer

@@ -4,7 +4,7 @@ import {
 	SORT_TYPE,
 } from '@openmoviedb/kinopoiskdev_client'
 import { activeSortType } from '../../@types/filtersInterfaces'
-import { headerSliderSlides } from '../../data/headerSliderSlides'
+import { filmsLocalData } from '../../data/filmsLocalData'
 import { getKinopoisk } from '../../utils/kinopoisk'
 import { AppDispatch } from '../store'
 import { setFilmCountriesAll, setFilmGenresAll } from './filmFiltersSlice'
@@ -31,11 +31,11 @@ export const fetchFilms =
 			dispatch(filmsFetching())
 			// Не работает фильтрация
 			let query: Filter<MovieFields> = {
+				//                           Добавляем фильтр поиска по указанному диапазону рейтинга
 				selectFields: [
 					'id',
 					'name',
 					'rating',
-					'votes',
 					'poster',
 					'year',
 					'backdrop',
@@ -46,14 +46,12 @@ export const fetchFilms =
 					'shortDescription',
 					'videos',
 					'countries',
-					'ag',
+					'ageRating',
 				],
-				// Добавляем фильтр поиска по указанному диапазону рейтинга
-
 				'rating.kp': '7.5-10',
 				// Добавляем фильтр для поиска фильмов с постером
 				'poster.url': '!null',
-
+				name: '!null',
 				type: 'movie',
 				page: 1,
 				limit: 30,
@@ -77,7 +75,7 @@ export const fetchFilms =
 			if (data) {
 				dispatch(filmsFetchingSuccess(data?.docs))
 			} else {
-				dispatch(filmsFetchingSuccess(headerSliderSlides))
+				dispatch(filmsFetchingSuccess(filmsLocalData))
 			}
 		} catch (e: any | unknown) {
 			dispatch(filmsFetchingError(e))
@@ -113,3 +111,19 @@ export const getCountriesAll = async (dispatch: AppDispatch) => {
 	// Если будет ошибка, то выведем ее в консоль
 	console.log(error, message)
 }
+
+export const fetchSingleFilms =
+	(id: number) => async (dispatch: AppDispatch) => {
+		try {
+			// Не работает фильтрация
+
+			const { data, error, message } = await kp.movie.getById(id)
+			console.log('action data:', data)
+
+			if (data) {
+				return data
+			}
+		} catch (e: any | unknown) {
+			dispatch(filmsFetchingError(e))
+		}
+	}

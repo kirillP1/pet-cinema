@@ -4,7 +4,7 @@ import {
 	SORT_TYPE,
 } from '@openmoviedb/kinopoiskdev_client'
 import { activeSortType } from '../../@types/filtersInterfaces'
-import { headerSliderSlides } from '../../data/headerSliderSlides'
+import {} from '../../data/filmsLocalData'
 import { getKinopoisk } from '../../utils/kinopoisk'
 import { AppDispatch } from '../store'
 import {
@@ -69,8 +69,6 @@ export const fetchSerials =
 
 			if (data) {
 				dispatch(serialsFetchingSuccess(data?.docs))
-			} else {
-				dispatch(serialsFetchingSuccess(headerSliderSlides))
 			}
 		} catch (e: any | unknown) {
 			dispatch(serialsFetchingError(e))
