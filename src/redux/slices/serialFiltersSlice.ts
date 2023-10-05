@@ -60,7 +60,7 @@ const initialState: serialFiltersSliceState = {
 	},
 	activeSortType: {
 		sortName: 'По популярности',
-		sort: sortEnum.RATING,
+		sort: sortEnum.POPULARITY,
 	},
 }
 

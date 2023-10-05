@@ -7,7 +7,8 @@ export enum statusLoadingEnum {
 }
 
 const initialState = {
-	items: <any>[],
+	items: [] as any,
+	activeSerial: [] as any,
 	status: statusLoadingEnum.LOADING, // loading | success | error
 }
 
@@ -27,9 +28,20 @@ const serialsSlice = createSlice({
 			state.items = []
 			state.status = statusLoadingEnum.ERROR
 		},
+		setActiveSerial(state, action: PayloadAction<any>) {
+			if (action.payload) {
+				state.activeSerial = action.payload
+			} else {
+				console.log('Ошибка setActiveSerial')
+			}
+		},
 	},
 })
 
-export const { serialsFetching, serialsFetchingSuccess, serialsFetchingError } =
-	serialsSlice.actions
+export const {
+	serialsFetching,
+	serialsFetchingSuccess,
+	serialsFetchingError,
+	setActiveSerial,
+} = serialsSlice.actions
 export default serialsSlice.reducer

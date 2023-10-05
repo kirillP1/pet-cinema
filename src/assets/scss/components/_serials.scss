@@ -104,16 +104,84 @@
 	&__items {
 		display: flex;
 		flex-wrap: wrap;
-		&-item {
+		&-poster {
 			width: 20%;
-			height: 280px;
 			margin: 15px;
+			h4 {
+				margin-top: 10px;
+			}
+		}
+		&-item {
+			height: 280px;
 			background-size: cover !important;
 			background-position: center !important;
 			transition: $fast-transition;
+			border-radius: 10px;
+			position: relative;
+
+			&-black {
+				position: relative;
+				width: 100%;
+				height: 100%;
+				background: $black;
+				opacity: 0;
+				transition: $fast-transition;
+				border-radius: 10px;
+			}
+			&-rating {
+				color: #fff !important;
+				font-weight: 700;
+				line-height: 100%;
+				padding: 6px 10px;
+				border-radius: 10px;
+				width: 43px;
+				position: relative;
+				bottom: 40px;
+				left: 15px;
+				opacity: 0;
+				transition: $fast-transition;
+				&.height-rating {
+					background-color: $orange;
+				}
+			}
+			&-age {
+				display: inline-block;
+				position: absolute;
+				right: 15px;
+				bottom: 15px;
+				transition: $fast-transition;
+				color: $white;
+				opacity: 0;
+			}
+			&-favorites {
+				display: inline-block;
+				position: absolute;
+				top: 15px;
+				right: 15px;
+				color: white;
+				font-size: 22px;
+				opacity: 0;
+				transition: $fast-transition;
+
+				&:hover {
+					transform: scale(1.1);
+				}
+			}
 			&:hover {
 				transform: scale(1.05);
 				cursor: pointer;
+				.serials__items-item-black {
+					opacity: 0.5;
+				}
+				.serials__items-item-rating {
+					opacity: 1;
+				}
+				.serials__items-item-age {
+					opacity: 1;
+				}
+				.serials__items-item-favorites {
+					opacity: 1;
+				}
 			}
 		}
 	}

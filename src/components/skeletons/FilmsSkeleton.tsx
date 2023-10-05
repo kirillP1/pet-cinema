@@ -10,7 +10,7 @@ const FilmsSkeleton: FC = props => {
 			viewBox='0 0 185 280'
 			backgroundColor='#f3f3f3'
 			foregroundColor='#ecebeb'
-			className='films__items-item'
+			className='films__items-item films__items-skeleton'
 			{...props}
 		>
 			<rect x='0' y='0' rx='3' ry='3' width='185' height='280' />

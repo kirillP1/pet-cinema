@@ -58,7 +58,7 @@ const FilmVideos: FC<typeFilmSingleBanner> = ({ film }) => {
 			</div>
 			<div className='filmVideos__desc'>
 				<a href='#related' className='filmVideos__desc-link'>
-					Похожие фильмы
+					Похожее
 				</a>
 
 				{film.videos.trailers[0] && (

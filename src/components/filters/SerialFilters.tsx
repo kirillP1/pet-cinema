@@ -18,8 +18,14 @@ const SerialFilters: FC = () => {
 	}, [])
 
 	useEffect(() => {
-		serialsFilterData[0].all = serialFilters.filters.countries.all
-		serialsFilterData[1].all = serialFilters.filters.genres.all
+		serialsFilterData[0].all = [
+			'Все страны',
+			...serialFilters.filters.countries.all,
+		]
+		serialsFilterData[1].all = [
+			'Все жанры',
+			...serialFilters.filters.genres.all,
+		]
 		serialsFilterData[2].all = serialFilters.filters.years.all
 	}, [serialFilters])
 

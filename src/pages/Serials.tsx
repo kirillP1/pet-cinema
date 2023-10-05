@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import SerialCard from '../components/cards/SerialCard'
 import SerialFilters from '../components/filters/SerialFilters'
 import FilmsSkeleton from '../components/skeletons/FilmsSkeleton'
 import SerialSort from '../components/sorts/SerialSort'
@@ -22,13 +23,7 @@ const Serials: FC = () => {
 							status === statusLoadingEnum.ERROR ? (
 								<FilmsSkeleton key={index} />
 							) : (
-								<div
-									className='serials__items-item'
-									key={index}
-									style={{
-										background: `url(${item.poster.previewUrl}) no-repeat`,
-									}}
-								></div>
+								<SerialCard item={item} />
 							)
 						)}
 					</div>

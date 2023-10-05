@@ -41,6 +41,7 @@ export const fetchSerials =
 					'shortDescription',
 					'videos',
 					'countries',
+					'ageRating',
 				],
 				// Добавляем фильтр поиска по указанному диапазону рейтинга
 
@@ -51,6 +52,8 @@ export const fetchSerials =
 				type: 'tv-series',
 				page: 1,
 				limit: 30,
+				sortType: SORT_TYPE.DESC,
+				sortField: 'votes.kp',
 			}
 			genre = genre?.toLowerCase()
 			console.log('Годы: ' + year, 'Жанры: ' + genre, 'Страны: ' + country)
@@ -69,6 +72,22 @@ export const fetchSerials =
 
 			if (data) {
 				dispatch(serialsFetchingSuccess(data?.docs))
+			}
+		} catch (e: any | unknown) {
+			dispatch(serialsFetchingError(e))
+		}
+	}
+
+export const fetchSingleSerial =
+	(id: number) => async (dispatch: AppDispatch) => {
+		try {
+			// Не работает фильтрация
+
+			const { data, error, message } = await kp.movie.getById(id)
+			console.log('action data:', data)
+
+			if (data) {
+				return data
 			}
 		} catch (e: any | unknown) {
 			dispatch(serialsFetchingError(e))

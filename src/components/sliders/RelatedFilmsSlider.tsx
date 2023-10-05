@@ -16,7 +16,7 @@ const RelatedFilmsSlider: FC<typeFilmSingleBanner> = ({ film }) => {
 
 	return (
 		<div className='relatedFilmsSlider' id='related'>
-			<h2 className='relatedFilmsSlider__header'>Похожие фильмы</h2>
+			<h2 className='relatedFilmsSlider__header'>Похожее</h2>
 			<Swiper
 				className='swiper relatedFilmsSlider__container'
 				modules={[Navigation, Pagination, Autoplay]}
