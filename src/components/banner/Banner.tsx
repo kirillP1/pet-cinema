@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react'
-import { AiFillPlayCircle, AiOutlineHeart } from 'react-icons/ai'
+import { AiFillPlayCircle } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 import Slider from 'react-slick'
 import { IFilms, filmsLocalData } from '../../data/filmsLocalData'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
+import { addFavoritesItem } from '../../redux/slices/favoritesSlice'
 import { fetchFilms } from '../../redux/slices/filmsActionsCreators'
 import { statusLoadingEnum } from '../../redux/slices/filmsSlice'
 import NextArrow from '../arrows/NextArrow'
 import PrevArrow from '../arrows/PrevArrow'
+import BannerButton from '../buttons/BannerButton'
 
 const Banner = () => {
 	const [activeSlide, setActiveSlide] = useState<number>(1)
@@ -15,7 +17,6 @@ const Banner = () => {
 	const [scrollTop, setScrollTop] = useState<number>(0)
 	const dispatch = useAppDispatch()
 	const { items, status } = useAppSelector(state => state.films)
-	console.log('items', items, status)
 
 	const itemsData =
 		items.length !== 0 ? items.slice(0, 5) : filmsLocalData.slice(0, 5)
@@ -58,7 +59,11 @@ const Banner = () => {
 			},
 		],
 	}
+	const favClick = (film: IFilms) => {
+		console.log('favClick')
 
+		dispatch(addFavoritesItem(film))
+	}
 	useEffect(() => {
 		let c: number
 
@@ -76,8 +81,6 @@ const Banner = () => {
 			setScrollTop(window.scrollY)
 		})
 	}, [])
-	console.log(itemsData)
-	console.log('active', activeSlide, status)
 
 	if (status === statusLoadingEnum.LOADING || itemsData.length === 0) {
 		return <>Загрузка...</>
@@ -122,9 +125,8 @@ const Banner = () => {
 						<Link to={'/films/' + itemsData[activeSlide].id}>
 							<AiFillPlayCircle /> Смотреть
 						</Link>
-						<a href='#'>
-							<AiOutlineHeart /> В избранное
-						</a>
+
+						<BannerButton film={itemsData[activeSlide]} />
 					</div>
 				</div>
 				<div

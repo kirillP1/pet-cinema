@@ -1,15 +1,41 @@
 import { FC } from 'react'
-import { AiOutlineHeart } from 'react-icons/ai'
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 import { IFilms } from '../../data/filmsLocalData'
+import { useAppDispatch, useAppSelector } from '../../hooks/redux'
+import {
+	addFavoritesItem,
+	removeFavoritesItem,
+} from '../../redux/slices/favoritesSlice'
 type typeFilmCard = {
 	item: IFilms
 }
 const FilmCard: FC<typeFilmCard> = ({ item }) => {
-	const onFavClick = () => {}
+	const dispatch = useAppDispatch()
+	const itemsFav = useAppSelector(state => state.favorites.items)
+	const activeFav = itemsFav.filter((itemFav: any) => itemFav.id === item.id)
+	console.log(activeFav)
 	return (
-		<Link to={'/films/' + item.id} className='films__items-poster'>
-			<div
+		<div className='films__items-poster'>
+			<>
+				{activeFav.length !== 0 ? (
+					<div
+						className='films__items-item-favorites'
+						onClick={() => dispatch(removeFavoritesItem(item))}
+					>
+						<AiFillHeart />
+					</div>
+				) : (
+					<div
+						className='films__items-item-favorites'
+						onClick={() => dispatch(addFavoritesItem(item))}
+					>
+						<AiOutlineHeart />
+					</div>
+				)}
+			</>
+			<Link
+				to={'/films/' + item.id}
 				className='films__items-item'
 				style={{
 					background: `url(${item.poster.previewUrl}) no-repeat`,
@@ -27,19 +53,13 @@ const FilmCard: FC<typeFilmCard> = ({ item }) => {
 				{item.ageRating && (
 					<div className='films__items-item-age'>{item.ageRating}+</div>
 				)}
-				<div
-					className='films__items-item-favorites'
-					onClick={() => onFavClick()}
-				>
-					<AiOutlineHeart />
-				</div>
-			</div>
+			</Link>
 			<h4>
 				{item.name?.length > 18 && item.name
 					? item.name.slice(0, 18).trim() + '...'
 					: item.name}
 			</h4>
-		</Link>
+		</div>
 	)
 }
 

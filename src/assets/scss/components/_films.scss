@@ -107,6 +107,25 @@
 		&-poster {
 			width: 20%;
 			margin: 15px;
+			position: relative;
+			&:hover {
+				.films__items-item-favorites {
+					opacity: 1;
+				}
+				.films__items-item {
+					transform: scale(1.05);
+					cursor: pointer;
+				}
+				.films__items-item-black {
+					opacity: 0.5;
+				}
+				.films__items-item-rating {
+					opacity: 1;
+				}
+				.films__items-item-age {
+					opacity: 1;
+				}
+			}
 			h4 {
 				margin-top: 10px;
 			}
@@ -121,6 +140,7 @@
 			transition: $fast-transition;
 			border-radius: 10px;
 			position: relative;
+			display: block;
 
 			&-black {
 				position: relative;
@@ -143,6 +163,7 @@
 				left: 15px;
 				opacity: 0;
 				transition: $fast-transition;
+				background-color: $gray;
 				&.height-rating {
 					background-color: $orange;
 				}
@@ -165,25 +186,11 @@
 				font-size: 22px;
 				opacity: 0;
 				transition: $fast-transition;
+				z-index: 2;
 
 				&:hover {
 					transform: scale(1.1);
-				}
-			}
-			&:hover {
-				transform: scale(1.05);
-				cursor: pointer;
-				.films__items-item-black {
-					opacity: 0.5;
-				}
-				.films__items-item-rating {
-					opacity: 1;
-				}
-				.films__items-item-age {
-					opacity: 1;
-				}
-				.films__items-item-favorites {
-					opacity: 1;
+					cursor: pointer;
 				}
 			}
 		}
@@ -287,7 +294,7 @@
 	}
 	&__content {
 		position: relative;
-		max-width: 550px;
+		width: 550px;
 		display: none;
 		visibility: hidden;
 		transform: scale(0);
@@ -345,6 +352,7 @@
 		&-buttons {
 			position: relative;
 			width: 70%;
+
 			svg {
 				margin-right: 3px;
 				margin-bottom: -2px;
@@ -364,6 +372,10 @@
 				cursor: pointer;
 				width: 100%;
 				text-align: center;
+				&.active {
+					background: $white;
+					color: $orange;
+				}
 
 				&:nth-child(2) {
 					background: $black-lighter1;

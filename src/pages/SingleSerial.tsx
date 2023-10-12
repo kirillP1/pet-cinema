@@ -28,13 +28,17 @@ const SingleSerial = () => {
 	console.log(serial)
 	return (
 		<div className='singleSerial'>
-			<FilmSingleBanner film={serial} />
-			<FilmHeader film={serial} />
-			<FilmVideos film={serial} />
-			<FilmDescription film={serial} />
-			<RelatedFilmsSlider film={serial} />
-			<FilmTrailers film={serial} />
-			<FilmPersons film={serial} />
+			{serial.length !== 0 && (
+				<>
+					<FilmSingleBanner film={serial} />
+					<FilmHeader film={serial} />
+					<FilmVideos film={serial} />
+					<FilmDescription film={serial} />
+					<RelatedFilmsSlider film={serial} />
+					<FilmTrailers film={serial} />
+					<FilmPersons film={serial} />
+				</>
+			)}
 		</div>
 	)
 }

@@ -10,13 +10,23 @@ export interface IFilters {
 	years: IFilter
 	countries: IFilter
 }
-
+export interface ISearch {
+	searchValue: string
+	searchActive: boolean
+	searchData: any[]
+}
 interface filtersSliceState {
+	search: ISearch
 	filters: IFilters
 	activeSortType: activeSortType
 }
 
 const initialState: filtersSliceState = {
+	search: {
+		searchValue: '',
+		searchActive: false,
+		searchData: [],
+	},
 	filters: {
 		genres: {
 			title: 'Жанры',
@@ -68,6 +78,9 @@ const filtersSlice = createSlice({
 	name: 'filters',
 	initialState,
 	reducers: {
+		setSearchValue: (state, action: PayloadAction<string>) => {
+			state.search.searchValue = action.payload.toLocaleLowerCase()
+		},
 		setYear: (state, action: PayloadAction<string>) => {
 			state.filters.years.active = action.payload
 		},
@@ -89,6 +102,18 @@ const filtersSlice = createSlice({
 		setYearsAll: (state, action: PayloadAction<string[]>) => {
 			state.filters.years.all = action.payload
 		},
+		setSearchData: (state, action: PayloadAction<any[]>) => {
+			state.search.searchData = action.payload
+		},
+		searchChange: (state, action: PayloadAction<string>) => {
+			state.search.searchValue = action.payload
+			if (state.search.searchValue.length > 0) {
+				state.search.searchActive = true
+			} else {
+				state.search.searchActive = false
+			}
+			console.log(state.search.searchValue, state.search.searchActive)
+		},
 	},
 })
 
@@ -100,5 +125,8 @@ export const {
 	setGenresAll,
 	setCountriesAll,
 	setYearsAll,
+	setSearchValue,
+	searchChange,
+	setSearchData,
 } = filtersSlice.actions
 export default filtersSlice.reducer

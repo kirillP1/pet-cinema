@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react'
-import { AiOutlineHeart } from 'react-icons/ai'
 import { IFilms } from '../../data/filmsLocalData'
+import BannerButton from '../buttons/BannerButton'
 type typeFilmSingleBanner = {
 	film: IFilms
 }
@@ -13,7 +13,7 @@ const FilmSingleBanner: FC<typeFilmSingleBanner> = ({ film }) => {
 			setScrollTop(window.scrollY)
 		})
 	}, [])
-	console.log(film.backdrop.url)
+	console.log('FilmSingleBanner', film)
 
 	return (
 		<div className='filmSingleBanner'>
@@ -51,11 +51,8 @@ const FilmSingleBanner: FC<typeFilmSingleBanner> = ({ film }) => {
 						film.name
 					)}
 				</h2>
-
-				<div className='filmSingleBanner__content-buttons'>
-					<a href='#'>
-						<AiOutlineHeart /> В избранное
-					</a>
+				<div className='filmSingleBanner__content-buttons '>
+					<BannerButton film={film} />
 				</div>
 			</div>
 

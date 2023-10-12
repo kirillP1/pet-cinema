@@ -5,14 +5,14 @@ import {
 	sortEnum,
 } from '../../@types/filtersInterfaces'
 
-export interface IfilmFilters {
+export interface IFilmFilters {
 	genres: IFilter
 	years: IFilter
 	countries: IFilter
 }
 
 interface filmFiltersSliceState {
-	filters: IfilmFilters
+	filters: IFilmFilters
 	activeSortType: activeSortType
 }
 

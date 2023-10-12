@@ -48,7 +48,55 @@
 		position: relative;
 		width: 300px;
 		height: 40px;
-
+		&-data {
+			background: white;
+			position: absolute;
+			top: 50px;
+			width: 100%;
+			padding: 20px 10px;
+			display: none;
+			border-radius: 5px;
+			&.active {
+				display: block;
+			}
+			&--wrapper {
+				height: 200px;
+				overflow-y: scroll;
+			}
+			&--item {
+				display: flex;
+				transition: $fast-transition;
+				&:hover {
+					cursor: pointer;
+					background: $gray-dark;
+				}
+				&__poster {
+					width: 15%;
+					img {
+						width: 100%;
+					}
+				}
+				&__info {
+					margin: auto;
+					margin-left: 15px;
+					&-title {
+						margin-bottom: 5px;
+					}
+					&-rating {
+						color: #fff !important;
+						font-weight: 700;
+						line-height: 100%;
+						padding: 4px 6px;
+						border-radius: 7px;
+						font-size: 12px;
+						width: 29px;
+						position: relative;
+						transition: $fast-transition;
+						background-color: $orange;
+					}
+				}
+			}
+		}
 		input {
 			position: absolute;
 			left: 0;
