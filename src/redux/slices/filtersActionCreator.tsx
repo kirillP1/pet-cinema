@@ -1,12 +1,17 @@
 import { MovieQueryBuilder } from '@openmoviedb/kinopoiskdev_client'
 import { getKinopoisk } from '../../utils/kinopoisk'
 import { AppDispatch } from '../store'
-import { setSearchData } from './filtersSlice'
+import {
+	searchFetching,
+	searchFetchingError,
+	searchFetchingSuccess,
+} from './filtersSlice'
 
 const { kp, queryBuilder } = getKinopoisk()
 export const getSearchData =
 	(searchValue: string) => async (dispatch: AppDispatch) => {
-		if (searchValue.length > 0) {
+		try {
+			dispatch(searchFetching())
 			const queryBuilder = new MovieQueryBuilder()
 			// Создаем запрос для поиска фильмов по подходящих под наш запрос
 			const query = queryBuilder
@@ -16,11 +21,11 @@ export const getSearchData =
 			const { data, error, message } = await kp.movie.getBySearchQuery(query)
 
 			if (data) {
-				dispatch(setSearchData(data.docs))
+				dispatch(searchFetchingSuccess(data.docs))
 				console.log('getSearchData', data.docs)
 			}
-		} else {
-			dispatch(setSearchData([]))
+		} catch (e: any | unknown) {
+			dispatch(searchFetchingError(e))
 			console.log(' none')
 		}
 	}

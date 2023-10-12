@@ -24,7 +24,7 @@ const FilmSingleBanner: FC<typeFilmSingleBanner> = ({ film }) => {
 					background: `url(${film.backdrop && film.backdrop.url}) no-repeat`,
 				}}
 			>
-				{film.videos.trailers[0] && (
+				{/*film.videos.trailers[0] && (
 					<div className='filmSingleBanner__background-wrapper'>
 						<iframe
 							src={
@@ -36,7 +36,7 @@ const FilmSingleBanner: FC<typeFilmSingleBanner> = ({ film }) => {
 							height={'100%'}
 						></iframe>
 					</div>
-				)}
+						)*/}
 			</div>
 			<div
 				className='filmSingleBanner__content active filmSingleBanner__element'

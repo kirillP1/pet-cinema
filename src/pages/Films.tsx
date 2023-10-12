@@ -6,13 +6,13 @@ import FilmSort from '../components/sorts/FilmSort'
 import { IFilms } from '../data/filmsLocalData'
 import { useAppDispatch, useAppSelector } from '../hooks/redux'
 import { fetchFilms } from '../redux/slices/filmsActionsCreators'
-import { statusLoadingEnum } from '../redux/slices/filmsSlice'
+import { statusLoadingEnum } from '../redux/slices/serialsSlice'
 
 const Films = () => {
 	const { items, status } = useAppSelector(state => state.films)
-	const dispath = useAppDispatch()
+	const dispatch = useAppDispatch()
 	useEffect(() => {
-		dispath(fetchFilms())
+		dispatch(fetchFilms())
 	}, [])
 	console.log(items, status)
 

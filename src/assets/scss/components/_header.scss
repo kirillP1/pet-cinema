@@ -29,17 +29,17 @@
 				letter-spacing: 1px;
 				cursor: pointer;
 				transition: $fast-transition;
+				svg {
+					top: 50%;
+					position: absolute;
+					transform: translateY(-50%);
+					margin-left: -25px;
+				}
 			}
 			&:hover {
 				a {
 					color: $orange;
 				}
-			}
-			svg {
-				top: 50%;
-				position: absolute;
-				transform: translateY(-50%);
-				margin-left: -25px;
 			}
 		}
 	}
@@ -48,6 +48,18 @@
 		position: relative;
 		width: 300px;
 		height: 40px;
+		&-input {
+			svg {
+				position: absolute;
+				top: 50%;
+				transform: translateY(-50%);
+				left: 10px;
+				padding-right: 10px;
+				color: $white;
+				font-size: 32px;
+				border-right: 1px solid $gray;
+			}
+		}
 		&-data {
 			background: white;
 			position: absolute;
@@ -79,6 +91,7 @@
 				&__info {
 					margin: auto;
 					margin-left: 15px;
+					width: 85%;
 					&-title {
 						margin-bottom: 5px;
 					}
@@ -119,16 +132,6 @@
 				border: 1px solid $gray !important;
 				box-shadow: none !important;
 			}
-		}
-		svg {
-			position: absolute;
-			top: 50%;
-			transform: translateY(-50%);
-			left: 10px;
-			padding-right: 10px;
-			color: $white;
-			font-size: 32px;
-			border-right: 1px solid $gray;
 		}
 	}
 }

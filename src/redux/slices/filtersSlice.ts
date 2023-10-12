@@ -4,6 +4,7 @@ import {
 	activeSortType,
 	sortEnum,
 } from '../../@types/filtersInterfaces'
+import { statusLoadingEnum } from './serialsSlice'
 
 export interface IFilters {
 	genres: IFilter
@@ -14,6 +15,7 @@ export interface ISearch {
 	searchValue: string
 	searchActive: boolean
 	searchData: any[]
+	status: statusLoadingEnum
 }
 interface filtersSliceState {
 	search: ISearch
@@ -25,7 +27,8 @@ const initialState: filtersSliceState = {
 	search: {
 		searchValue: '',
 		searchActive: false,
-		searchData: [],
+		searchData: new Array(3),
+		status: statusLoadingEnum.LOADING,
 	},
 	filters: {
 		genres: {
@@ -102,8 +105,17 @@ const filtersSlice = createSlice({
 		setYearsAll: (state, action: PayloadAction<string[]>) => {
 			state.filters.years.all = action.payload
 		},
-		setSearchData: (state, action: PayloadAction<any[]>) => {
+		searchFetching(state) {
+			state.search.status = statusLoadingEnum.LOADING
+		},
+		searchFetchingSuccess(state, action: PayloadAction<any[]>) {
 			state.search.searchData = action.payload
+			state.search.status = statusLoadingEnum.SUCCESS
+		},
+		searchFetchingError(state, action: PayloadAction<string>) {
+			console.log('Error filmsSlice:', action.payload)
+			state.search.searchData = new Array(3)
+			state.search.status = statusLoadingEnum.ERROR
 		},
 		searchChange: (state, action: PayloadAction<string>) => {
 			state.search.searchValue = action.payload
@@ -113,6 +125,9 @@ const filtersSlice = createSlice({
 				state.search.searchActive = false
 			}
 			console.log(state.search.searchValue, state.search.searchActive)
+		},
+		setSearchActive: (state, action: PayloadAction<boolean>) => {
+			state.search.searchActive = action.payload
 		},
 	},
 })
@@ -127,6 +142,9 @@ export const {
 	setYearsAll,
 	setSearchValue,
 	searchChange,
-	setSearchData,
+	searchFetching,
+	searchFetchingSuccess,
+	searchFetchingError,
+	setSearchActive,
 } = filtersSlice.actions
 export default filtersSlice.reducer

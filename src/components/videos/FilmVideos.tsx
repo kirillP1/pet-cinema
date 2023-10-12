@@ -36,6 +36,7 @@ const FilmVideos: FC<typeFilmSingleBanner> = ({ film }) => {
 										(activePlayer === index + 1 ? 'active' : '')
 									}
 									onClick={() => setActivePlayer(index + 1)}
+									key={index}
 								>
 									Плеер {index + 1}
 								</div>

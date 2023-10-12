@@ -4,7 +4,7 @@ import SerialFilters from '../components/filters/SerialFilters'
 import FilmsSkeleton from '../components/skeletons/FilmsSkeleton'
 import SerialSort from '../components/sorts/SerialSort'
 import { useAppSelector } from '../hooks/redux'
-import { statusLoadingEnum } from '../redux/slices/filmsSlice'
+import { statusLoadingEnum } from '../redux/slices/serialsSlice'
 
 const Serials: FC = () => {
 	const { items, status } = useAppSelector(state => state.serials)
