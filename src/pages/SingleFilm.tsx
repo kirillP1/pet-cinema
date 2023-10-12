@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { FC, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import FilmSingleBanner from '../components/banner/FilmSingleBanner'
 import FilmDescription from '../components/description/FilmDesctiption'
@@ -12,7 +12,7 @@ import { useAppDispatch, useAppSelector } from '../hooks/redux'
 import { fetchSingleFilms } from '../redux/slices/filmsActionsCreators'
 import { setActiveFilm } from '../redux/slices/filmsSlice'
 
-const SingleFilm = () => {
+const SingleFilm: FC = () => {
 	const { id } = useParams()
 	const film = useAppSelector(state => state.films.activeFilm)
 	const dispatch = useAppDispatch()

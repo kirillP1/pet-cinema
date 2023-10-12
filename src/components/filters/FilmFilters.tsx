@@ -2,7 +2,6 @@ import { FC, useEffect } from 'react'
 import { filmsFilterData } from '../../data/filmFiltersData'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import {
-	fetchFilms,
 	getCountriesAll,
 	getGenresAll,
 } from '../../redux/slices/filmsActionsCreators'
@@ -26,16 +25,6 @@ const FilmFilters: FC = () => {
 		filmsFilterData[2].all = filmFilters.filters.years.all
 	}, [filmFilters])
 
-	useEffect(() => {
-		dispatch(
-			fetchFilms(
-				filmFilters.filters.years.active,
-				filmFilters.filters.genres.active,
-				filmFilters.filters.countries.active,
-				filmFilters.activeSortType
-			)
-		)
-	}, [filmFilters])
 	return (
 		<div className='films__filters'>
 			{filmsFilterData.map((item, index) => (

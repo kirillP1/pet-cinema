@@ -1,6 +1,7 @@
+import { FC } from 'react'
 import { franchiseData } from '../data/franchiseData'
 
-const Franchises = () => {
+const Franchises: FC = () => {
 	return (
 		<div className='franchises'>
 			<div className='franchises__container'>

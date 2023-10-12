@@ -1,0 +1,31 @@
+.filmPagination {
+	display: flex;
+	margin-top: 20px;
+	&__prev,
+	&__next {
+		padding: 10px;
+		svg {
+			font-size: 20px;
+			transition: $fast-transition;
+		}
+		&.disabled {
+			display: none;
+		}
+		&:hover {
+			cursor: pointer;
+			svg {
+				transform: scale(1.1);
+			}
+		}
+	}
+	&__count {
+		padding: 10px;
+		color: $white;
+		background: $black;
+		border-radius: 5px;
+		height: 40px;
+		width: 40px;
+		text-align: center;
+		display: block;
+	}
+}

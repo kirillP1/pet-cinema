@@ -1,7 +1,8 @@
+import { FC } from 'react'
 import FavoriteCard from '../components/cards/FavoriteCard'
 import { useAppDispatch, useAppSelector } from '../hooks/redux'
 
-const Favorites = () => {
+const Favorites: FC = () => {
 	const items = useAppSelector(state => state.favorites.items)
 	const dispatch = useAppDispatch()
 	console.log(items)

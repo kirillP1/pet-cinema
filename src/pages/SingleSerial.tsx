@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { FC, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import FilmSingleBanner from '../components/banner/FilmSingleBanner'
 import FilmDescription from '../components/description/FilmDesctiption'
@@ -10,7 +10,7 @@ import FilmVideos from '../components/videos/FilmVideos'
 import { useAppDispatch, useAppSelector } from '../hooks/redux'
 import { fetchSingleSerial } from '../redux/slices/serialsActionsCreator'
 import { setActiveSerial } from '../redux/slices/serialsSlice'
-const SingleSerial = () => {
+const SingleSerial: FC = () => {
 	const { id } = useParams()
 	const dispatch = useAppDispatch()
 	const serial = useAppSelector(state => state.serials.activeSerial)

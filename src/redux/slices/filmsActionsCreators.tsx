@@ -22,7 +22,8 @@ export const fetchFilms =
 		year?: string,
 		genre?: string,
 		country?: string,
-		activeSortType?: activeSortType
+		activeSortType?: activeSortType,
+		pagination?: number
 	) =>
 	async (dispatch: AppDispatch) => {
 		console.log('Start Film Fetch')
@@ -53,8 +54,8 @@ export const fetchFilms =
 				'poster.url': '!null',
 				name: '!null',
 				type: 'movie',
-				page: 1,
-				limit: 30,
+				page: pagination,
+				limit: 12,
 			}
 			genre = genre?.toLowerCase()
 			console.log('Годы: ' + year, 'Жанры: ' + genre, 'Страны: ' + country)
@@ -70,7 +71,7 @@ export const fetchFilms =
 				query.sortType = SORT_TYPE.DESC
 			}
 			const { data, error, message } = await kp.movie.getByFilters(query)
-			console.log('action data:', data, 'query: ', query)
+			console.log('action data:', data, 'query: ', query, 'page: ', query.page)
 
 			if (data) {
 				dispatch(filmsFetchingSuccess(data?.docs))

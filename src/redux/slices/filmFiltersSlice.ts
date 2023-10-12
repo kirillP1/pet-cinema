@@ -14,6 +14,7 @@ export interface IFilmFilters {
 interface filmFiltersSliceState {
 	filters: IFilmFilters
 	activeSortType: activeSortType
+	pagination: number
 }
 
 const initialState: filmFiltersSliceState = {
@@ -62,6 +63,7 @@ const initialState: filmFiltersSliceState = {
 		sortName: 'По популярности',
 		sort: sortEnum.POPULARITY,
 	},
+	pagination: 2,
 }
 
 const filmFiltersSlice = createSlice({
@@ -86,6 +88,9 @@ const filmFiltersSlice = createSlice({
 		setFilmCountriesAll: (state, action: PayloadAction<string[]>) => {
 			state.filters.countries.all = action.payload
 		},
+		setFilmPagination: (state, action: PayloadAction<number>) => {
+			state.pagination = action.payload
+		},
 	},
 })
 
@@ -96,5 +101,6 @@ export const {
 	setFilmSortType,
 	setFilmGenresAll,
 	setFilmCountriesAll,
+	setFilmPagination,
 } = filmFiltersSlice.actions
 export default filmFiltersSlice.reducer
