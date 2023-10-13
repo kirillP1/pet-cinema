@@ -1,14 +1,29 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import SerialCard from '../components/cards/SerialCard'
 import SerialFilters from '../components/filters/SerialFilters'
+import SerialPagination from '../components/paginations/SerialPagination'
 import FilmsSkeleton from '../components/skeletons/FilmsSkeleton'
 import SerialSort from '../components/sorts/SerialSort'
-import { useAppSelector } from '../hooks/redux'
+import { useAppDispatch, useAppSelector } from '../hooks/redux'
+import { fetchSerials } from '../redux/slices/serialsActionsCreator'
 import { statusLoadingEnum } from '../redux/slices/serialsSlice'
 
 const Serials: FC = () => {
 	const { items, status } = useAppSelector(state => state.serials)
+	const serialFilters = useAppSelector(state => state.serialFilters)
+	const dispatch = useAppDispatch()
 	console.log(items)
+	useEffect(() => {
+		dispatch(
+			fetchSerials(
+				serialFilters.filters.years.active,
+				serialFilters.filters.genres.active,
+				serialFilters.filters.countries.active,
+				serialFilters.activeSortType,
+				serialFilters.pagination
+			)
+		)
+	}, [serialFilters])
 
 	return (
 		<div className='serials'>
@@ -27,6 +42,7 @@ const Serials: FC = () => {
 							)
 						)}
 					</div>
+					<SerialPagination />
 				</div>
 			</div>
 		</div>

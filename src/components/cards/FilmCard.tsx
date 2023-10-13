@@ -49,9 +49,10 @@ const FilmCard: FC<typeFilmCard> = ({ item }) => {
 				>
 					{item.rating.kp.toFixed(1)}
 				</div>
-				{item.ageRating && (
-					<div className='films__items-item-age'>{item.ageRating}+</div>
-				)}
+				<div className='films__items-item-age'>
+					{item.ageRating}
+					{Number.isInteger(item.ageRating) ? '+' : ''}
+				</div>
 			</Link>
 			<h4>
 				{item.name?.length > 18 && item.name

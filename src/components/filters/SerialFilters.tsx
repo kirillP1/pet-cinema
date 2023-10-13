@@ -5,7 +5,6 @@ import {
 	getCountriesAll,
 	getGenresAll,
 } from '../../redux/slices/filmsActionsCreators'
-import { fetchSerials } from '../../redux/slices/serialsActionsCreator'
 import SerialFilter from './SerialFilter'
 
 const SerialFilters: FC = () => {
@@ -27,17 +26,6 @@ const SerialFilters: FC = () => {
 			...serialFilters.filters.genres.all,
 		]
 		serialsFilterData[2].all = serialFilters.filters.years.all
-	}, [serialFilters])
-
-	useEffect(() => {
-		dispatch(
-			fetchSerials(
-				serialFilters.filters.years.active,
-				serialFilters.filters.genres.active,
-				serialFilters.filters.countries.active,
-				serialFilters.activeSortType
-			)
-		)
 	}, [serialFilters])
 
 	return (

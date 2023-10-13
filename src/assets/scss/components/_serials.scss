@@ -107,9 +107,31 @@
 		&-poster {
 			width: 20%;
 			margin: 15px;
+			position: relative;
+			&:hover {
+				.serials__items-item-favorites {
+					opacity: 1;
+				}
+				.serials__items-item {
+					transform: scale(1.05);
+					cursor: pointer;
+				}
+				.serials__items-item-black {
+					opacity: 0.5;
+				}
+				.serials__items-item-rating {
+					opacity: 1;
+				}
+				.serials__items-item-age {
+					opacity: 1;
+				}
+			}
 			h4 {
 				margin-top: 10px;
 			}
+		}
+		&-skeleton {
+			margin: 15px;
 		}
 		&-item {
 			height: 280px;
@@ -118,6 +140,7 @@
 			transition: $fast-transition;
 			border-radius: 10px;
 			position: relative;
+			display: block;
 
 			&-black {
 				position: relative;
@@ -140,6 +163,7 @@
 				left: 15px;
 				opacity: 0;
 				transition: $fast-transition;
+				background-color: $gray;
 				&.height-rating {
 					background-color: $orange;
 				}
@@ -162,25 +186,11 @@
 				font-size: 22px;
 				opacity: 0;
 				transition: $fast-transition;
+				z-index: 2;
 
 				&:hover {
 					transform: scale(1.1);
-				}
-			}
-			&:hover {
-				transform: scale(1.05);
-				cursor: pointer;
-				.serials__items-item-black {
-					opacity: 0.5;
-				}
-				.serials__items-item-rating {
-					opacity: 1;
-				}
-				.serials__items-item-age {
-					opacity: 1;
-				}
-				.serials__items-item-favorites {
-					opacity: 1;
+					cursor: pointer;
 				}
 			}
 		}

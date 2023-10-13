@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { headerMenu } from '../../data/menusData'
 
 const HeaderMenu = () => {
@@ -6,10 +6,10 @@ const HeaderMenu = () => {
 		<ul className='header__nav'>
 			{headerMenu.map((item, index) => (
 				<li key={index}>
-					<Link to={item.link}>
+					<NavLink to={item.link} className='header__nav-link'>
 						{item.img ? item.img : ''}
 						{item.text}
-					</Link>
+					</NavLink>
 				</li>
 			))}
 		</ul>

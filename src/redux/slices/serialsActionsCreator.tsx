@@ -20,7 +20,8 @@ export const fetchSerials =
 		year?: string,
 		genre?: string,
 		country?: string,
-		activeSortType?: activeSortType
+		activeSortType?: activeSortType,
+		pagination?: number
 	) =>
 	async (dispatch: AppDispatch) => {
 		try {
@@ -50,13 +51,16 @@ export const fetchSerials =
 				'poster.url': '!null',
 
 				type: 'tv-series',
-				page: 1,
-				limit: 30,
-				sortType: SORT_TYPE.DESC,
-				sortField: 'votes.kp',
+				page: pagination,
+				limit: 12,
 			}
 			genre = genre?.toLowerCase()
-			console.log('Годы: ' + year, 'Жанры: ' + genre, 'Страны: ' + country)
+			console.log(
+				'Годы: ' + year,
+				'Жанры: ' + genre,
+				'Страны: ' + country,
+				'Pagination: ' + pagination
+			)
 			genre?.toLowerCase() !== 'все жанры' &&
 				genre &&
 				(query['genres.name'] = genre)

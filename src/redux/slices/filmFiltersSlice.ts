@@ -63,7 +63,7 @@ const initialState: filmFiltersSliceState = {
 		sortName: 'По популярности',
 		sort: sortEnum.POPULARITY,
 	},
-	pagination: 2,
+	pagination: 1,
 }
 
 const filmFiltersSlice = createSlice({

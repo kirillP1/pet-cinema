@@ -29,6 +29,9 @@
 				letter-spacing: 1px;
 				cursor: pointer;
 				transition: $fast-transition;
+				&.active {
+					color: $orange;
+				}
 				svg {
 					top: 50%;
 					position: absolute;

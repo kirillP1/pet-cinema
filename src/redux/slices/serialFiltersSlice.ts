@@ -14,6 +14,7 @@ export interface ISerialFilters {
 interface serialFiltersSliceState {
 	filters: ISerialFilters
 	activeSortType: activeSortType
+	pagination: number
 }
 
 const initialState: serialFiltersSliceState = {
@@ -62,6 +63,7 @@ const initialState: serialFiltersSliceState = {
 		sortName: 'По популярности',
 		sort: sortEnum.POPULARITY,
 	},
+	pagination: 1,
 }
 
 const serialFiltersSlice = createSlice({
@@ -88,6 +90,9 @@ const serialFiltersSlice = createSlice({
 		setSerialCountriesAll: (state, action: PayloadAction<string[]>) => {
 			state.filters.countries.all = action.payload
 		},
+		setSerialPagination: (state, action: PayloadAction<number>) => {
+			state.pagination = action.payload
+		},
 	},
 })
 
@@ -98,5 +103,6 @@ export const {
 	setSerialSortType,
 	setSerialGenresAll,
 	setSerialCountriesAll,
+	setSerialPagination,
 } = serialFiltersSlice.actions
 export default serialFiltersSlice.reducer
