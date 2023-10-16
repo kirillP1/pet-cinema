@@ -1,4 +1,5 @@
 import { FC, useEffect, useState } from 'react'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { IFilms } from '../../data/filmsLocalData'
 import BannerButton from '../buttons/BannerButton'
 type typeFilmSingleBanner = {
@@ -24,6 +25,13 @@ const FilmSingleBanner: FC<typeFilmSingleBanner> = ({ film }) => {
 					background: `url(${film.backdrop && film.backdrop.url}) no-repeat`,
 				}}
 			>
+				<LazyLoadImage
+					src={film.backdrop.url}
+					effect='blur'
+					placeholderSrc={film.backdrop.url}
+					width='100%'
+					height='100%'
+				/>
 				{/*film.videos.trailers[0] && (
 					<div className='filmSingleBanner__background-wrapper'>
 						<iframe
@@ -46,7 +54,12 @@ const FilmSingleBanner: FC<typeFilmSingleBanner> = ({ film }) => {
 			>
 				<h2 className='filmSingleBanner__content-title'>
 					{film.logo?.url ? (
-						<img src={film.logo && film.logo?.url} alt={film.name} />
+						<LazyLoadImage
+							src={film.logo && film.logo?.url}
+							alt={film.name}
+							effect='blur'
+							placeholderSrc={film.logo && film.logo?.url}
+						/>
 					) : (
 						film.name
 					)}
@@ -64,8 +77,10 @@ const FilmSingleBanner: FC<typeFilmSingleBanner> = ({ film }) => {
 			>
 				{film.persons?.slice(0, 5).map(person => (
 					<div className='filmSingleBanner__item'>
-						<div
-							style={{ background: `url(${person.photo}) no-repeat` }}
+						<LazyLoadImage
+							src={person.photo}
+							effect='blur'
+							placeholderSrc={person.photo}
 							className='filmSingleBanner__item-img'
 						/>
 						<h4 className='filmSingleBanner__item-name'>{person.name}</h4>

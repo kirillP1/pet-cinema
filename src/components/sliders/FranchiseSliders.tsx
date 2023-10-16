@@ -12,7 +12,7 @@ import { franchiseData } from '../../data/franchiseData'
 const FranchisesSlider: FC = () => {
 	return (
 		<section className='franchises-slider' id='goods'>
-			<h2 className='franchises-slider__header'>Известные франшизы</h2>
+			<h2 className='franchises-slider__title'>Известные франшизы</h2>
 			<Swiper
 				className='swiper franchises-slider__container'
 				modules={[Navigation, Parallax]}
@@ -44,7 +44,7 @@ const FranchisesSlider: FC = () => {
 								data-swiper-parallax='25%'
 							>
 								<div className='franchises-slider__text'>
-									<div className='franchises-slider__title'>{item.title}</div>
+									<div className='franchises-slider__button'>{item.title}</div>
 								</div>
 							</div>
 						</SwiperSlide>

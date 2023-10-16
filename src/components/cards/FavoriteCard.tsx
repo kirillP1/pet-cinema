@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { Link } from 'react-router-dom'
 import { useAppDispatch } from '../../hooks/redux'
 import { removeFavoritesItem } from '../../redux/slices/favoritesSlice'
@@ -17,11 +18,15 @@ const FavoriteCard: FC<typeFavoriteCard> = ({ item }) => {
 			>
 				<AiOutlineClose />
 			</div>
-			<Link
-				to={'/films/' + item.id}
-				className='favorites__items-item'
-				style={{ background: `url(${item.backdrop.url}) no-repeat` }}
-			>
+			<Link to={'/films/' + item.id} className='favorites__items-item'>
+				<LazyLoadImage
+					src={item.backdrop.url}
+					effect='blur'
+					placeholderSrc={item.backdrop.url}
+					width='100%'
+					height='100%'
+					className='favorites__items-item-background'
+				/>
 				<div className='favorites__items-item-black'></div>
 				<img className='favorites__items-item-logo' src={item.logo.url} />
 

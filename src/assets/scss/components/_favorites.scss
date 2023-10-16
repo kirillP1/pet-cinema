@@ -65,8 +65,21 @@
 			transition: $fast-transition;
 			border-radius: 10px;
 			position: relative;
+			.lazy-load-image-background {
+				object-fit: cover;
+				position: absolute;
+				z-index: 0;
+				border-radius: 10px;
+				transition: $fast-transition;
+			}
+			&-background {
+				border-radius: 10px;
+				transition: $fast-transition;
+			}
 			&-black {
-				position: relative;
+				position: absolute;
+				left: 0;
+				top: 0;
 				width: 100%;
 				height: 100%;
 				background: $black;
@@ -92,8 +105,8 @@
 				padding: 6px 10px;
 				border-radius: 10px;
 				width: 43px;
-				position: relative;
-				bottom: 40px;
+				position: absolute;
+				bottom: 10px;
 				left: 15px;
 				opacity: 0;
 				transition: $fast-transition;

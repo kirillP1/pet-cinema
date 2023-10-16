@@ -141,7 +141,11 @@
 			border-radius: 10px;
 			position: relative;
 			display: block;
-
+			&.lazy-load-image-background {
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
 			&-black {
 				position: relative;
 				width: 100%;
@@ -276,6 +280,9 @@
 		background-position: center !important;
 		will-change: transform;
 		transition: transform $long-cubic-transition;
+		img {
+			object-fit: cover;
+		}
 		&-wrapper {
 			overflow: hidden;
 			width: 100%;

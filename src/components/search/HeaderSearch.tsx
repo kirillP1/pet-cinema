@@ -35,12 +35,9 @@ const HeaderSearch = () => {
 	useEffect(() => {
 		const handleClick = (event: MouseEvent) => {
 			const { target } = event
+			console.log(target, search.searchActive)
 
-			if (
-				target instanceof Node &&
-				!searchDataRef.current?.contains(target) &&
-				search.searchActive
-			) {
+			if (target instanceof Node && !searchDataRef.current?.contains(target)) {
 				dispatch(setSearchActive(false))
 			}
 		}
@@ -51,6 +48,12 @@ const HeaderSearch = () => {
 			window.removeEventListener('click', handleClick)
 		}
 	}, [])
+	console.log(
+		'search data',
+		search.searchData,
+		search.status,
+		search.status === statusLoadingEnum.LOADING
+	)
 
 	return (
 		<div

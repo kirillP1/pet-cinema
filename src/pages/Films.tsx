@@ -1,4 +1,5 @@
 import { FC, useEffect } from 'react'
+import { LazyLoadComponent } from 'react-lazy-load-image-component'
 import FilmCard from '../components/cards/FilmCard'
 import FilmFilters from '../components/filters/FilmFilters'
 import FilmPagination from '../components/paginations/FilmPagination'
@@ -7,7 +8,6 @@ import FilmSort from '../components/sorts/FilmSort'
 import { IFilms } from '../data/filmsLocalData'
 import { useAppDispatch, useAppSelector } from '../hooks/redux'
 import { fetchFilms } from '../redux/slices/filmsActionsCreators'
-import { statusLoadingEnum } from '../redux/slices/serialsSlice'
 
 const Films: FC = () => {
 	const { items, status } = useAppSelector(state => state.films)
@@ -34,14 +34,11 @@ const Films: FC = () => {
 				<div className='films__items-wrapper'>
 					<FilmSort />
 					<div className='films__items'>
-						{items.map((item: IFilms, index: number) =>
-							status === statusLoadingEnum.LOADING ||
-							status === statusLoadingEnum.ERROR ? (
-								<FilmsSkeleton key={index} />
-							) : (
+						{items.map((item: IFilms, index: number) => (
+							<LazyLoadComponent placeholder={<FilmsSkeleton />}>
 								<FilmCard item={item} key={index} />
-							)
-						)}
+							</LazyLoadComponent>
+						))}
 					</div>
 					<FilmPagination />
 				</div>

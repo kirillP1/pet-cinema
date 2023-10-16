@@ -20,6 +20,7 @@
 		"react-content-loader": "^6.2.1",
 		"react-dom": "^18.2.0",
 		"react-icons": "^4.11.0",
+		"react-lazy-load-image-component": "^1.6.0",
 		"react-paginate": "^8.2.0",
 		"react-preloaders": "^3.0.3",
 		"react-redux": "^8.1.2",
@@ -57,6 +58,7 @@
 		]
 	},
 	"devDependencies": {
+		"@types/react-lazy-load-image-component": "^1.6.1",
 		"ember-cli-materialize": "^0.22.0"
 	}
 }

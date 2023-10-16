@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { AiFillPlayCircle } from 'react-icons/ai'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { Link } from 'react-router-dom'
 import Slider from 'react-slick'
 import { IFilms, filmsLocalData } from '../../data/filmsLocalData'
@@ -23,6 +24,7 @@ const Banner = () => {
 	//const itemsData = items
 	useEffect(() => {
 		dispatch(fetchFilms())
+		console.log('fetch')
 	}, [])
 
 	var settings = {
@@ -74,6 +76,7 @@ const Banner = () => {
 			c = countSlide % itemsData.length
 		}
 		setActiveSlide(c - 1)
+		console.log(activeSlide, countSlide)
 	}, [countSlide])
 
 	useEffect(() => {
@@ -81,6 +84,7 @@ const Banner = () => {
 			setScrollTop(window.scrollY)
 		})
 	}, [])
+	console.log('Banner')
 
 	if (status === statusLoadingEnum.LOADING || itemsData.length === 0) {
 		return <>Загрузка...</>
@@ -91,9 +95,16 @@ const Banner = () => {
 					className='banner__background'
 					style={{
 						transform: `translate3d(0, calc((${scrollTop}px) / 3.6), 0)`,
-						background: `url(${itemsData[activeSlide].backdrop.url}) no-repeat`,
 					}}
-				></div>
+				>
+					<LazyLoadImage
+						src={itemsData[activeSlide].backdrop.url}
+						effect='blur'
+						placeholderSrc={itemsData[activeSlide].backdrop.url}
+						width='100%'
+						height='100%'
+					/>
+				</div>
 				<div
 					className='banner__content active banner__element'
 					style={{
@@ -101,8 +112,12 @@ const Banner = () => {
 					}}
 				>
 					<h2 className='banner__content-title'>
-						<img
+						<LazyLoadImage
 							src={
+								itemsData[activeSlide].logo && itemsData[activeSlide].logo?.url
+							}
+							effect='blur'
+							placeholderSrc={
 								itemsData[activeSlide].logo && itemsData[activeSlide].logo?.url
 							}
 							alt={itemsData[activeSlide].name}

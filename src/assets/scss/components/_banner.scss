@@ -38,6 +38,9 @@
 		background-position: center !important;
 		will-change: transform;
 		transition: transform $long-cubic-transition;
+		img {
+			object-fit: cover;
+		}
 	}
 	&__content {
 		position: relative;
@@ -188,6 +191,7 @@
 				position: relative;
 				z-index: -1;
 				opacity: 0.3;
+				width: 243px !important;
 
 				img {
 					transition: $medium-transition;
@@ -203,6 +207,7 @@
 				transform: scale(1.2);
 				z-index: 1;
 				opacity: 1;
+
 				img {
 					-webkit-filter: grayscale(0%); /* Safari 6.0 - 9.0 */
 					filter: grayscale(0%);

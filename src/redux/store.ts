@@ -4,6 +4,7 @@ import favoritesSlice from './slices/favoritesSlice'
 import filmFiltersSlice from './slices/filmFiltersSlice'
 import filmsSlice from './slices/filmsSlice'
 import filtersSlice from './slices/filtersSlice'
+import homeSlice from './slices/homeSlice'
 import serialFiltersSlice from './slices/serialFiltersSlice'
 import serialsSlice from './slices/serialsSlice'
 
@@ -15,6 +16,7 @@ export const store = configureStore({
 		serials: serialsSlice,
 		serialFilters: serialFiltersSlice,
 		favorites: favoritesSlice,
+		home: homeSlice,
 	},
 })
 

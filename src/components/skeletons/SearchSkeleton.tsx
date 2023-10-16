@@ -1,6 +1,8 @@
 import ContentLoader from 'react-content-loader'
 
 const SearchSkeleton = () => {
+	console.log('skeleton')
+
 	return (
 		<ContentLoader
 			speed={2}

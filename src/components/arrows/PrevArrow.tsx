@@ -12,7 +12,7 @@ const PrevArrow: FC<IArrow> = props => {
 
 	const arrowClick = () => {
 		if (countSlide - 1 < 1) {
-			setCountSlide(itemsData.length)
+			setCountSlide(5)
 		} else {
 			setCountSlide(countSlide - 1)
 		}

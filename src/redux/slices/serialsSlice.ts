@@ -7,7 +7,7 @@ export enum statusLoadingEnum {
 }
 
 const initialState = {
-	items: [] as any,
+	items: Array(12) as any,
 	activeSerial: [] as any,
 	status: statusLoadingEnum.LOADING, // loading | success | error
 }
