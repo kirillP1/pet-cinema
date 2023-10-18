@@ -1,12 +1,15 @@
-import { FC } from 'react'
+import { FC, Suspense } from 'react'
 import { Outlet } from 'react-router-dom'
 import Header from '../components/header/Header'
+import RoutesPreloader from '../components/preloaders/RoutesPreloader'
 
 const MainLayout: FC = () => {
 	return (
 		<div className='wrapper'>
 			<Header />
-			<Outlet />
+			<Suspense fallback={<RoutesPreloader />}>
+				<Outlet />
+			</Suspense>
 		</div>
 	)
 }

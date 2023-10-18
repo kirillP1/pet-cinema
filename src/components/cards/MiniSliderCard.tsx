@@ -35,9 +35,13 @@ const MiniSliderCard: FC<typeMiniSliderCard> = ({ item }) => {
 			</>
 			<Link to={'/films/' + item.id} className='miniSliderCard__items-item'>
 				<LazyLoadImage
-					src={item.backdrop ? item.backdrop.url : item.poster.url}
+					src={
+						item.backdrop ? item.backdrop.previewUrl : item.poster.previewUrl
+					}
 					effect='blur'
-					placeholderSrc={item.backdrop ? item.backdrop.url : item.poster.url}
+					placeholderSrc={
+						item.backdrop ? item.backdrop.previewUrl : item.poster.previewUrl
+					}
 					width='100%'
 					className='miniSliderCard__items-item-background'
 				/>

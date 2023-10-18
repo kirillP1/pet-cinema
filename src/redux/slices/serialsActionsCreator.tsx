@@ -81,19 +81,3 @@ export const fetchSerials =
 			dispatch(serialsFetchingError(e))
 		}
 	}
-
-export const fetchSingleSerial =
-	(id: number) => async (dispatch: AppDispatch) => {
-		try {
-			// Не работает фильтрация
-
-			const { data, error, message } = await kp.movie.getById(id)
-			console.log('action data:', data)
-
-			if (data) {
-				return data
-			}
-		} catch (e: any | unknown) {
-			dispatch(serialsFetchingError(e))
-		}
-	}

@@ -26,7 +26,7 @@ const initialState: filtersSliceState = {
 	search: {
 		searchValue: '',
 		searchActive: false,
-		searchData: new Array(3),
+		searchData: [{}, {}, {}],
 		status: statusLoadingEnum.LOADING,
 	},
 	activeSortType: {

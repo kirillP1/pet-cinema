@@ -1,7 +1,6 @@
 import { FC } from 'react'
-import { IFilms } from '../../data/filmsLocalData'
 type typeFilmPersons = {
-	film: IFilms
+	film: any
 }
 
 const FilmPersons: FC<typeFilmPersons> = ({ film }) => {
@@ -9,8 +8,8 @@ const FilmPersons: FC<typeFilmPersons> = ({ film }) => {
 		<div className='filmPersons' id='persons'>
 			<h2 className='filmPersons__header'>Актеры и создатели</h2>
 			<div className='filmPersons__items'>
-				{film.persons?.map(person => (
-					<div className='filmPersons__item'>
+				{film.persons?.map((person: any, index: number) => (
+					<div className='filmPersons__item' key={index}>
 						<div
 							style={{ background: `url(${person.photo}) no-repeat` }}
 							className='filmPersons__item-img'

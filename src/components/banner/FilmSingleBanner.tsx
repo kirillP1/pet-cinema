@@ -1,9 +1,8 @@
 import { FC, useEffect, useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
-import { IFilms } from '../../data/filmsLocalData'
 import BannerButton from '../buttons/BannerButton'
 type typeFilmSingleBanner = {
-	film: IFilms
+	film: any
 }
 
 const FilmSingleBanner: FC<typeFilmSingleBanner> = ({ film }) => {
@@ -14,8 +13,6 @@ const FilmSingleBanner: FC<typeFilmSingleBanner> = ({ film }) => {
 			setScrollTop(window.scrollY)
 		})
 	}, [])
-	console.log('FilmSingleBanner', film)
-
 	return (
 		<div className='filmSingleBanner'>
 			<div
@@ -75,8 +72,8 @@ const FilmSingleBanner: FC<typeFilmSingleBanner> = ({ film }) => {
 					transform: `translate3d(0, calc((${scrollTop}px) / 5.7), 0)`,
 				}}
 			>
-				{film.persons?.slice(0, 5).map(person => (
-					<div className='filmSingleBanner__item'>
+				{film.persons?.slice(0, 5).map((person: any, index: number) => (
+					<div className='filmSingleBanner__item' key={index}>
 						<LazyLoadImage
 							src={person.photo}
 							effect='blur'

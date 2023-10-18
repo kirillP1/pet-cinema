@@ -11,6 +11,7 @@ import { statusLoadingEnum } from '../../redux/slices/serialsSlice'
 import NextArrow from '../arrows/NextArrow'
 import PrevArrow from '../arrows/PrevArrow'
 import BannerButton from '../buttons/BannerButton'
+import BannerPreloader from '../preloaders/BannerPreloader'
 
 const Banner = () => {
 	const [activeSlide, setActiveSlide] = useState<number>(1)
@@ -87,7 +88,7 @@ const Banner = () => {
 	console.log('Banner')
 
 	if (status === statusLoadingEnum.LOADING || itemsData.length === 0) {
-		return <>Загрузка...</>
+		return <BannerPreloader />
 	} else {
 		return (
 			<div className='banner'>

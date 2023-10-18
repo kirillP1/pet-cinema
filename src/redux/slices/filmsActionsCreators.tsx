@@ -112,19 +112,3 @@ export const getCountriesAll = async (dispatch: AppDispatch) => {
 	// Если будет ошибка, то выведем ее в консоль
 	console.log(error, message)
 }
-
-export const fetchSingleFilms =
-	(id: number) => async (dispatch: AppDispatch) => {
-		try {
-			// Не работает фильтрация
-
-			const { data, error, message } = await kp.movie.getById(id)
-			console.log('action data:', data)
-
-			if (data) {
-				return data
-			}
-		} catch (e: any | unknown) {
-			dispatch(filmsFetchingError(e))
-		}
-	}

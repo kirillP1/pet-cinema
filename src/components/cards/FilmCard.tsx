@@ -14,6 +14,7 @@ const FilmCard: FC<typeFilmCard> = ({ item }) => {
 	const dispatch = useAppDispatch()
 	const itemsFav = useAppSelector(state => state.favorites.items)
 	const activeFav = itemsFav.filter((itemFav: any) => itemFav.id === item.id)
+
 	return (
 		<div className='films__items-poster'>
 			<>

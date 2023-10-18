@@ -1,8 +1,7 @@
 import { FC } from 'react'
-import { IFilms } from '../../data/filmsLocalData'
 
 type typeFilmSingleBanner = {
-	film: IFilms
+	film: any
 }
 const FilmHeader: FC<typeFilmSingleBanner> = ({ film }) => {
 	return (

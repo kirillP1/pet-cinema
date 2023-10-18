@@ -12,7 +12,6 @@ const BannerButton: FC<typeBannerButton> = ({ film }) => {
 	const dispatch = useAppDispatch()
 	const itemsFav = useAppSelector(state => state.favorites.items)
 	const activeFav = itemsFav.filter((item: any) => item.id === film.id)
-	console.log(activeFav)
 	return (
 		<>
 			{activeFav.length !== 0 ? (

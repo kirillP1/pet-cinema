@@ -13,6 +13,7 @@ const SerialCard: FC<typeSerialCard> = ({ item }) => {
 	const dispatch = useAppDispatch()
 	const itemsFav = useAppSelector(state => state.favorites.items)
 	const activeFav = itemsFav.filter((itemFav: any) => itemFav.id === item.id)
+
 	return (
 		<div className='serials__items-poster'>
 			<>

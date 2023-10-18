@@ -504,8 +504,7 @@
 	display: none;
 }
 .relatedFilmsSlider {
-	padding: 100px 0;
-	height: 100vh;
+	padding: 60px 0 0 0;
 	&__container {
 		padding-bottom: 10vh;
 	}
@@ -523,7 +522,7 @@
 		background-size: cover;
 		background-position: center;
 		will-change: transform;
-		height: 60vh;
+		height: 300px;
 		width: 100%;
 		&:before {
 			content: '';
@@ -586,7 +585,7 @@
 		}
 	}
 	.swiper-slide {
-		height: 60vh;
+		height: 360px;
 	}
 	.swiper-button-next,
 	.swiper-button-prev {

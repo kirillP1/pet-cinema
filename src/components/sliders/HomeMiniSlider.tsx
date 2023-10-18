@@ -1,5 +1,7 @@
-import { FC, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { BsFillArrowRightCircleFill } from 'react-icons/bs'
+import { useInView } from 'react-intersection-observer'
+import { LazyLoadComponent } from 'react-lazy-load-image-component'
 import { Navigation } from 'swiper'
 import 'swiper/css'
 import 'swiper/css/autoplay'
@@ -8,22 +10,47 @@ import 'swiper/css/pagination'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import MiniSliderCard from '../cards/MiniSliderCard'
 import ItemsListPopup from '../popups/ItemsListPopup'
+import MiniSliderSkeleton from '../skeletons/MiniSliderSkeleton'
 type typeMiniSlider = {
 	title: string
-	items: any
+	fetchFunction?: any
+	query?: string
+	items?: any
 }
-const HomeMiniSlider: FC<typeMiniSlider> = ({ title, items }) => {
+const HomeMiniSlider: FC<typeMiniSlider> = ({
+	title,
+	fetchFunction,
+	query,
+	items,
+}) => {
 	const [popupActive, setPopupActive] = useState(false)
+	const [firstTime, setFirstTime] = useState(false)
+	const [fItems, setFItems] = useState<any>(items ? items : [])
 
-	const shortItems = items ? items.slice(0, 9) : Array(8)
+	const { ref, inView } = useInView({
+		threshold: 0.1,
+		triggerOnce: true,
+	})
 
 	const onShowClick = () => {
 		console.log('show click')
-
 		setPopupActive(true)
 	}
+
+	useEffect(() => {
+		if (fetchFunction && query && firstTime) {
+			fetchFunction(query).then((fetchItems: any) => {
+				console.log(query, fetchItems)
+
+				setFItems(fetchItems)
+			})
+		} else {
+			setFirstTime(true)
+		}
+	}, [inView])
+
 	return (
-		<div className='homeMiniSlider'>
+		<div className='homeMiniSlider' ref={ref}>
 			<div className='homeMiniSlider__title'>{title}</div>
 			<Swiper
 				className='swiper homeMiniSlider__container'
@@ -36,14 +63,18 @@ const HomeMiniSlider: FC<typeMiniSlider> = ({ title, items }) => {
 				autoplay={{ delay: 3000 }}
 			>
 				<div className='swiper-wrapper homeMiniSlider__wrapper'>
-					{shortItems.map((item: any, index: number) => (
-						<SwiperSlide
-							className='swiper-slide homeMiniSlider__item'
-							key={index}
-						>
-							<MiniSliderCard item={item} />
-						</SwiperSlide>
-					))}
+					{(fItems ? fItems.slice(0, 9) : Array(8)).map(
+						(item: any, index: number) => (
+							<SwiperSlide
+								className='swiper-slide homeMiniSlider__item'
+								key={index}
+							>
+								<LazyLoadComponent placeholder={<MiniSliderSkeleton />}>
+									<MiniSliderCard item={item} />
+								</LazyLoadComponent>
+							</SwiperSlide>
+						)
+					)}
 					<SwiperSlide className='swiper-slide  homeMiniSlider__item'>
 						<div
 							className='homeMiniSlider__item-text'
@@ -58,7 +89,7 @@ const HomeMiniSlider: FC<typeMiniSlider> = ({ title, items }) => {
 			{popupActive && (
 				<ItemsListPopup
 					title={title}
-					items={items}
+					items={fItems}
 					setPopupActive={setPopupActive}
 				/>
 			)}

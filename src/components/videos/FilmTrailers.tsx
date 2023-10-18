@@ -1,8 +1,7 @@
 import { FC } from 'react'
-import { IFilms } from '../../data/filmsLocalData'
 
 type typeFilmSingleBanner = {
-	film: IFilms
+	film: any
 }
 
 const FilmTrailers: FC<typeFilmSingleBanner> = ({ film }) => {
@@ -11,8 +10,8 @@ const FilmTrailers: FC<typeFilmSingleBanner> = ({ film }) => {
 			<div className='filmTrailers' id='trailers'>
 				<h2 className='filmTrailers__header'>Трейлеры</h2>
 				<div className='filmTrailers__items'>
-					{film.videos.trailers.map(trailer => (
-						<div className='filmTrailers__item'>
+					{film.videos.trailers.map((trailer: any, index: number) => (
+						<div className='filmTrailers__item' key={index}>
 							<iframe
 								src={trailer.url && trailer.url}
 								allow='autoplay; encrypted-media'

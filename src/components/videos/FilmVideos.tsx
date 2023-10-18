@@ -1,8 +1,7 @@
 import axios from 'axios'
 import { FC, useEffect, useState } from 'react'
-import { IFilms } from '../../data/filmsLocalData'
 type typeFilmSingleBanner = {
-	film: IFilms
+	film: any
 }
 const FilmVideos: FC<typeFilmSingleBanner> = ({ film }) => {
 	const [player, setPlayer] = useState<any>()
@@ -49,6 +48,7 @@ const FilmVideos: FC<typeFilmSingleBanner> = ({ film }) => {
 										'filmVideos__player-item ' +
 										(activePlayer === index + 1 ? 'active' : '')
 									}
+									key={index}
 								>
 									<iframe src={item.iframeUrl} key={index}></iframe>
 								</div>

@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
+import { useInView } from 'react-intersection-observer'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { Link } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
@@ -7,7 +8,6 @@ import {
 	addFavoritesItem,
 	removeFavoritesItem,
 } from '../../redux/slices/favoritesSlice'
-
 type typeItemsListPopupCard = {
 	item: any
 }
@@ -15,8 +15,12 @@ const ItemsListPopupCard: FC<typeItemsListPopupCard> = ({ item }) => {
 	const dispatch = useAppDispatch()
 	const itemsFav = useAppSelector(state => state.favorites.items)
 	const activeFav = itemsFav.filter((itemFav: any) => itemFav.id === item.id)
+	const { ref, inView } = useInView({
+		threshold: 0,
+		triggerOnce: true,
+	})
 	return (
-		<div className='ItemsListPopupCard'>
+		<div className='ItemsListPopupCard' ref={ref}>
 			<>
 				{activeFav.length !== 0 ? (
 					<div
@@ -35,14 +39,30 @@ const ItemsListPopupCard: FC<typeItemsListPopupCard> = ({ item }) => {
 				)}
 			</>
 			<Link to={'/films/' + item.id} className='ItemsListPopupCard__item'>
-				<LazyLoadImage
-					src={item.backdrop ? item.backdrop.url : item.poster.url}
-					effect='blur'
-					placeholderSrc={item.backdrop ? item.backdrop.url : item.poster.url}
-					width='100%'
-					height='100%'
-					className='ItemsListPopupCard__background'
-				/>
+				{inView ? (
+					<LazyLoadImage
+						src={
+							item.backdrop ? item.backdrop.previewUrl : item.poster.previewUrl
+						}
+						effect='blur'
+						placeholderSrc={
+							item.backdrop ? item.backdrop.previewUrl : item.poster.previewUrl
+						}
+						width='100%'
+						height='100%'
+						className='ItemsListPopupCard__background'
+					/>
+				) : (
+					<div
+						style={{
+							margin: '5px',
+							width: '100%',
+							height: '100%',
+							backgroundColor: 'lightgray',
+							borderRadius: '10px',
+						}}
+					></div>
+				)}
 				<div className='ItemsListPopupCard__black'></div>
 				<img
 					className='ItemsListPopupCard__logo'

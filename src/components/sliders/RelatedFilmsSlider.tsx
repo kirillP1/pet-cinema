@@ -1,7 +1,6 @@
 import { FC } from 'react'
 import { Autoplay, Navigation, Pagination } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { IFilms } from '../../data/filmsLocalData'
 // Import Swiper styles
 import { Link } from 'react-router-dom'
 import 'swiper/css'
@@ -9,7 +8,7 @@ import 'swiper/css/autoplay'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 type typeFilmSingleBanner = {
-	film: IFilms
+	film: any
 }
 const RelatedFilmsSlider: FC<typeFilmSingleBanner> = ({ film }) => {
 	console.log(film.similarMovies)
@@ -27,7 +26,7 @@ const RelatedFilmsSlider: FC<typeFilmSingleBanner> = ({ film }) => {
 				autoplay={{ delay: 3000 }}
 			>
 				<div className='swiper-wrapper relatedFilmsSlider__wrapper'>
-					{film.similarMovies?.map((item, index) => (
+					{film.similarMovies?.map((item: any, index: number) => (
 						<SwiperSlide
 							className='swiper-slide relatedFilmsSlider__item'
 							key={index}

@@ -1,16 +1,15 @@
-import { FC } from 'react'
+import { FC, lazy } from 'react'
 
 import { Route, Routes } from 'react-router-dom'
 import MainLayout from './layouts/MainLayout'
-import Favorites from './pages/Favorites'
-import Films from './pages/Films'
-import Franchises from './pages/Franchises'
-import Home from './pages/Home'
-import Serials from './pages/Serials'
-import SingleFilm from './pages/SingleFilm'
-import SingleFranchise from './pages/SingleFranchise'
-import SingleSerial from './pages/SingleSerial'
-
+const Home = lazy(() => import('./pages/Home'))
+const Films = lazy(() => import('./pages/Films'))
+const SingleFilm = lazy(() => import('./pages/SingleFilm'))
+const Serials = lazy(() => import('./pages/Serials'))
+const SingleSerial = lazy(() => import('./pages/SingleSerial'))
+const Franchises = lazy(() => import('./pages/Franchises'))
+const SingleFranchise = lazy(() => import('./pages/SingleFranchise'))
+const Favorites = lazy(() => import('./pages/Favorites'))
 const App: FC = () => {
 	return (
 		<Routes>

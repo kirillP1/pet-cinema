@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
+import { useInView } from 'react-intersection-observer'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { Link } from 'react-router-dom'
 import { useAppDispatch } from '../../hooks/redux'
@@ -9,24 +10,40 @@ type typeFavoriteCard = {
 }
 const FavoriteCard: FC<typeFavoriteCard> = ({ item }) => {
 	const dispatch = useAppDispatch()
-
+	const { ref, inView } = useInView({
+		threshold: 0,
+		triggerOnce: true,
+	})
 	return (
-		<div className='favorites__items-wrapper'>
+		<div className='favorites__items-wrapper' ref={ref}>
 			<div
 				className='favorites__items-close'
 				onClick={() => dispatch(removeFavoritesItem(item))}
 			>
 				<AiOutlineClose />
 			</div>
+
 			<Link to={'/films/' + item.id} className='favorites__items-item'>
-				<LazyLoadImage
-					src={item.backdrop.url}
-					effect='blur'
-					placeholderSrc={item.backdrop.url}
-					width='100%'
-					height='100%'
-					className='favorites__items-item-background'
-				/>
+				{inView ? (
+					<LazyLoadImage
+						src={item.backdrop.previewUrl}
+						effect='blur'
+						placeholderSrc={item.backdrop.previewUrl}
+						width='100%'
+						height='100%'
+						className='favorites__items-item-background'
+					/>
+				) : (
+					<div
+						style={{
+							margin: '5px',
+							width: '100%',
+							height: '100%',
+							backgroundColor: 'lightgray',
+							borderRadius: '10px',
+						}}
+					></div>
+				)}
 				<div className='favorites__items-item-black'></div>
 				<img className='favorites__items-item-logo' src={item.logo.url} />
 

@@ -38,7 +38,7 @@ interface IVideo {
 	trailers: ITrailer[]
 	teasers: any[]
 }
-interface IPerson {
+export interface IPerson {
 	description: string
 	enName: string
 	enProfession: string
