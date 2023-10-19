@@ -1,16 +1,18 @@
 import { FC, useState } from 'react'
 import { IArrow } from '../../@types/IArrow'
+import { useAppDispatch, useAppSelector } from '../../hooks/redux'
+import { setCountSlide } from '../../redux/slices/home/homeSlice'
 
 const NextArrow: FC<IArrow> = props => {
-	const { className, style, onClick, countSlide, setCountSlide } = props
+	const { className, style, onClick } = props
 	const [isDisabled, setIsDisabled] = useState<boolean>(false)
+	const dispatch = useAppDispatch()
+	const { countSlide } = useAppSelector(state => state.home.banner)
 	const arrowClick = () => {
-		setCountSlide(countSlide + 1)
-
+		dispatch(setCountSlide(countSlide + 1))
 		if (onClick) {
 			onClick()
 		}
-
 		setIsDisabled(true)
 		setTimeout(() => {
 			setIsDisabled(false)

@@ -10,7 +10,7 @@ import RelatedFilmsSlider from '../components/sliders/RelatedFilmsSlider'
 import FilmTrailers from '../components/videos/FilmTrailers'
 import FilmVideos from '../components/videos/FilmVideos'
 import { useAppDispatch, useAppSelector } from '../hooks/redux'
-import { fetchSingleSerial } from '../redux/slices/singleSerialActionCreators'
+import { fetchSingleSerial } from '../redux/slices/singleSerial/singleSerialActionCreators'
 const SingleSerial: FC = () => {
 	const { id } = useParams()
 	const dispatch = useAppDispatch()

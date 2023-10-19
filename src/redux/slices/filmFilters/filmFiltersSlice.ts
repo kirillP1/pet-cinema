@@ -3,21 +3,21 @@ import {
 	IFilter,
 	activeSortType,
 	sortEnum,
-} from '../../@types/filtersInterfaces'
+} from '../../../@types/filtersInterfaces'
 
-export interface ISerialFilters {
+export interface IFilmFilters {
 	genres: IFilter
 	years: IFilter
 	countries: IFilter
 }
 
-interface serialFiltersSliceState {
-	filters: ISerialFilters
+interface filmFiltersSliceState {
+	filters: IFilmFilters
 	activeSortType: activeSortType
 	pagination: number
 }
 
-const initialState: serialFiltersSliceState = {
+const initialState: filmFiltersSliceState = {
 	filters: {
 		genres: {
 			title: 'Жанры',
@@ -66,43 +66,41 @@ const initialState: serialFiltersSliceState = {
 	pagination: 1,
 }
 
-const serialFiltersSlice = createSlice({
-	name: 'serialFilters',
+const filmFiltersSlice = createSlice({
+	name: 'filmFilters',
 	initialState,
 	reducers: {
-		setSerialYear: (state, action: PayloadAction<string>) => {
+		setFilmYear: (state, action: PayloadAction<string>) => {
 			state.filters.years.active = action.payload
 		},
-		setSerialCountry: (state, action: PayloadAction<string>) => {
-			console.log('Set serial country')
-
+		setFilmCountry: (state, action: PayloadAction<string>) => {
 			state.filters.countries.active = action.payload
 		},
-		setSerialGenre: (state, action: PayloadAction<string>) => {
+		setFilmGenre: (state, action: PayloadAction<string>) => {
 			state.filters.genres.active = action.payload
 		},
-		setSerialSortType: (state, action: PayloadAction<activeSortType>) => {
+		setFilmSortType: (state, action: PayloadAction<activeSortType>) => {
 			state.activeSortType = action.payload
 		},
-		setSerialGenresAll: (state, action: PayloadAction<string[]>) => {
+		setFilmGenresAll: (state, action: PayloadAction<string[]>) => {
 			state.filters.genres.all = action.payload
 		},
-		setSerialCountriesAll: (state, action: PayloadAction<string[]>) => {
+		setFilmCountriesAll: (state, action: PayloadAction<string[]>) => {
 			state.filters.countries.all = action.payload
 		},
-		setSerialPagination: (state, action: PayloadAction<number>) => {
+		setFilmPagination: (state, action: PayloadAction<number>) => {
 			state.pagination = action.payload
 		},
 	},
 })
 
 export const {
-	setSerialYear,
-	setSerialCountry,
-	setSerialGenre,
-	setSerialSortType,
-	setSerialGenresAll,
-	setSerialCountriesAll,
-	setSerialPagination,
-} = serialFiltersSlice.actions
-export default serialFiltersSlice.reducer
+	setFilmYear,
+	setFilmCountry,
+	setFilmGenre,
+	setFilmSortType,
+	setFilmGenresAll,
+	setFilmCountriesAll,
+	setFilmPagination,
+} = filmFiltersSlice.actions
+export default filmFiltersSlice.reducer

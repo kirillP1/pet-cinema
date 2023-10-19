@@ -158,6 +158,10 @@
 				z-index: 10;
 				opacity: 1;
 				transition: $fast-transition;
+				width: 70px;
+				height: 70px;
+				border-radius: 100%;
+				color: $black;
 				&:before {
 					font-size: 64px;
 					opacity: 1;
@@ -165,9 +169,6 @@
 				&:disabled {
 					opacity: 0.6;
 				}
-			}
-			.slick-next {
-				right: 25px;
 			}
 			&-item {
 				width: 250px;

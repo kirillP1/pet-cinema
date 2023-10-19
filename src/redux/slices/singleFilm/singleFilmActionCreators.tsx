@@ -1,10 +1,11 @@
-import { getKinopoisk } from '../../utils/kinopoisk'
-import { AppDispatch } from '../store'
+import { getKinopoisk } from '../../../utils/kinopoisk'
+import { AppDispatch } from '../../store'
 import {
 	singleFilmFetching,
 	singleFilmFetchingError,
 	singleFilmFetchingSuccess,
 } from './singleFilmSlice'
+
 const { kp, queryBuilder } = getKinopoisk()
 export const fetchSingleFilm =
 	(id: number) => async (dispatch: AppDispatch) => {

@@ -5,7 +5,7 @@ import Banner from '../components/banner/Banner'
 import FranchisesSlider from '../components/sliders/FranchiseSliders'
 import HomeMiniSlider from '../components/sliders/HomeMiniSlider'
 import { useAppSelector } from '../hooks/redux'
-import { getFavoritesFromLS } from '../redux/slices/favoriteActionsCreators'
+import { getFavoritesFromLS } from '../redux/slices/favorites/favoriteActionsCreators'
 import { fetchGenreFilms, fetchPersonsFilms } from '../utils/homeFetchSliders'
 
 const Home: FC = () => {
@@ -15,7 +15,6 @@ const Home: FC = () => {
 	return (
 		<div className='Home'>
 			<Banner />
-
 			{favoriteItems && (
 				<HomeMiniSlider title='Ваше избранное' items={favoriteItems} />
 			)}

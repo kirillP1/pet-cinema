@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { GrNext, GrPrevious } from 'react-icons/gr'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
-import { setFilmPagination } from '../../redux/slices/filmFiltersSlice'
+import { setFilmPagination } from '../../redux/slices/filmFilters/filmFiltersSlice'
 
 const FilmPagination: FC = () => {
 	const pagination = useAppSelector(state => state.filmFilters.pagination)

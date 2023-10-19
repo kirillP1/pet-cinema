@@ -2,9 +2,12 @@ import debounce from 'lodash.debounce'
 import { ChangeEvent, useEffect, useRef } from 'react'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
-import { getSearchData } from '../../redux/slices/filtersActionCreator'
-import { searchChange, setSearchActive } from '../../redux/slices/filtersSlice'
-import { statusLoadingEnum } from '../../redux/slices/serialsSlice'
+import { getSearchData } from '../../redux/slices/filters/filtersActionCreator'
+import {
+	searchChange,
+	setSearchActive,
+} from '../../redux/slices/filters/filtersSlice'
+import { statusLoadingEnum } from '../../redux/slices/serials/serialsSlice'
 import HeaderSearchCard from '../cards/HeaderSearchCard'
 import SearchSkeleton from '../skeletons/SearchSkeleton'
 

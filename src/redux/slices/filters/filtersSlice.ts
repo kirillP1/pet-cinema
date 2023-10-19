@@ -3,8 +3,8 @@ import {
 	IFilter,
 	activeSortType,
 	sortEnum,
-} from '../../@types/filtersInterfaces'
-import { statusLoadingEnum } from './serialsSlice'
+} from '../../../@types/filtersInterfaces'
+import { statusLoadingEnum } from '../serials/serialsSlice'
 
 export interface IFilters {
 	genres: IFilter

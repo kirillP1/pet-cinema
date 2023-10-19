@@ -4,7 +4,7 @@ import {
 	setSerialCountry,
 	setSerialGenre,
 	setSerialYear,
-} from '../redux/slices/serialFiltersSlice'
+} from '../redux/slices/serialFilters/serialFiltersSlice'
 
 export interface ISerialsFilterData {
 	title: string

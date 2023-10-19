@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import {
 	addFavoritesItem,
 	removeFavoritesItem,
-} from '../../redux/slices/favoritesSlice'
+} from '../../redux/slices/favorites/favoritesSlice'
 type typeFilmCard = {
 	item: IFilms
 }

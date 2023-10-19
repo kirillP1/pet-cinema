@@ -3,7 +3,7 @@ import { MdArrowRight } from 'react-icons/md'
 import { activeSortType } from '../../@types/filtersInterfaces'
 import { sortFilmList } from '../../data/filmFiltersData'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
-import { setFilmSortType } from '../../redux/slices/filmFiltersSlice'
+import { setFilmSortType } from '../../redux/slices/filmFilters/filmFiltersSlice'
 
 const FilmSort: FC = () => {
 	const dispatch = useAppDispatch()

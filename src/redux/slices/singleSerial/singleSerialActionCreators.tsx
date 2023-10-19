@@ -1,5 +1,5 @@
-import { getKinopoisk } from '../../utils/kinopoisk'
-import { AppDispatch } from '../store'
+import { getKinopoisk } from '../../../utils/kinopoisk'
+import { AppDispatch } from '../../store'
 import {
 	singleSerialFetching,
 	singleSerialFetchingError,

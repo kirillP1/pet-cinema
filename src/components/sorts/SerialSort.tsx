@@ -3,7 +3,7 @@ import { MdArrowRight } from 'react-icons/md'
 import { activeSortType } from '../../@types/filtersInterfaces'
 import { sortSerialList } from '../../data/serialsFiltersData'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
-import { setSerialSortType } from '../../redux/slices/serialFiltersSlice'
+import { setSerialSortType } from '../../redux/slices/serialFilters/serialFiltersSlice'
 
 const SerialSort: FC = () => {
 	const dispatch = useAppDispatch()

@@ -1,25 +1,26 @@
 import { FC, useState } from 'react'
 import { IArrow } from '../../@types/IArrow'
-import { filmsLocalData } from '../../data/filmsLocalData'
-import { useAppSelector } from '../../hooks/redux'
+import { useAppDispatch, useAppSelector } from '../../hooks/redux'
+import { setCountSlide } from '../../redux/slices/home/homeSlice'
 
 const PrevArrow: FC<IArrow> = props => {
-	const { className, style, onClick, countSlide, setCountSlide } = props
+	const { className, style, onClick } = props
 	const [isDisabled, setIsDisabled] = useState<boolean>(false)
-
 	const { items } = useAppSelector(state => state.films)
-	const itemsData = items.length !== 0 ? items : filmsLocalData
+	const { countSlide } = useAppSelector(state => state.home.banner)
+
+	const dispatch = useAppDispatch()
 
 	const arrowClick = () => {
 		if (countSlide - 1 < 1) {
-			setCountSlide(5)
+			dispatch(setCountSlide(5))
 		} else {
-			setCountSlide(countSlide - 1)
+			dispatch(setCountSlide(countSlide - 1))
 		}
-
 		if (onClick) {
 			onClick()
 		}
+
 		setIsDisabled(true)
 		setTimeout(() => {
 			setIsDisabled(false)

@@ -1,6 +1,7 @@
 import { MovieQueryBuilder } from '@openmoviedb/kinopoiskdev_client'
-import { getKinopoisk } from '../../utils/kinopoisk'
-import { AppDispatch } from '../store'
+
+import { getKinopoisk } from '../../../utils/kinopoisk'
+import { AppDispatch } from '../../store'
 import {
 	searchFetching,
 	searchFetchingError,

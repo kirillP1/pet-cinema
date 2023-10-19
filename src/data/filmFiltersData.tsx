@@ -5,7 +5,7 @@ import {
 	setFilmCountry,
 	setFilmGenre,
 	setFilmYear,
-} from '../redux/slices/filmFiltersSlice'
+} from '../redux/slices/filmFilters/filmFiltersSlice'
 
 export interface IFilmsFilterData {
 	title: string

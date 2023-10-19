@@ -5,8 +5,8 @@ import SerialPagination from '../components/paginations/SerialPagination'
 import FilmsSkeleton from '../components/skeletons/FilmsSkeleton'
 import SerialSort from '../components/sorts/SerialSort'
 import { useAppDispatch, useAppSelector } from '../hooks/redux'
-import { fetchSerials } from '../redux/slices/serialsActionsCreator'
-import { statusLoadingEnum } from '../redux/slices/serialsSlice'
+import { fetchSerials } from '../redux/slices/serials/serialsActionsCreator'
+import { statusLoadingEnum } from '../redux/slices/serials/serialsSlice'
 
 const Serials: FC = () => {
 	const { items, status } = useAppSelector(state => state.serials)

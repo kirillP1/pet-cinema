@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
-import { statusLoadingEnum } from '../../@types/enums/statusLoadingEnum'
+import { statusLoadingEnum } from '../../../@types/enums/statusLoadingEnum'
 
 const initialState = {
 	serial: '' as any,

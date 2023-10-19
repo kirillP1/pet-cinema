@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { Link } from 'react-router-dom'
 import { useAppDispatch } from '../../hooks/redux'
-import { searchChange } from '../../redux/slices/filtersSlice'
+import { searchChange } from '../../redux/slices/filters/filtersSlice'
 type typeHeaderSearchCard = {
 	item: any
 }

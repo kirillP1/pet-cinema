@@ -7,7 +7,7 @@ import FilmsSkeleton from '../components/skeletons/FilmsSkeleton'
 import FilmSort from '../components/sorts/FilmSort'
 import { IFilms } from '../data/filmsLocalData'
 import { useAppDispatch, useAppSelector } from '../hooks/redux'
-import { fetchFilms } from '../redux/slices/filmsActionsCreators'
+import { fetchFilms } from '../redux/slices/films/filmsActionsCreators'
 
 const Films: FC = () => {
 	const { items, status } = useAppSelector(state => state.films)

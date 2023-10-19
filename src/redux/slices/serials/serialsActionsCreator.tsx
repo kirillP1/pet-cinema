@@ -3,10 +3,10 @@ import {
 	MovieFields,
 	SORT_TYPE,
 } from '@openmoviedb/kinopoiskdev_client'
-import { activeSortType } from '../../@types/filtersInterfaces'
-import {} from '../../data/filmsLocalData'
-import { getKinopoisk } from '../../utils/kinopoisk'
-import { AppDispatch } from '../store'
+import { activeSortType } from '../../../@types/filtersInterfaces'
+import {} from '../../../data/filmsLocalData'
+import { getKinopoisk } from '../../../utils/kinopoisk'
+import { AppDispatch } from '../../store'
 import {
 	serialsFetching,
 	serialsFetchingError,

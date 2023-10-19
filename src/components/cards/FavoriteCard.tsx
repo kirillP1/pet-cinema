@@ -4,7 +4,7 @@ import { useInView } from 'react-intersection-observer'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { Link } from 'react-router-dom'
 import { useAppDispatch } from '../../hooks/redux'
-import { removeFavoritesItem } from '../../redux/slices/favoritesSlice'
+import { removeFavoritesItem } from '../../redux/slices/favorites/favoritesSlice'
 type typeFavoriteCard = {
 	item: any
 }

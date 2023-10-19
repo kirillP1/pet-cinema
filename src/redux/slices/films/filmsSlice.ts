@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
-import { statusLoadingEnum } from '../../@types/enums/statusLoadingEnum'
-import { IFilms, filmsLocalData } from '../../data/filmsLocalData'
+import { statusLoadingEnum } from '../../../@types/enums/statusLoadingEnum'
+import { IFilms, filmsLocalData } from '../../../data/filmsLocalData'
 
 const initialState = {
 	items: filmsLocalData as IFilms[],

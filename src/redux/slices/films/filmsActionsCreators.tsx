@@ -3,17 +3,23 @@ import {
 	MovieFields,
 	SORT_TYPE,
 } from '@openmoviedb/kinopoiskdev_client'
-import { activeSortType } from '../../@types/filtersInterfaces'
-import { filmsLocalData } from '../../data/filmsLocalData'
-import { getKinopoisk } from '../../utils/kinopoisk'
-import { AppDispatch } from '../store'
-import { setFilmCountriesAll, setFilmGenresAll } from './filmFiltersSlice'
+import { activeSortType } from '../../../@types/filtersInterfaces'
+import { filmsLocalData } from '../../../data/filmsLocalData'
+import { getKinopoisk } from '../../../utils/kinopoisk'
+import { AppDispatch } from '../../store'
+import {
+	setFilmCountriesAll,
+	setFilmGenresAll,
+} from '../filmFilters/filmFiltersSlice'
+import {
+	setSerialCountriesAll,
+	setSerialGenresAll,
+} from '../serialFilters/serialFiltersSlice'
 import {
 	filmsFetching,
 	filmsFetchingError,
 	filmsFetchingSuccess,
 } from './filmsSlice'
-import { setSerialCountriesAll, setSerialGenresAll } from './serialFiltersSlice'
 
 const { kp, queryBuilder } = getKinopoisk()
 

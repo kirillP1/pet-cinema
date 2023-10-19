@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import {
 	getCountriesAll,
 	getGenresAll,
-} from '../../redux/slices/filmsActionsCreators'
+} from '../../redux/slices/films/filmsActionsCreators'
 import FilmFilter from './FilmFilter'
 
 const FilmFilters: FC = () => {

@@ -1,6 +1,6 @@
 import { GrNext, GrPrevious } from 'react-icons/gr'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
-import { setSerialPagination } from '../../redux/slices/serialFiltersSlice'
+import { setSerialPagination } from '../../redux/slices/serialFilters/serialFiltersSlice'
 
 const SerialPagination = () => {
 	const pagination = useAppSelector(state => state.serialFilters.pagination)

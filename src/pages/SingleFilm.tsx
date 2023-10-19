@@ -10,7 +10,7 @@ import RelatedFilmsSlider from '../components/sliders/RelatedFilmsSlider'
 import FilmTrailers from '../components/videos/FilmTrailers'
 import FilmVideos from '../components/videos/FilmVideos'
 import { useAppDispatch, useAppSelector } from '../hooks/redux'
-import { fetchSingleFilm } from '../redux/slices/singleFilmActionCreators'
+import { fetchSingleFilm } from '../redux/slices/singleFilm/singleFilmActionCreators'
 
 const SingleFilm: FC = () => {
 	const { id } = useParams()
