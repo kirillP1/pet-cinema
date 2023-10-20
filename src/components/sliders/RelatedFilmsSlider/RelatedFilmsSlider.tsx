@@ -2,17 +2,15 @@ import { FC } from 'react'
 import { Autoplay, Navigation, Pagination } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 // Import Swiper styles
-import { Link } from 'react-router-dom'
 import 'swiper/css'
 import 'swiper/css/autoplay'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
+import RelatedFilmsSlide from './RelatedFilmsSlide'
 type typeFilmSingleBanner = {
 	film: any
 }
 const RelatedFilmsSlider: FC<typeFilmSingleBanner> = ({ film }) => {
-	console.log(film.similarMovies)
-
 	return (
 		<div className='relatedFilmsSlider' id='related'>
 			<h2 className='relatedFilmsSlider__header'>Похожее</h2>
@@ -27,28 +25,8 @@ const RelatedFilmsSlider: FC<typeFilmSingleBanner> = ({ film }) => {
 			>
 				<div className='swiper-wrapper relatedFilmsSlider__wrapper'>
 					{film.similarMovies?.map((item: any, index: number) => (
-						<SwiperSlide
-							className='swiper-slide relatedFilmsSlider__item'
-							key={index}
-						>
-							<div
-								className='relatedFilmsSlider__layer'
-								style={{
-									backgroundImage: `url(${item.poster.url})`,
-								}}
-							></div>
-							<canvas
-								className='particles relatedFilmsSlider__layer'
-								data-color='#BE9164'
-							></canvas>
-							<Link
-								to={'/films/' + item.id}
-								className='relatedFilmsSlider__layer relatedFilmsSlider__text-wrapper'
-							>
-								<div className='relatedFilmsSlider__text'>
-									<div className='relatedFilmsSlider__title'>{item.name}</div>
-								</div>
-							</Link>
+						<SwiperSlide className='swiper-slide relatedFilmsSlider__item'>
+							<RelatedFilmsSlide item={item} key={index} />
 						</SwiperSlide>
 					))}
 				</div>

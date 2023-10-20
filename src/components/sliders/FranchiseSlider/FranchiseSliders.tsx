@@ -7,7 +7,8 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 // Import Swiper styles
 import 'swiper/css'
 import 'swiper/css/navigation'
-import { franchiseData } from '../../data/franchiseData'
+import { franchiseData } from '../../../data/franchiseData'
+import FranchiseSlide from './FranchiseSlide'
 
 const FranchisesSlider: FC = () => {
 	return (
@@ -22,31 +23,12 @@ const FranchisesSlider: FC = () => {
 				spaceBetween={18}
 			>
 				<div className='swiper-wrapper franchises-slider__wrapper'>
-					{franchiseData.map((item, index) => (
+					{franchiseData.map((item, index: number) => (
 						<SwiperSlide
 							className='swiper-slide franchises-slider__item'
 							key={index}
 						>
-							<div
-								className='franchises-slider__layer'
-								data-swiper-parallax='55%'
-								style={{
-									backgroundImage: `url(${item.bg})`,
-								}}
-							></div>
-							<canvas
-								className='particles franchises-slider__layer'
-								data-swiper-parallax='30%'
-								data-color='#BE9164'
-							></canvas>
-							<div
-								className='franchises-slider__layer franchises-slider__text-wrapper'
-								data-swiper-parallax='25%'
-							>
-								<div className='franchises-slider__text'>
-									<div className='franchises-slider__button'>{item.title}</div>
-								</div>
-							</div>
+							<FranchiseSlide item={item} />
 						</SwiperSlide>
 					))}
 				</div>

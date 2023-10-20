@@ -19,7 +19,9 @@ const FilmHeader: FC<typeFilmSingleBanner> = ({ film }) => {
 				<div className='filmHeader__desc-year'>{film.year}</div>
 				<div className='filmHeader__desc-country'>{film.countries[0].name}</div>
 				<div className='filmHeader__desc-genres'>{film.genres[0].name}</div>
-				<div className='filmHeader__desc-ageLimit'>{film.ageRating}+</div>
+				<div className='filmHeader__desc-ageLimit'>
+					{film.ageRating && film.ageRating + '+'}
+				</div>
 			</div>
 		</div>
 	)

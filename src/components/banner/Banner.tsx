@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { updateActiveSlide } from '../../helpers/homeBanner'
+import { scrollListener, updateActiveSlide } from '../../helpers/homeBanner'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import { fetchFilms } from '../../redux/slices/films/filmsActionsCreators'
 import { setScrollTop } from '../../redux/slices/home/homeSlice'
@@ -12,22 +12,14 @@ import BannerHomeContent from './BannerHomeContent'
 const Banner = () => {
 	const dispatch = useAppDispatch()
 
-	const { countSlide, itemsData, activeSlide } = useAppSelector(
+	const { countSlide, itemsData, activeSlide, scrollTop } = useAppSelector(
 		state => state.home.banner
 	)
 	const { status } = useAppSelector(state => state.films)
 
-	/*if (items.length !== 0) {
-		console.log('items', items.slice(0, 5))
-		//dispatch(setItemsData(items.slice(0, 5)))
-	}*/
-
 	useEffect(() => {
 		dispatch(fetchFilms())
-
-		window.addEventListener('scroll', e => {
-			dispatch(setScrollTop(window.scrollY))
-		})
+		scrollListener(dispatch, setScrollTop)
 	}, [])
 
 	useEffect(() => {
@@ -43,7 +35,14 @@ const Banner = () => {
 			<div className='banner'>
 				<BannerBackground film={itemsData[activeSlide]} />
 				<BannerHomeContent />
-				<BannerCarousel />
+				<div
+					className='carousel-box banner__element'
+					style={{
+						transform: `translate3d(0, calc((${scrollTop}px) / 7.7), 0)`,
+					}}
+				>
+					<BannerCarousel />
+				</div>
 			</div>
 		)
 	}

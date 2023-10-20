@@ -1,10 +1,10 @@
-import { FC, useEffect } from 'react'
+import React, { FC, useEffect } from 'react'
 import { serialsFilterData } from '../../data/serialsFiltersData'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import {
-	getCountriesAll,
-	getGenresAll,
-} from '../../redux/slices/films/filmsActionsCreators'
+	getSerialFilters,
+	updateSerialsFilters,
+} from '../../utils/updateFetchSerials'
 import SerialFilter from './SerialFilter'
 
 const SerialFilters: FC = () => {
@@ -12,20 +12,11 @@ const SerialFilters: FC = () => {
 	const serialFilters = useAppSelector(state => state.serialFilters)
 
 	useEffect(() => {
-		dispatch(getGenresAll)
-		dispatch(getCountriesAll)
+		getSerialFilters(dispatch)
 	}, [])
 
 	useEffect(() => {
-		serialsFilterData[0].all = [
-			'Все страны',
-			...serialFilters.filters.countries.all,
-		]
-		serialsFilterData[1].all = [
-			'Все жанры',
-			...serialFilters.filters.genres.all,
-		]
-		serialsFilterData[2].all = serialFilters.filters.years.all
+		updateSerialsFilters(serialFilters)
 	}, [serialFilters])
 
 	return (
@@ -37,4 +28,4 @@ const SerialFilters: FC = () => {
 	)
 }
 
-export default SerialFilters
+export default React.memo(SerialFilters)

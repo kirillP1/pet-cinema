@@ -1,7 +1,6 @@
 import { FC } from 'react'
-import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { useAppSelector } from '../../hooks/redux'
-import BannerButton from '../buttons/BannerButton'
+import BannerFavButton from '../buttons/BannerFavButton'
 
 const BannerSingleContent: FC = () => {
 	const { film } = useAppSelector(state => state.singleFilm)
@@ -15,18 +14,13 @@ const BannerSingleContent: FC = () => {
 		>
 			<h2 className='filmSingleBanner__content-title'>
 				{film.logo?.url ? (
-					<LazyLoadImage
-						src={film.logo && film.logo?.url}
-						alt={film.name}
-						effect='blur'
-						placeholderSrc={film.logo && film.logo?.url}
-					/>
+					<img src={film.logo && film.logo?.url} alt={film.name} />
 				) : (
 					film.name
 				)}
 			</h2>
 			<div className='filmSingleBanner__content-buttons '>
-				<BannerButton film={film} />
+				<BannerFavButton film={film} />
 			</div>
 		</div>
 	)

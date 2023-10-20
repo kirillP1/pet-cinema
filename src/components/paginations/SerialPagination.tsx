@@ -1,7 +1,7 @@
+import React from 'react'
 import { GrNext, GrPrevious } from 'react-icons/gr'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import { setSerialPagination } from '../../redux/slices/serialFilters/serialFiltersSlice'
-
 const SerialPagination = () => {
 	const pagination = useAppSelector(state => state.serialFilters.pagination)
 	const dispatch = useAppDispatch()
@@ -32,4 +32,4 @@ const SerialPagination = () => {
 	)
 }
 
-export default SerialPagination
+export default React.memo(SerialPagination)

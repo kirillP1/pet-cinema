@@ -1,10 +1,10 @@
-import { FC, useEffect } from 'react'
+import React, { FC, useEffect } from 'react'
 import { filmsFilterData } from '../../data/filmFiltersData'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import {
-	getCountriesAll,
-	getGenresAll,
-} from '../../redux/slices/films/filmsActionsCreators'
+	getFilmFilters,
+	updateFilmsFilters,
+} from '../../utils/updateFetchFilms'
 import FilmFilter from './FilmFilter'
 
 const FilmFilters: FC = () => {
@@ -12,17 +12,11 @@ const FilmFilters: FC = () => {
 	const filmFilters = useAppSelector(state => state.filmFilters)
 
 	useEffect(() => {
-		dispatch(getGenresAll)
-		dispatch(getCountriesAll)
+		getFilmFilters(dispatch)
 	}, [])
 
 	useEffect(() => {
-		filmsFilterData[0].all = [
-			'Все страны',
-			...filmFilters.filters.countries.all,
-		]
-		filmsFilterData[1].all = ['Все жанры', ...filmFilters.filters.genres.all]
-		filmsFilterData[2].all = filmFilters.filters.years.all
+		updateFilmsFilters(filmFilters)
 	}, [filmFilters])
 
 	return (
@@ -34,4 +28,4 @@ const FilmFilters: FC = () => {
 	)
 }
 
-export default FilmFilters
+export default React.memo(FilmFilters)

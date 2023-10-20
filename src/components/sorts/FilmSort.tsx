@@ -1,7 +1,11 @@
-import { FC, useEffect, useRef, useState } from 'react'
+import React, { FC, useEffect, useRef, useState } from 'react'
 import { MdArrowRight } from 'react-icons/md'
 import { activeSortType } from '../../@types/filtersInterfaces'
 import { sortFilmList } from '../../data/filmFiltersData'
+import {
+	handleModalClick,
+	onModalOptionClick,
+} from '../../helpers/filtersModal'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import { setFilmSortType } from '../../redux/slices/filmFilters/filmFiltersSlice'
 
@@ -20,26 +24,19 @@ const FilmSort: FC = () => {
 	const rootRef = useRef<HTMLDivElement>(null)
 
 	const onOptionClick = (item: activeSortType) => {
-		setSelected(item)
-		dispatch(setFilmSortType(item))
-		setIsOpenSort(false)
+		onModalOptionClick(
+			item,
+			setSelected,
+			setFilmSortType,
+			setIsOpenSort,
+			dispatch
+		)
 	}
 
 	useEffect(() => {
-		const handleClick = (event: MouseEvent) => {
-			const { target } = event
-
-			if (target instanceof Node && !rootRef.current?.contains(target)) {
-				setIsOpenSort(false)
-			}
-		}
-
-		window.addEventListener('click', handleClick)
-
-		return () => {
-			window.removeEventListener('click', handleClick)
-		}
+		handleModalClick(rootRef, setIsOpenSort)
 	}, [])
+
 	return (
 		<div
 			ref={rootRef}
@@ -65,4 +62,4 @@ const FilmSort: FC = () => {
 	)
 }
 
-export default FilmSort
+export default React.memo(FilmSort)

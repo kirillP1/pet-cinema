@@ -7,29 +7,22 @@ import FilmsSkeleton from '../components/skeletons/FilmsSkeleton'
 import FilmSort from '../components/sorts/FilmSort'
 import { IFilms } from '../data/filmsLocalData'
 import { useAppDispatch, useAppSelector } from '../hooks/redux'
-import { fetchFilms } from '../redux/slices/films/filmsActionsCreators'
+import { updateFetchFilms } from '../utils/updateFetchFilms'
 
 const Films: FC = () => {
-	const { items, status } = useAppSelector(state => state.films)
+	const { items } = useAppSelector(state => state.films)
 	const filmFilters = useAppSelector(state => state.filmFilters)
+
 	const dispatch = useAppDispatch()
+
 	useEffect(() => {
-		dispatch(
-			fetchFilms(
-				filmFilters.filters.years.active,
-				filmFilters.filters.genres.active,
-				filmFilters.filters.countries.active,
-				filmFilters.activeSortType,
-				filmFilters.pagination
-			)
-		)
+		dispatch(updateFetchFilms(filmFilters))
 	}, [filmFilters])
-	console.log(items, status)
 
 	return (
 		<div className='films'>
 			<div className='films__container'>
-				{<FilmFilters />}
+				<FilmFilters />
 
 				<div className='films__items-wrapper'>
 					<FilmSort />

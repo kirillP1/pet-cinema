@@ -1,38 +1,17 @@
 import { FC } from 'react'
-import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { Link } from 'react-router-dom'
-import { useAppDispatch, useAppSelector } from '../../hooks/redux'
-import {
-	addFavoritesItem,
-	removeFavoritesItem,
-} from '../../redux/slices/favorites/favoritesSlice'
+import { useAppSelector } from '../../hooks/redux'
+import MiniSliderFavButton from '../buttons/MiniSliderFavButton'
 type typeMiniSliderCard = {
 	item: any
 }
 const MiniSliderCard: FC<typeMiniSliderCard> = ({ item }) => {
-	const dispatch = useAppDispatch()
 	const itemsFav = useAppSelector(state => state.favorites.items)
 	const activeFav = itemsFav.filter((itemFav: any) => itemFav.id === item.id)
 	return (
 		<div className='miniSliderCard__items-wrapper'>
-			<>
-				{activeFav.length !== 0 ? (
-					<div
-						className='miniSliderCard__items-item-favorites'
-						onClick={() => dispatch(removeFavoritesItem(item))}
-					>
-						<AiFillHeart />
-					</div>
-				) : (
-					<div
-						className='miniSliderCard__items-item-favorites'
-						onClick={() => dispatch(addFavoritesItem(item))}
-					>
-						<AiOutlineHeart />
-					</div>
-				)}
-			</>
+			<MiniSliderFavButton activeFav={activeFav} item={item} />
 			<Link to={'/films/' + item.id} className='miniSliderCard__items-item'>
 				<LazyLoadImage
 					src={
@@ -48,7 +27,9 @@ const MiniSliderCard: FC<typeMiniSliderCard> = ({ item }) => {
 				<div className='miniSliderCard__items-item-black'></div>
 				<img className='miniSliderCard__items-item-logo' src={item.logo.url} />
 
-				<div className='miniSliderCard__items-item-age'>{item.ageRating}+</div>
+				<div className='miniSliderCard__items-item-age'>
+					{item.ageRating && item.ageRating + '+'}
+				</div>
 				<div
 					className={
 						'miniSliderCard__items-item-rating ' +

@@ -1,24 +1,24 @@
 import { ActionCreatorWithPayload } from '@reduxjs/toolkit'
-import { FC, useEffect, useRef, useState } from 'react'
+import React, { FC, useEffect, useRef, useState } from 'react'
 import { MdArrowRight, MdOutlineArrowForwardIos } from 'react-icons/md'
-import { IFilmsFilterData } from '../../data/filmFiltersData'
+import { IFilterData } from '../../data/filmFiltersData'
+import {
+	handleModalClick,
+	onModalOptionClick,
+} from '../../helpers/filtersModal'
 import { useAppDispatch } from '../../hooks/redux'
 
-interface IFilmFilter {
-	item: IFilmsFilterData
+interface IFilter {
+	item: IFilterData
 }
-type Option = { title: string; value: string }
 
-const FilmFilter: FC<IFilmFilter> = ({ item }) => {
+const Filter: FC<IFilter> = ({ item }) => {
 	const [isActiveFilter, setIsActiveFilter] = useState(true)
 	const [isOpen, setIsOpen] = useState(false)
 	const [selected, setSelected] = useState(item.placeholder)
 
 	const rootRef = useRef<HTMLDivElement>(null)
 	const dispatch = useAppDispatch()
-
-	const filterClasses = ['films__filter', isActiveFilter ? 'active' : '']
-	const optionsClasses = ['films__filter-options', isOpen ? 'active' : '']
 
 	const onFilterClick = () => {
 		isActiveFilter ? setIsActiveFilter(false) : setIsActiveFilter(true)
@@ -30,27 +30,15 @@ const FilmFilter: FC<IFilmFilter> = ({ item }) => {
 		value: string,
 		action: ActionCreatorWithPayload<string>
 	) => {
-		setSelected(value)
-		dispatch(action(value))
-		setIsOpen(false)
+		onModalOptionClick(value, setSelected, action, setIsOpen, dispatch)
 	}
+
 	useEffect(() => {
-		const handleClick = (event: MouseEvent) => {
-			const { target } = event
-
-			if (target instanceof Node && !rootRef.current?.contains(target)) {
-				setIsOpen(false)
-			}
-		}
-
-		window.addEventListener('click', handleClick)
-
-		return () => {
-			window.removeEventListener('click', handleClick)
-		}
+		handleModalClick(rootRef, setIsOpen)
 	}, [])
+
 	return (
-		<div className={filterClasses.join(' ')}>
+		<div className={`films__filter ${isActiveFilter ? 'active' : ''}`}>
 			<div className='films__filter-p' onClick={() => onFilterClick()}>
 				<MdOutlineArrowForwardIos />
 				{item.title}
@@ -63,7 +51,7 @@ const FilmFilter: FC<IFilmFilter> = ({ item }) => {
 					<span>{selected}</span>
 					<MdArrowRight />
 				</div>
-				<ul className={optionsClasses.join(' ')}>
+				<ul className={`films__filter-options ${isOpen ? 'active' : ''}`}>
 					{item.all?.map((option, index) => (
 						<li
 							key={index}
@@ -80,4 +68,4 @@ const FilmFilter: FC<IFilmFilter> = ({ item }) => {
 	)
 }
 
-export default FilmFilter
+export default React.memo(Filter)

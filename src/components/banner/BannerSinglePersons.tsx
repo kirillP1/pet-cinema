@@ -1,9 +1,11 @@
+import { useMemo } from 'react'
 import { IPerson } from '../../data/filmsLocalData'
 import { useAppSelector } from '../../hooks/redux'
 import PersonCard from '../cards/PersonCard'
 
-const BAnnerSinglePersons = () => {
-	const { film } = useAppSelector(state => state.singleFilm)
+const BannerSinglePersons = () => {
+	let { film } = useAppSelector(state => state.singleFilm)
+	film = useMemo(() => film, [])
 	const { scrollTop } = useAppSelector(state => state.home.banner)
 	return (
 		<div
@@ -13,10 +15,10 @@ const BAnnerSinglePersons = () => {
 			}}
 		>
 			{film.persons?.slice(0, 5).map((person: IPerson, index: number) => (
-				<PersonCard person={person} />
+				<PersonCard person={person} key={index} />
 			))}
 		</div>
 	)
 }
 
-export default BAnnerSinglePersons
+export default BannerSinglePersons

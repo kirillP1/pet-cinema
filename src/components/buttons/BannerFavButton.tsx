@@ -1,14 +1,14 @@
-import { FC } from 'react'
+import React, { FC } from 'react'
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import {
 	addFavoritesItem,
 	removeFavoritesItem,
 } from '../../redux/slices/favorites/favoritesSlice'
-type typeBannerButton = {
+type typeBannerFavButton = {
 	film: any
 }
-const BannerButton: FC<typeBannerButton> = ({ film }) => {
+const BannerFavButton: FC<typeBannerFavButton> = ({ film }) => {
 	const dispatch = useAppDispatch()
 	const itemsFav = useAppSelector(state => state.favorites.items)
 	const activeFav = itemsFav.filter((item: any) => item.id === film.id)
@@ -31,4 +31,4 @@ const BannerButton: FC<typeBannerButton> = ({ film }) => {
 	)
 }
 
-export default BannerButton
+export default React.memo(BannerFavButton)

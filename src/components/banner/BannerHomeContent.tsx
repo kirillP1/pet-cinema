@@ -1,8 +1,7 @@
-import { AiFillPlayCircle } from 'react-icons/ai'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
-import { Link } from 'react-router-dom'
 import { useAppSelector } from '../../hooks/redux'
-import BannerButton from '../buttons/BannerButton'
+import BannerFavButton from '../buttons/BannerFavButton'
+import BannerWatchButton from '../buttons/BannerWatchButton'
 
 const BannerHomeContent = () => {
 	const { scrollTop, itemsData, activeSlide } = useAppSelector(
@@ -33,11 +32,9 @@ const BannerHomeContent = () => {
 			</h4>
 			<p>{activeSlideData.shortDescription}...</p>
 			<div className='banner__content-buttons'>
-				<Link to={'/films/' + activeSlideData.id}>
-					<AiFillPlayCircle /> Смотреть
-				</Link>
+				<BannerWatchButton film={activeSlideData} />
 
-				<BannerButton film={activeSlideData} />
+				<BannerFavButton film={activeSlideData} />
 			</div>
 		</div>
 	)

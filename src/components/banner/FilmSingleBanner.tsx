@@ -1,9 +1,10 @@
 import { FC, useEffect } from 'react'
+import { scrollListener } from '../../helpers/homeBanner'
 import { useAppDispatch } from '../../hooks/redux'
 import { setScrollTop } from '../../redux/slices/home/homeSlice'
 import BannerBackground from './BannerBackground'
 import BannerSingleContent from './BannerSingleContent'
-import BAnnerSinglePersons from './BannerSinglePersons'
+import BannerSinglePersons from './BannerSinglePersons'
 type typeFilmSingleBanner = {
 	film: any
 }
@@ -11,15 +12,13 @@ type typeFilmSingleBanner = {
 const FilmSingleBanner: FC<typeFilmSingleBanner> = ({ film }) => {
 	const dispatch = useAppDispatch()
 	useEffect(() => {
-		window.addEventListener('scroll', e => {
-			dispatch(setScrollTop(window.scrollY))
-		})
+		scrollListener(dispatch, setScrollTop)
 	}, [])
 	return (
 		<div className='filmSingleBanner'>
 			<BannerBackground film={film} />
 			<BannerSingleContent />
-			<BAnnerSinglePersons />
+			<BannerSinglePersons />
 		</div>
 	)
 }

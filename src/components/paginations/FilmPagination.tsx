@@ -1,11 +1,13 @@
-import { FC } from 'react'
+import React, { FC } from 'react'
 import { GrNext, GrPrevious } from 'react-icons/gr'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import { setFilmPagination } from '../../redux/slices/filmFilters/filmFiltersSlice'
 
 const FilmPagination: FC = () => {
-	const pagination = useAppSelector(state => state.filmFilters.pagination)
 	const dispatch = useAppDispatch()
+
+	const pagination = useAppSelector(state => state.filmFilters.pagination)
+
 	const paginationNextClick = () => {
 		dispatch(setFilmPagination(pagination + 1))
 	}
@@ -33,4 +35,4 @@ const FilmPagination: FC = () => {
 	)
 }
 
-export default FilmPagination
+export default React.memo(FilmPagination)

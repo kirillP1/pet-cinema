@@ -6,7 +6,7 @@ import FilmDescription from '../components/description/FilmDesctiption'
 import FilmHeader from '../components/header/FilmHeader'
 import FilmPersons from '../components/persons/FilmPersons'
 import RoutesPreloader from '../components/preloaders/RoutesPreloader'
-import RelatedFilmsSlider from '../components/sliders/RelatedFilmsSlider'
+import RelatedFilmsSlider from '../components/sliders/RelatedFilmsSlider/RelatedFilmsSlider'
 import FilmTrailers from '../components/videos/FilmTrailers'
 import FilmVideos from '../components/videos/FilmVideos'
 import { useAppDispatch, useAppSelector } from '../hooks/redux'
@@ -15,14 +15,12 @@ const SingleSerial: FC = () => {
 	const { id } = useParams()
 	const dispatch = useAppDispatch()
 	const { serial, status } = useAppSelector(state => state.singleSerial)
-	useEffect(() => {
-		console.log('in', id)
 
+	useEffect(() => {
 		dispatch(fetchSingleSerial(Number(id)))
 		window.scrollTo(0, 0)
-		console.log('after', serial, status)
 	}, [id])
-	console.log(serial, status)
+
 	return status === statusLoadingEnum.LOADING ||
 		status === statusLoadingEnum.ERROR ? (
 		<RoutesPreloader />

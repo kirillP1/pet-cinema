@@ -2,6 +2,10 @@ import { ActionCreatorWithPayload } from '@reduxjs/toolkit'
 import { FC, useEffect, useRef, useState } from 'react'
 import { MdArrowRight, MdOutlineArrowForwardIos } from 'react-icons/md'
 import { ISerialsFilterData } from '../../data/serialsFiltersData'
+import {
+	handleModalClick,
+	onModalOptionClick,
+} from '../../helpers/filtersModal'
 import { useAppDispatch } from '../../hooks/redux'
 interface ISerialFilter {
 	item: ISerialsFilterData
@@ -14,9 +18,6 @@ const SerialFilter: FC<ISerialFilter> = ({ item }) => {
 	const rootRef = useRef<HTMLDivElement>(null)
 	const dispatch = useAppDispatch()
 
-	const filterClasses = ['serials__filter', isActiveFilter ? 'active' : '']
-	const optionsClasses = ['serials__filter-options', isOpen ? 'active' : '']
-
 	const onFilterClick = () => {
 		isActiveFilter ? setIsActiveFilter(false) : setIsActiveFilter(true)
 	}
@@ -27,29 +28,13 @@ const SerialFilter: FC<ISerialFilter> = ({ item }) => {
 		value: string,
 		action: ActionCreatorWithPayload<string>
 	) => {
-		setSelected(value)
-		console.log(value, action)
-
-		dispatch(action(value))
-		setIsOpen(false)
+		onModalOptionClick(value, setSelected, action, setIsOpen, dispatch)
 	}
 	useEffect(() => {
-		const handleClick = (event: MouseEvent) => {
-			const { target } = event
-
-			if (target instanceof Node && !rootRef.current?.contains(target)) {
-				setIsOpen(false)
-			}
-		}
-		console.log(item)
-		window.addEventListener('click', handleClick)
-
-		return () => {
-			window.removeEventListener('click', handleClick)
-		}
+		handleModalClick(rootRef, setIsOpen)
 	}, [])
 	return (
-		<div className={filterClasses.join(' ')}>
+		<div className={`serials__filter ${isActiveFilter ? 'active' : ''}`}>
 			<div className='serials__filter-p' onClick={() => onFilterClick()}>
 				<MdOutlineArrowForwardIos />
 				{item.title}
@@ -62,7 +47,7 @@ const SerialFilter: FC<ISerialFilter> = ({ item }) => {
 					<span>{selected}</span>
 					<MdArrowRight />
 				</div>
-				<ul className={optionsClasses.join(' ')}>
+				<ul className={`serials__filter-options ${isOpen ? 'active' : ''}`}>
 					{item.all?.map((option, index) => (
 						<li
 							key={index}

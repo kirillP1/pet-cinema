@@ -1,5 +1,5 @@
-import axios from 'axios'
 import { FC, useEffect, useState } from 'react'
+import { fetchPlayer } from '../../utils/fetchPlayer'
 type typeFilmSingleBanner = {
 	film: any
 }
@@ -7,18 +7,8 @@ const FilmVideos: FC<typeFilmSingleBanner> = ({ film }) => {
 	const [player, setPlayer] = useState<any>()
 	const [activePlayer, setActivePlayer] = useState<number>(1)
 	useEffect(() => {
-		async function fetchPlayer() {
-			const res = await axios.get(
-				'https://kinobox.tv/api/players/main?kinopoisk=' + film.id
-			)
-			const data: any[] = res.data
-			setPlayer(data)
-			console.log(res)
-		}
-
-		fetchPlayer()
+		fetchPlayer(film.id, setPlayer)
 	}, [])
-	console.log(film)
 
 	return (
 		<div className='filmVideos'>

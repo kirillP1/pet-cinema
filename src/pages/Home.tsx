@@ -2,14 +2,14 @@ import { FC } from 'react'
 import 'slick-carousel/slick/slick-theme.css'
 import 'slick-carousel/slick/slick.css'
 import Banner from '../components/banner/Banner'
-import FranchisesSlider from '../components/sliders/FranchiseSliders'
-import HomeMiniSlider from '../components/sliders/HomeMiniSlider'
+import FranchisesSlider from '../components/sliders/FranchiseSlider/FranchiseSliders'
+import HomeMiniSlider from '../components/sliders/HomeMiniSlider/HomeMiniSlider'
 import { useAppSelector } from '../hooks/redux'
 import { getFavoritesFromLS } from '../redux/slices/favorites/favoriteActionsCreators'
 import { fetchGenreFilms, fetchPersonsFilms } from '../utils/homeFetchSliders'
 
 const Home: FC = () => {
-	const { items, status } = useAppSelector(state => state.films)
+	const { items } = useAppSelector(state => state.films)
 	const favoriteItems = getFavoritesFromLS()
 
 	return (

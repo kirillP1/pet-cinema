@@ -5,24 +5,17 @@ import SerialPagination from '../components/paginations/SerialPagination'
 import FilmsSkeleton from '../components/skeletons/FilmsSkeleton'
 import SerialSort from '../components/sorts/SerialSort'
 import { useAppDispatch, useAppSelector } from '../hooks/redux'
-import { fetchSerials } from '../redux/slices/serials/serialsActionsCreator'
 import { statusLoadingEnum } from '../redux/slices/serials/serialsSlice'
+import { updateFetchSerials } from '../utils/updateFetchSerials'
 
 const Serials: FC = () => {
 	const { items, status } = useAppSelector(state => state.serials)
 	const serialFilters = useAppSelector(state => state.serialFilters)
+
 	const dispatch = useAppDispatch()
-	console.log(items)
+
 	useEffect(() => {
-		dispatch(
-			fetchSerials(
-				serialFilters.filters.years.active,
-				serialFilters.filters.genres.active,
-				serialFilters.filters.countries.active,
-				serialFilters.activeSortType,
-				serialFilters.pagination
-			)
-		)
+		dispatch(updateFetchSerials(serialFilters))
 	}, [serialFilters])
 
 	return (

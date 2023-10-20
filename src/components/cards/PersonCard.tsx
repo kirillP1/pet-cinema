@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import React, { FC } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { IPerson } from '../../data/filmsLocalData'
 type typePersonCard = {
@@ -21,4 +21,4 @@ const PersonCard: FC<typePersonCard> = ({ person }) => {
 	)
 }
 
-export default PersonCard
+export default React.memo(PersonCard)

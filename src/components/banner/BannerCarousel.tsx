@@ -1,36 +1,25 @@
-import { Link } from 'react-router-dom'
+import React, { FC, useMemo } from 'react'
 import Slider from 'react-slick'
 import { IFilms } from '../../data/filmsLocalData'
 import { homeSliderSettings } from '../../data/sliderSettings'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import { setCountSlide } from '../../redux/slices/home/homeSlice'
-const BannerCarousel = () => {
+import BannerCarouselCard from '../cards/BannerCarouselCard'
+const BannerCarousel: FC = () => {
 	const dispatch = useAppDispatch()
-	const { countSlide, scrollTop, itemsData } = useAppSelector(
-		state => state.home.banner
-	)
+	let { countSlide, itemsData } = useAppSelector(state => state.home.banner)
+	itemsData = useMemo(() => itemsData, [])
 	var settings = homeSliderSettings(countSlide, dispatch(setCountSlide))
 
 	return (
-		<div
-			className='carousel-box banner__element'
-			style={{
-				transform: `translate3d(0, calc((${scrollTop}px) / 7.7), 0)`,
-			}}
-		>
-			<div className='carousel'>
-				<Slider {...settings}>
-					{itemsData.map((item: IFilms, index: number) => (
-						<div key={index} className='carousel-item'>
-							<Link to={'/films/' + item.id}>
-								<img src={item.poster.url} alt='' />
-							</Link>
-						</div>
-					))}
-				</Slider>
-			</div>
+		<div className='carousel'>
+			<Slider {...settings}>
+				{itemsData.map((item: IFilms, index: number) => (
+					<BannerCarouselCard item={item} />
+				))}
+			</Slider>
 		</div>
 	)
 }
 
-export default BannerCarousel
+export default React.memo(BannerCarousel)

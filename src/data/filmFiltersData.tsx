@@ -7,13 +7,13 @@ import {
 	setFilmYear,
 } from '../redux/slices/filmFilters/filmFiltersSlice'
 
-export interface IFilmsFilterData {
+export interface IFilterData {
 	title: string
 	placeholder: string
 	all: string[]
 	action: ActionCreatorWithPayload<string>
 }
-export const filmsFilterData: IFilmsFilterData[] = [
+export const filmsFilterData: IFilterData[] = [
 	{
 		title: 'Страны',
 		placeholder: 'Все страны',

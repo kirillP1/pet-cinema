@@ -1,44 +1,41 @@
-import { FC, useEffect, useRef, useState } from 'react'
+import React, { FC, useEffect, useRef, useState } from 'react'
 import { MdArrowRight } from 'react-icons/md'
 import { activeSortType } from '../../@types/filtersInterfaces'
 import { sortSerialList } from '../../data/serialsFiltersData'
+import {
+	handleModalClick,
+	onModalOptionClick,
+} from '../../helpers/filtersModal'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import { setSerialSortType } from '../../redux/slices/serialFilters/serialFiltersSlice'
 
 const SerialSort: FC = () => {
 	const dispatch = useAppDispatch()
+
 	const [isOpenSort, setIsOpenSort] = useState(false)
 	const [selected, setSelected] = useState(
 		useAppSelector(state => state.serialFilters.activeSortType)
 	)
 
+	const rootRef = useRef<HTMLDivElement>(null)
+
 	const onSortClick = () => {
 		isOpenSort ? setIsOpenSort(false) : setIsOpenSort(true)
 	}
-
-	const rootRef = useRef<HTMLDivElement>(null)
-
 	const onOptionClick = (item: activeSortType) => {
-		setSelected(item)
-		dispatch(setSerialSortType(item))
-		setIsOpenSort(false)
+		onModalOptionClick(
+			item,
+			setSelected,
+			setSerialSortType,
+			setIsOpenSort,
+			dispatch
+		)
 	}
 
 	useEffect(() => {
-		const handleClick = (event: MouseEvent) => {
-			const { target } = event
-
-			if (target instanceof Node && !rootRef.current?.contains(target)) {
-				setIsOpenSort(false)
-			}
-		}
-
-		window.addEventListener('click', handleClick)
-
-		return () => {
-			window.removeEventListener('click', handleClick)
-		}
+		handleModalClick(rootRef, setIsOpenSort)
 	}, [])
+
 	return (
 		<div
 			ref={rootRef}
@@ -64,4 +61,4 @@ const SerialSort: FC = () => {
 	)
 }
 
-export default SerialSort
+export default React.memo(SerialSort)

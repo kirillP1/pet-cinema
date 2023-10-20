@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import React, { FC, useState } from 'react'
 import { IArrow } from '../../@types/IArrow'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import { setCountSlide } from '../../redux/slices/home/homeSlice'
@@ -29,4 +29,4 @@ const NextArrow: FC<IArrow> = props => {
 	)
 }
 
-export default NextArrow
+export default React.memo(NextArrow)
