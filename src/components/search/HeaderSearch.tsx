@@ -26,7 +26,6 @@ const HeaderSearch = () => {
 	}, 1000)
 	function onChangeInput(e: ChangeEvent<HTMLInputElement>) {
 		searchDebounce(e)
-
 		console.log(search.searchValue, search.status)
 	}
 	const onSearchClick = () => {

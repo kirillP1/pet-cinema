@@ -22,7 +22,8 @@ const SingleFilm: FC = () => {
 	}, [id])
 
 	return status === statusLoadingEnum.LOADING ||
-		status === statusLoadingEnum.ERROR ? (
+		status === statusLoadingEnum.ERROR ||
+		film === null ? (
 		<RoutesPreloader />
 	) : (
 		<div className='singleFilm'>

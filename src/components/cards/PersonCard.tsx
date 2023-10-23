@@ -1,8 +1,8 @@
+import { PersonInMovie } from '@openmoviedb/kinopoiskdev_client'
 import React, { FC } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
-import { IPerson } from '../../data/filmsLocalData'
 type typePersonCard = {
-	person: IPerson
+	person: PersonInMovie
 }
 const PersonCard: FC<typePersonCard> = ({ person }) => {
 	return (

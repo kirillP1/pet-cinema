@@ -1,8 +1,10 @@
+import { MovieDtoV13 } from '@openmoviedb/kinopoiskdev_client'
 import { FC } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
+import { IFilms } from '../../data/filmsLocalData'
 import { useAppSelector } from '../../hooks/redux'
 type typeBannerBackground = {
-	film: any
+	film: IFilms | MovieDtoV13
 }
 const BannerBackground: FC<typeBannerBackground> = ({ film }) => {
 	const { scrollTop, itemsData, activeSlide } = useAppSelector(
@@ -16,9 +18,9 @@ const BannerBackground: FC<typeBannerBackground> = ({ film }) => {
 			}}
 		>
 			<LazyLoadImage
-				src={film.backdrop.url}
+				src={film.backdrop && film.backdrop.url}
 				effect='blur'
-				placeholderSrc={film.backdrop.url}
+				placeholderSrc={film.backdrop && film.backdrop.url}
 				width='100%'
 				height='100%'
 			/>

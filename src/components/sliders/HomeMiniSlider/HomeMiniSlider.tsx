@@ -1,4 +1,5 @@
-import { FC, useEffect, useMemo, useState } from 'react'
+import { MovieDtoV13 } from '@openmoviedb/kinopoiskdev_client'
+import { FC, useEffect, useState } from 'react'
 import { BsFillArrowRightCircleFill } from 'react-icons/bs'
 import { useInView } from 'react-intersection-observer'
 import { LazyLoadComponent } from 'react-lazy-load-image-component'
@@ -8,14 +9,17 @@ import 'swiper/css/autoplay'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import { IFilms } from '../../../data/filmsLocalData'
 import MiniSliderCard from '../../cards/MiniSliderCard'
 import ItemsListPopup from '../../popups/ItemsListPopup'
 import MiniSliderSkeleton from '../../skeletons/MiniSliderSkeleton'
 type typeMiniSlider = {
 	title: string
-	fetchFunction?: any
+	fetchFunction?: (
+		person: string
+	) => Promise<IFilms[] | MovieDtoV13[] | undefined>
 	query?: string
-	items?: any
+	items?: IFilms[] | MovieDtoV13[]
 }
 const HomeMiniSlider: FC<typeMiniSlider> = ({
 	title,
@@ -24,13 +28,12 @@ const HomeMiniSlider: FC<typeMiniSlider> = ({
 	items,
 }) => {
 	const [popupActive, setPopupActive] = useState(false)
-	const [firstTime, setFirstTime] = useState(false)
-	const [fItems, setFItems] = useState<any>(items ? items : [])
-
-	const sliderFItems = useMemo(
-		() => (fItems ? fItems.slice(0, 9) : Array(8)),
-		[]
+	const [firstTime, setFirstTime] = useState(true)
+	const [fItems, setFItems] = useState<IFilms[] | MovieDtoV13[] | undefined>(
+		items ? items : []
 	)
+
+	const sliderFItems = fItems ? fItems.slice(0, 9) : Array(8)
 
 	const { ref, inView } = useInView({
 		threshold: 0.1,
@@ -42,12 +45,17 @@ const HomeMiniSlider: FC<typeMiniSlider> = ({
 	}
 
 	useEffect(() => {
-		if (fetchFunction && query && firstTime) {
-			fetchFunction(query).then((fetchItems: any) => {
-				setFItems(fetchItems)
-			})
+		if (fetchFunction && query) {
+			const result = async () => {
+				fetchFunction(query).then(
+					(fetchItems: IFilms[] | MovieDtoV13[] | undefined) => {
+						setFItems(fetchItems)
+					}
+				)
+			}
+			result()
 		} else {
-			setFirstTime(true)
+			setFirstTime(false)
 		}
 	}, [inView])
 
@@ -65,7 +73,7 @@ const HomeMiniSlider: FC<typeMiniSlider> = ({
 				autoplay={{ delay: 3000 }}
 			>
 				<div className='swiper-wrapper homeMiniSlider__wrapper'>
-					{sliderFItems.map((item: any, index: number) => (
+					{sliderFItems.map((item: IFilms | MovieDtoV13, index: number) => (
 						<SwiperSlide
 							className='swiper-slide homeMiniSlider__item'
 							key={index}
@@ -86,7 +94,6 @@ const HomeMiniSlider: FC<typeMiniSlider> = ({
 					</SwiperSlide>
 				</div>
 			</Swiper>
-
 			<ItemsListPopup
 				title={title}
 				items={fItems}

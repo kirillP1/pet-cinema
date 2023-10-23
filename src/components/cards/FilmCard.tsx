@@ -1,3 +1,4 @@
+import { MovieDtoV13 } from '@openmoviedb/kinopoiskdev_client'
 import { FC } from 'react'
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
@@ -8,13 +9,15 @@ import {
 	removeFavoritesItem,
 } from '../../redux/slices/favorites/favoritesSlice'
 type typeFilmCard = {
-	item: IFilms
+	item: IFilms | MovieDtoV13
 }
 const FilmCard: FC<typeFilmCard> = ({ item }) => {
 	const dispatch = useAppDispatch()
 
 	const itemsFav = useAppSelector(state => state.favorites.items)
-	const activeFav = itemsFav.filter((itemFav: any) => itemFav.id === item.id)
+	const activeFav = itemsFav.filter(
+		(itemFav: IFilms | MovieDtoV13) => itemFav.id === item.id
+	)
 
 	return (
 		<div className='films__items-poster'>
@@ -39,17 +42,19 @@ const FilmCard: FC<typeFilmCard> = ({ item }) => {
 				to={'/films/' + item.id}
 				className='films__items-item'
 				style={{
-					background: `url(${item.poster.previewUrl}) no-repeat`,
+					background: `url(${item.poster && item.poster.previewUrl}) no-repeat`,
 				}}
 			>
 				<div className='films__items-item-black'></div>
 				<div
 					className={
 						'films__items-item-rating ' +
-						(item.rating.kp > 7 ? 'height-rating' : '')
+						(item.rating && item.rating.kp && item.rating.kp > 7
+							? 'height-rating'
+							: '')
 					}
 				>
-					{item.rating.kp.toFixed(1)}
+					{item.rating && item.rating.kp && item.rating.kp.toFixed(1)}
 				</div>
 				<div className='films__items-item-age'>
 					{item.ageRating}
@@ -57,7 +62,7 @@ const FilmCard: FC<typeFilmCard> = ({ item }) => {
 				</div>
 			</Link>
 			<h4>
-				{item.name?.length > 18 && item.name
+				{item.name && item.name?.length > 18 && item.name
 					? item.name.slice(0, 18).trim() + '...'
 					: item.name}
 			</h4>

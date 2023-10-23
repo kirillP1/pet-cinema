@@ -1,5 +1,5 @@
+import { PersonInMovie } from '@openmoviedb/kinopoiskdev_client'
 import { useMemo } from 'react'
-import { IPerson } from '../../data/filmsLocalData'
 import { useAppSelector } from '../../hooks/redux'
 import PersonCard from '../cards/PersonCard'
 
@@ -14,9 +14,12 @@ const BannerSinglePersons = () => {
 				transform: `translate3d(0, calc((${scrollTop}px) / 5.7), 0)`,
 			}}
 		>
-			{film.persons?.slice(0, 5).map((person: IPerson, index: number) => (
-				<PersonCard person={person} key={index} />
-			))}
+			{film &&
+				film.persons
+					?.slice(0, 5)
+					.map((person: PersonInMovie, index: number) => (
+						<PersonCard person={person} key={index} />
+					))}
 		</div>
 	)
 }

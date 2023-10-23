@@ -1,10 +1,11 @@
+import { MovieDtoV13 } from '@openmoviedb/kinopoiskdev_client'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { statusLoadingEnum } from '../../../@types/enums/statusLoadingEnum'
 import { IFilms, filmsLocalData } from '../../../data/filmsLocalData'
 
 const initialState = {
-	items: filmsLocalData as IFilms[],
-	activeFilm: [] as any,
+	items: filmsLocalData as IFilms[] | MovieDtoV13[],
+	activeFilm: {} as IFilms | MovieDtoV13,
 	status: statusLoadingEnum.LOADING, // loading | success | error
 }
 
@@ -15,7 +16,10 @@ const filmsSlice = createSlice({
 		filmsFetching(state) {
 			state.status = statusLoadingEnum.LOADING
 		},
-		filmsFetchingSuccess(state, action: PayloadAction<any[]>) {
+		filmsFetchingSuccess(
+			state,
+			action: PayloadAction<IFilms[] | MovieDtoV13[]>
+		) {
 			state.items = action.payload
 			state.status = statusLoadingEnum.SUCCESS
 		},
@@ -24,7 +28,7 @@ const filmsSlice = createSlice({
 			state.items = []
 			state.status = statusLoadingEnum.ERROR
 		},
-		setActiveFilm(state, action: PayloadAction<any>) {
+		setActiveFilm(state, action: PayloadAction<IFilms | MovieDtoV13>) {
 			if (action.payload) {
 				state.activeFilm = action.payload
 			} else {

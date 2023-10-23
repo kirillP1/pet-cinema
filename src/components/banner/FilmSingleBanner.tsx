@@ -1,4 +1,6 @@
+import { MovieDtoV13 } from '@openmoviedb/kinopoiskdev_client'
 import { FC, useEffect } from 'react'
+import { IFilms } from '../../data/filmsLocalData'
 import { scrollListener } from '../../helpers/homeBanner'
 import { useAppDispatch } from '../../hooks/redux'
 import { setScrollTop } from '../../redux/slices/home/homeSlice'
@@ -6,7 +8,7 @@ import BannerBackground from './BannerBackground'
 import BannerSingleContent from './BannerSingleContent'
 import BannerSinglePersons from './BannerSinglePersons'
 type typeFilmSingleBanner = {
-	film: any
+	film: IFilms | MovieDtoV13
 }
 
 const FilmSingleBanner: FC<typeFilmSingleBanner> = ({ film }) => {

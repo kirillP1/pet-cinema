@@ -7,6 +7,8 @@ type typeHeaderSearchCard = {
 }
 const HeaderSearchCard: FC<typeHeaderSearchCard> = ({ item }) => {
 	const dispatch = useAppDispatch()
+	console.log(item)
+
 	const onSearchClick = () => {
 		console.log('searchCLick')
 		dispatch(searchChange(''))

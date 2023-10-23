@@ -1,15 +1,16 @@
+import { MovieDtoV13 } from '@openmoviedb/kinopoiskdev_client'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { statusLoadingEnum } from '../../../@types/enums/statusLoadingEnum'
-import { filmsLocalData } from '../../../data/filmsLocalData'
+import { IFilms, filmsLocalData } from '../../../data/filmsLocalData'
 interface IMiniSlider {
-	items: any[]
+	items: IFilms[] | MovieDtoV13[]
 	status: statusLoadingEnum
 }
 interface IBannerSlider {
 	activeSlide: number
 	countSlide: number
 	scrollTop: number
-	itemsData: any[]
+	itemsData: IFilms[] | MovieDtoV13[]
 }
 const initialState = {
 	banner: <IBannerSlider>{
@@ -49,7 +50,7 @@ const homeSlice = createSlice({
 		setScrollTop: (state, action: PayloadAction<number>) => {
 			state.banner.scrollTop = action.payload
 		},
-		setItemsData: (state, action: PayloadAction<any[]>) => {
+		setItemsData: (state, action: PayloadAction<IFilms[] | MovieDtoV13[]>) => {
 			state.banner.itemsData = action.payload
 		},
 	},

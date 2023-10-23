@@ -1,4 +1,6 @@
+import { MovieDtoV13 } from '@openmoviedb/kinopoiskdev_client'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
+import { IFilms } from '../../../data/filmsLocalData'
 
 export enum statusLoadingEnum {
 	LOADING = 'loading',
@@ -7,8 +9,8 @@ export enum statusLoadingEnum {
 }
 
 const initialState = {
-	items: Array(12) as any,
-	activeSerial: [] as any,
+	items: Array(12),
+	activeSerial: {} as IFilms | MovieDtoV13,
 	status: statusLoadingEnum.LOADING, // loading | success | error
 }
 
@@ -19,7 +21,10 @@ const serialsSlice = createSlice({
 		serialsFetching(state) {
 			state.status = statusLoadingEnum.LOADING
 		},
-		serialsFetchingSuccess(state, action: PayloadAction<any[]>) {
+		serialsFetchingSuccess(
+			state,
+			action: PayloadAction<IFilms[] | MovieDtoV13[]>
+		) {
 			state.items = action.payload
 			state.status = statusLoadingEnum.SUCCESS
 		},
@@ -28,7 +33,7 @@ const serialsSlice = createSlice({
 			state.items = []
 			state.status = statusLoadingEnum.ERROR
 		},
-		setActiveSerial(state, action: PayloadAction<any>) {
+		setActiveSerial(state, action: PayloadAction<IFilms | MovieDtoV13>) {
 			if (action.payload) {
 				state.activeSerial = action.payload
 			} else {

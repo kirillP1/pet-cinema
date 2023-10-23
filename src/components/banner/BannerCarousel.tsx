@@ -1,3 +1,4 @@
+import { MovieDtoV13 } from '@openmoviedb/kinopoiskdev_client'
 import React, { FC, useMemo } from 'react'
 import Slider from 'react-slick'
 import { IFilms } from '../../data/filmsLocalData'
@@ -14,8 +15,8 @@ const BannerCarousel: FC = () => {
 	return (
 		<div className='carousel'>
 			<Slider {...settings}>
-				{itemsData.map((item: IFilms, index: number) => (
-					<BannerCarouselCard item={item} />
+				{itemsData.map((item: IFilms | MovieDtoV13, index: number) => (
+					<BannerCarouselCard item={item} key={index} />
 				))}
 			</Slider>
 		</div>

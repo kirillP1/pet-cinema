@@ -1,4 +1,5 @@
 import { ActionCreatorWithPayload } from '@reduxjs/toolkit'
+import { activeSortType } from '../@types/filtersInterfaces'
 import { AppDispatch } from '../redux/store'
 
 export const handleModalClick = (
@@ -22,8 +23,8 @@ export const handleModalClick = (
 }
 
 export const onModalOptionClick = (
-	item: any,
-	setSelected: (item: any) => void,
+	item: activeSortType | string,
+	setSelected: any,
 	action: ActionCreatorWithPayload<any>,
 	setIsOpenSort: (a: boolean) => void,
 	dispatch: AppDispatch

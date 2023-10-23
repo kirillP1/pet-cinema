@@ -1,9 +1,11 @@
+import { MovieDtoV13 } from '@openmoviedb/kinopoiskdev_client'
 import { FC } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
+import { IFilms } from '../../data/filmsLocalData'
 import ItemsListPopupCard from '../cards/ItemsListPopupCard'
 type typeItemsListPopup = {
 	title: string
-	items: any[]
+	items: IFilms[] | MovieDtoV13[] | undefined
 	popupActive: boolean
 	setPopupActive: (e: boolean) => void
 }
@@ -25,9 +27,10 @@ const ItemsListPopup: FC<typeItemsListPopup> = ({
 				<div className='ItemsListPopup__container'>
 					<div className='ItemsListPopup__title'>{title}</div>
 					<div className='ItemsListPopup__items'>
-						{items.map((item: any, index: number) => (
-							<ItemsListPopupCard item={item} />
-						))}
+						{items &&
+							items.map((item: IFilms | MovieDtoV13, index: number) => (
+								<ItemsListPopupCard item={item} />
+							))}
 					</div>
 				</div>
 			</div>

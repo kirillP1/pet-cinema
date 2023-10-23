@@ -1,3 +1,10 @@
+export interface IPlayer {
+	iframeUrl: string
+	quality: string
+	source: string
+	translation: string
+	updatedAt: string
+}
 interface IPoster {
 	url: string
 	previewUrl: string
@@ -9,7 +16,7 @@ interface IBackdrop {
 interface ILogo {
 	url: string
 }
-interface IGenre {
+export interface IGenre {
 	name: string
 }
 interface IRating {
@@ -28,7 +35,7 @@ interface IVotes {
 interface ICountry {
 	name: string
 }
-interface ITrailer {
+export interface ITrailer {
 	url: string
 	name: string
 	site: string
@@ -36,7 +43,7 @@ interface ITrailer {
 }
 interface IVideo {
 	trailers: ITrailer[]
-	teasers: any[]
+	teasers: []
 }
 export interface IPerson {
 	description: string

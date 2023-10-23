@@ -1,6 +1,7 @@
 import { FC } from 'react'
+import { IFranchiseSlider } from '../../../data/franchiseData'
 type typeFranchiseSlide = {
-	item: any
+	item: IFranchiseSlider
 }
 const FranchiseSlide: FC<typeFranchiseSlide> = ({ item }) => {
 	return (

@@ -1,20 +1,24 @@
+import { MovieDtoV13 } from '@openmoviedb/kinopoiskdev_client'
 import { FC } from 'react'
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import { useInView } from 'react-intersection-observer'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { Link } from 'react-router-dom'
+import { IFilms } from '../../data/filmsLocalData'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import {
 	addFavoritesItem,
 	removeFavoritesItem,
 } from '../../redux/slices/favorites/favoritesSlice'
 type typeItemsListPopupCard = {
-	item: any
+	item: IFilms | MovieDtoV13
 }
 const ItemsListPopupCard: FC<typeItemsListPopupCard> = ({ item }) => {
 	const dispatch = useAppDispatch()
 	const itemsFav = useAppSelector(state => state.favorites.items)
-	const activeFav = itemsFav.filter((itemFav: any) => itemFav.id === item.id)
+	const activeFav = itemsFav.filter(
+		(itemFav: IFilms | MovieDtoV13) => itemFav.id === item.id
+	)
 	const { ref, inView } = useInView({
 		threshold: 0,
 		triggerOnce: true,
@@ -42,11 +46,15 @@ const ItemsListPopupCard: FC<typeItemsListPopupCard> = ({ item }) => {
 				{inView ? (
 					<LazyLoadImage
 						src={
-							item.backdrop ? item.backdrop.previewUrl : item.poster.previewUrl
+							item.backdrop
+								? item.backdrop.previewUrl
+								: item.poster && item.poster.previewUrl
 						}
 						effect='blur'
 						placeholderSrc={
-							item.backdrop ? item.backdrop.previewUrl : item.poster.previewUrl
+							item.backdrop
+								? item.backdrop.previewUrl
+								: item.poster && item.poster.previewUrl
 						}
 						width='100%'
 						height='100%'
@@ -73,10 +81,12 @@ const ItemsListPopupCard: FC<typeItemsListPopupCard> = ({ item }) => {
 				<div
 					className={
 						'ItemsListPopupCard__rating ' +
-						(item.rating.kp > 7 ? 'height-rating' : '')
+						(item.rating && item.rating.kp && item.rating.kp > 7
+							? 'height-rating'
+							: '')
 					}
 				>
-					{item.rating.kp.toFixed(1)}
+					{item.rating && item.rating.kp && item.rating.kp.toFixed(1)}
 				</div>
 			</Link>
 		</div>

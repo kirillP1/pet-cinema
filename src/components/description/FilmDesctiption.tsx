@@ -1,7 +1,9 @@
+import { MovieDtoV13 } from '@openmoviedb/kinopoiskdev_client'
 import { FC } from 'react'
+import { IFilms } from '../../data/filmsLocalData'
 
 type typeFilmSingleBanner = {
-	film: any
+	film: IFilms | MovieDtoV13
 }
 
 const FilmDescription: FC<typeFilmSingleBanner> = ({ film }) => {

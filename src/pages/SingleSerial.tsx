@@ -22,7 +22,8 @@ const SingleSerial: FC = () => {
 	}, [id])
 
 	return status === statusLoadingEnum.LOADING ||
-		status === statusLoadingEnum.ERROR ? (
+		status === statusLoadingEnum.ERROR ||
+		serial === null ? (
 		<RoutesPreloader />
 	) : (
 		<div className='singleSerial'>

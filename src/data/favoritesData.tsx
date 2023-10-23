@@ -1,4 +1,7 @@
-export const favoritesData: any[] = [
+import { MovieDtoV13 } from '@openmoviedb/kinopoiskdev_client'
+import { IFilms } from './filmsLocalData'
+
+export const favoritesData: IFilms[] | MovieDtoV13[] = [
 	{
 		rating: {
 			kp: 8.813,

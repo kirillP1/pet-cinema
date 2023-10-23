@@ -1,13 +1,16 @@
+import { MovieDtoV13 } from '@openmoviedb/kinopoiskdev_client'
 import { FC, useEffect, useState } from 'react'
+import { IFilms, IPlayer } from '../../data/filmsLocalData'
 import { fetchPlayer } from '../../utils/fetchPlayer'
 type typeFilmSingleBanner = {
-	film: any
+	film: IFilms | MovieDtoV13
 }
 const FilmVideos: FC<typeFilmSingleBanner> = ({ film }) => {
-	const [player, setPlayer] = useState<any>()
+	const [player, setPlayer] = useState<IPlayer[]>()
 	const [activePlayer, setActivePlayer] = useState<number>(1)
 	useEffect(() => {
 		fetchPlayer(film.id, setPlayer)
+		console.log(player)
 	}, [])
 
 	return (
@@ -18,7 +21,7 @@ const FilmVideos: FC<typeFilmSingleBanner> = ({ film }) => {
 				) : (
 					<>
 						<div className='filmVideos__player-tabs'>
-							{player.map((item: any, index: number) => (
+							{player.map((item: IPlayer, index: number) => (
 								<div
 									className={
 										'filmVideos__player-tab ' +
@@ -32,7 +35,7 @@ const FilmVideos: FC<typeFilmSingleBanner> = ({ film }) => {
 							))}
 						</div>
 						<div className='filmVideos__player-items'>
-							{player.map((item: any, index: number) => (
+							{player.map((item: IPlayer, index: number) => (
 								<div
 									className={
 										'filmVideos__player-item ' +
@@ -52,7 +55,7 @@ const FilmVideos: FC<typeFilmSingleBanner> = ({ film }) => {
 					Похожее
 				</a>
 
-				{film.videos.trailers[0] && (
+				{film.videos && film.videos.trailers && film.videos.trailers[0] && (
 					<a href='#trailers' className='filmVideos__desc-link'>
 						Трейлеры
 					</a>

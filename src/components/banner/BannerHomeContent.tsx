@@ -1,4 +1,6 @@
+import { ItemName } from '@openmoviedb/kinopoiskdev_client'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
+import { IGenre } from '../../data/filmsLocalData'
 import { useAppSelector } from '../../hooks/redux'
 import BannerFavButton from '../buttons/BannerFavButton'
 import BannerWatchButton from '../buttons/BannerWatchButton'
@@ -27,7 +29,10 @@ const BannerHomeContent = () => {
 				<span>{activeSlideData.year}</span>
 				<span>{activeSlideData.movieLength} минут</span>
 				<span>
-					{activeSlideData.genres.map((genre: any) => `${genre.name} `)}
+					{activeSlideData.genres &&
+						activeSlideData.genres.map(
+							(genre: IGenre | ItemName) => `${genre.name} `
+						)}
 				</span>
 			</h4>
 			<p>{activeSlideData.shortDescription}...</p>

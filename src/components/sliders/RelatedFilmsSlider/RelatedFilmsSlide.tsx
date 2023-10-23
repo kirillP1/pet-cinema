@@ -1,7 +1,9 @@
+import { LinkedMovie } from '@openmoviedb/kinopoiskdev_client'
 import { FC } from 'react'
 import { Link } from 'react-router-dom'
+import { IFilms } from '../../../data/filmsLocalData'
 type typeRelatedFilmsSlide = {
-	item: any
+	item: LinkedMovie | IFilms
 }
 const RelatedFilmsSlide: FC<typeRelatedFilmsSlide> = ({ item }) => {
 	return (
@@ -9,7 +11,7 @@ const RelatedFilmsSlide: FC<typeRelatedFilmsSlide> = ({ item }) => {
 			<div
 				className='relatedFilmsSlider__layer'
 				style={{
-					backgroundImage: `url(${item.poster.url})`,
+					backgroundImage: `url(${item.poster && item.poster.url})`,
 				}}
 			></div>
 			<canvas

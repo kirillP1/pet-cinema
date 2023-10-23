@@ -2,13 +2,15 @@ import { FC } from 'react'
 import { Autoplay, Navigation, Pagination } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 // Import Swiper styles
+import { LinkedMovie, MovieDtoV13 } from '@openmoviedb/kinopoiskdev_client'
 import 'swiper/css'
 import 'swiper/css/autoplay'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
+import { IFilms } from '../../../data/filmsLocalData'
 import RelatedFilmsSlide from './RelatedFilmsSlide'
 type typeFilmSingleBanner = {
-	film: any
+	film: IFilms | MovieDtoV13
 }
 const RelatedFilmsSlider: FC<typeFilmSingleBanner> = ({ film }) => {
 	return (
@@ -24,11 +26,16 @@ const RelatedFilmsSlider: FC<typeFilmSingleBanner> = ({ film }) => {
 				autoplay={{ delay: 3000 }}
 			>
 				<div className='swiper-wrapper relatedFilmsSlider__wrapper'>
-					{film.similarMovies?.map((item: any, index: number) => (
-						<SwiperSlide className='swiper-slide relatedFilmsSlider__item'>
-							<RelatedFilmsSlide item={item} key={index} />
-						</SwiperSlide>
-					))}
+					{film.similarMovies?.map(
+						(item: LinkedMovie | IFilms, index: number) => (
+							<SwiperSlide
+								className='swiper-slide relatedFilmsSlider__item'
+								key={index}
+							>
+								<RelatedFilmsSlide item={item} />
+							</SwiperSlide>
+						)
+					)}
 				</div>
 			</Swiper>
 		</div>
