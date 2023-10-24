@@ -9,7 +9,7 @@ type IHeaderMenu = {
 
 export const headerMenu: IHeaderMenu[] = [
 	{ text: 'Главная', link: '/', img: <FaHouse /> },
-	{ text: 'Франшизы', link: '/franchises' },
+	/*{ text: 'Франшизы', link: '/franchises' },*/
 	{ text: 'Фильмы', link: '/films' },
 	{ text: 'Сериалы', link: '/serials' },
 	{ text: 'Избранное', link: '/favorites' },

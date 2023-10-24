@@ -8,11 +8,13 @@ import 'swiper/css/autoplay'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import { IFilms } from '../../../data/filmsLocalData'
+import { useAppSelector } from '../../../hooks/redux'
 import RelatedFilmsSlide from './RelatedFilmsSlide'
 type typeFilmSingleBanner = {
 	film: IFilms | MovieDtoV13
 }
 const RelatedFilmsSlider: FC<typeFilmSingleBanner> = ({ film }) => {
+	const { width } = useAppSelector(state => state.app)
 	return (
 		<div className='relatedFilmsSlider' id='related'>
 			<h2 className='relatedFilmsSlider__header'>Похожее</h2>
@@ -22,7 +24,7 @@ const RelatedFilmsSlider: FC<typeFilmSingleBanner> = ({ film }) => {
 				pagination={{ clickable: true }}
 				speed={2400}
 				spaceBetween={25}
-				slidesPerView={4}
+				slidesPerView={width > 1024 ? 4 : 1}
 				autoplay={{ delay: 3000 }}
 			>
 				<div className='swiper-wrapper relatedFilmsSlider__wrapper'>

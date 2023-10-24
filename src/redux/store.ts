@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 
+import appSlice from './slices/app/appSlice'
 import favoritesSlice from './slices/favorites/favoritesSlice'
 import filmFiltersSlice from './slices/filmFilters/filmFiltersSlice'
 import filmsSlice from './slices/films/filmsSlice'
@@ -21,6 +22,7 @@ export const store = configureStore({
 		home: homeSlice,
 		singleFilm: singleFilmSlice,
 		singleSerial: singleSerialSlice,
+		app: appSlice,
 	},
 })
 

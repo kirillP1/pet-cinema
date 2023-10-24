@@ -10,6 +10,7 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { IFilms } from '../../../data/filmsLocalData'
+import { useAppSelector } from '../../../hooks/redux'
 import MiniSliderCard from '../../cards/MiniSliderCard'
 import ItemsListPopup from '../../popups/ItemsListPopup'
 import MiniSliderSkeleton from '../../skeletons/MiniSliderSkeleton'
@@ -29,6 +30,7 @@ const HomeMiniSlider: FC<typeMiniSlider> = ({
 }) => {
 	const [popupActive, setPopupActive] = useState(false)
 	const [firstTime, setFirstTime] = useState(true)
+	const { width } = useAppSelector(state => state.app)
 	const [fItems, setFItems] = useState<IFilms[] | MovieDtoV13[] | undefined>(
 		items ? items : []
 	)
@@ -69,7 +71,7 @@ const HomeMiniSlider: FC<typeMiniSlider> = ({
 				navigation
 				spaceBetween={25}
 				height={200}
-				slidesPerView={4}
+				slidesPerView={width > 1024 ? 4 : 2}
 				autoplay={{ delay: 3000 }}
 			>
 				<div className='swiper-wrapper homeMiniSlider__wrapper'>

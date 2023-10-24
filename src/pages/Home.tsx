@@ -2,7 +2,6 @@ import { FC } from 'react'
 import 'slick-carousel/slick/slick-theme.css'
 import 'slick-carousel/slick/slick.css'
 import Banner from '../components/banner/Banner'
-import FranchisesSlider from '../components/sliders/FranchiseSlider/FranchiseSliders'
 import HomeMiniSlider from '../components/sliders/HomeMiniSlider/HomeMiniSlider'
 import { useAppSelector } from '../hooks/redux'
 import { getFavoritesFromLS } from '../redux/slices/favorites/favoriteActionsCreators'
@@ -24,7 +23,7 @@ const Home: FC = () => {
 				fetchFunction={fetchPersonsFilms}
 				query='Квентин Тарантино'
 			/>
-			<FranchisesSlider />
+			{/*<FranchisesSlider />*/}
 			<HomeMiniSlider
 				title='Фильмы ужасов'
 				fetchFunction={fetchGenreFilms}

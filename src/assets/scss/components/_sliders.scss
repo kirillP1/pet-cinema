@@ -129,6 +129,12 @@
 			}
 		}
 	}
+	@media (max-width: 767px) {
+		&__title {
+			padding: 0px 30px;
+			font-size: 26px;
+		}
+	}
 }
 .homeMiniSlider {
 	height: 100%;
@@ -165,6 +171,27 @@
 			cursor: pointer;
 			.homeMiniSlider__item-text {
 				transform: translate(-50%, -50%) scale(1.1);
+			}
+		}
+	}
+	@media (max-width: 1024px) {
+		padding-bottom: 35px;
+		.swiper-button-prev,
+		.swiper-button-next {
+			width: 7vw;
+			&:after {
+				font-size: 26px;
+			}
+		}
+		.swiper {
+			height: 80px;
+		}
+		&__title {
+			margin-bottom: 30px;
+		}
+		&__item {
+			&-text {
+				width: 100%;
 			}
 		}
 	}

@@ -38,106 +38,114 @@
 		display: flex;
 		flex-wrap: wrap;
 	}
-	.ItemsListPopupCard {
-		height: 180px;
-		margin: 5px;
-		width: 24%;
-		position: relative;
+	@media (max-width: 1024px) {
+		&__container {
+			padding: 100px 40px;
+		}
+	}
+}
+.ItemsListPopupCard {
+	height: 180px;
+	margin: 5px;
+	width: 24%;
+	position: relative;
+	transition: $fast-transition;
+	&__favorites {
+		display: inline-block;
+		position: absolute;
+		top: 15px;
+		right: 15px;
+		color: $white;
+		font-size: 22px;
+		opacity: 0;
 		transition: $fast-transition;
-		&__favorites {
-			display: inline-block;
-			position: absolute;
-			top: 15px;
-			right: 15px;
-			color: $white;
-			font-size: 22px;
-			opacity: 0;
-			transition: $fast-transition;
-			z-index: 12;
-			&:hover {
-				transform: scale(1.1);
-				cursor: pointer;
-			}
-		}
-		.lazy-load-image-background {
-			object-fit: cover;
-			position: absolute;
-			z-index: 0;
-			transition: $fast-transition;
-		}
-		&__background {
-			transition: $fast-transition;
-
-			border-radius: 10px;
-		}
-		&__black {
-			position: absolute;
-			left: 0;
-			top: 0;
-			width: 100%;
-			height: 100%;
-			background: $black;
-			opacity: 0;
-			border-radius: 10px;
-			transition: $fast-transition;
-		}
-		&__logo {
-			width: 50%;
-			height: auto;
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			opacity: 0;
-			transition: $fast-transition;
-		}
-
-		&__rating {
-			color: #fff !important;
-			font-weight: 700;
-			line-height: 100%;
-			padding: 6px 10px;
-			border-radius: 10px;
-			width: 43px;
-			position: absolute;
-			bottom: 10px;
-			left: 15px;
-			opacity: 0;
-			transition: $fast-transition;
-			background-color: $gray;
-			&.height-rating {
-				background-color: $orange;
-			}
-		}
-		&__age {
-			display: inline-block;
-			position: absolute;
-			right: 15px;
-			bottom: 15px;
-			transition: $fast-transition;
-			color: $white;
-			opacity: 0;
-		}
+		z-index: 12;
 		&:hover {
-			transform: scale(1.05);
+			transform: scale(1.1);
 			cursor: pointer;
-			-webkit-box-shadow: 4px 4px 33px 8px rgba(255, 255, 255, 0.34);
-			-moz-box-shadow: 4px 4px 33px 8px rgba(255, 255, 255, 0.34);
-			box-shadow: 0 4.5696px 118.81px #000, 0 27.4176px 251.328px #000;
-			.ItemsListPopupCard__black {
-				opacity: 0.5;
-			}
-			.ItemsListPopupCard__logo,
-			.ItemsListPopupCard__favorites {
-				opacity: 1;
-			}
-
-			.ItemsListPopupCard__age {
-				opacity: 1;
-			}
-			.ItemsListPopupCard__rating {
-				opacity: 1;
-			}
 		}
+	}
+	.lazy-load-image-background {
+		object-fit: cover;
+		position: absolute;
+		z-index: 0;
+		transition: $fast-transition;
+	}
+	&__background {
+		transition: $fast-transition;
+
+		border-radius: 10px;
+	}
+	&__black {
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		background: $black;
+		opacity: 0;
+		border-radius: 10px;
+		transition: $fast-transition;
+	}
+	&__logo {
+		width: 50%;
+		height: auto;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		opacity: 0;
+		transition: $fast-transition;
+	}
+	&__rating {
+		color: #fff !important;
+		font-weight: 700;
+		line-height: 100%;
+		padding: 6px 10px;
+		border-radius: 10px;
+		width: 43px;
+		position: absolute;
+		bottom: 10px;
+		left: 15px;
+		opacity: 0;
+		transition: $fast-transition;
+		background-color: $gray;
+		&.height-rating {
+			background-color: $orange;
+		}
+	}
+	&__age {
+		display: inline-block;
+		position: absolute;
+		right: 15px;
+		bottom: 15px;
+		transition: $fast-transition;
+		color: $white;
+		opacity: 0;
+	}
+	&:hover {
+		transform: scale(1.05);
+		cursor: pointer;
+		-webkit-box-shadow: 4px 4px 33px 8px rgba(255, 255, 255, 0.34);
+		-moz-box-shadow: 4px 4px 33px 8px rgba(255, 255, 255, 0.34);
+		box-shadow: 0 4.5696px 118.81px #000, 0 27.4176px 251.328px #000;
+		.ItemsListPopupCard__black {
+			opacity: 0.5;
+		}
+		.ItemsListPopupCard__logo,
+		.ItemsListPopupCard__favorites {
+			opacity: 1;
+		}
+
+		.ItemsListPopupCard__age {
+			opacity: 1;
+		}
+		.ItemsListPopupCard__rating {
+			opacity: 1;
+		}
+	}
+	@media (max-width: 1024px) {
+		height: 160px;
+		width: 48%;
 	}
 }
