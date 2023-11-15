@@ -10,6 +10,8 @@ type typeMiniSliderCard = {
 }
 const MiniSliderCard: FC<typeMiniSliderCard> = ({ item }) => {
 	const itemsFav = useAppSelector(state => state.favorites.items)
+	console.log('itemsFav', itemsFav)
+
 	const activeFav = itemsFav.filter(
 		(itemFav: IFilms | MovieDtoV13) => itemFav.id === item.id
 	)

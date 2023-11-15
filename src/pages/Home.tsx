@@ -10,13 +10,14 @@ import { fetchGenreFilms, fetchPersonsFilms } from '../utils/homeFetchSliders'
 const Home: FC = () => {
 	const { items } = useAppSelector(state => state.films)
 	const favoriteItems = getFavoritesFromLS()
+	console.log('fav', favoriteItems)
 
 	return (
 		<div className='Home'>
 			<Banner />
-			{favoriteItems && (
+			{/*favoriteItems && (
 				<HomeMiniSlider title='Ваше избранное' items={favoriteItems} />
-			)}
+			)*/}
 			<HomeMiniSlider title='Лучшее из лучшего' items={items} />
 			<HomeMiniSlider
 				title='Фильмы Квентина Тарантино'

@@ -2,7 +2,12 @@ import { MovieDtoV13 } from '@openmoviedb/kinopoiskdev_client'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { IFilms } from '../../../data/filmsLocalData'
 import { getFavoritesFromLS } from './favoriteActionsCreators'
-const favoritesData: IFilms[] | MovieDtoV13[] = getFavoritesFromLS()
+const favoritesData: IFilms[] | MovieDtoV13[] = Array.isArray(
+	getFavoritesFromLS()
+)
+	? getFavoritesFromLS()
+	: [getFavoritesFromLS()]
+
 type typeFavoritesSlice = {
 	items: any
 }
