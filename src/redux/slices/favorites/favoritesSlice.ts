@@ -15,15 +15,6 @@ const favoritesSlice = createSlice({
 	initialState,
 	reducers: {
 		addFavoritesItem: (state, action: PayloadAction<IFilms | MovieDtoV13>) => {
-			console.log(
-				'inc',
-				state.items.includes(action.payload),
-				'action',
-				action.payload
-			)
-			state.items.forEach((item: IFilms | MovieDtoV13, index: number) => {
-				console.log('state ' + index, item)
-			})
 			state.items = state.items.filter(
 				(obj: IFilms | MovieDtoV13) => obj.id !== action.payload.id
 			)
@@ -36,18 +27,14 @@ const favoritesSlice = createSlice({
 			}
 
 			state.items.push(action.payload)
-			console.log('addFavoritesItem', state.items)
 		},
 		removeFavoritesItem: (
 			state,
 			action: PayloadAction<IFilms | MovieDtoV13>
 		) => {
-			console.log('in removeFavoritesItem', state.items, action.payload)
-
 			state.items = state.items.filter(
 				(obj: IFilms | MovieDtoV13) => obj.id !== action.payload.id
 			)
-			console.log(state.items)
 
 			const json = JSON.stringify(state.items)
 			localStorage.setItem('favorites', json)

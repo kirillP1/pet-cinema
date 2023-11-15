@@ -1,7 +1,7 @@
 import { MovieDtoV13 } from '@openmoviedb/kinopoiskdev_client'
-import { IFilms } from '../data/filmsLocalData'
-import { setActiveSlide } from '../redux/slices/home/homeSlice'
-import { AppDispatch } from '../redux/store'
+import { IFilms } from '../../data/filmsLocalData'
+import { setActiveSlide } from '../../redux/slices/home/homeSlice'
+import { AppDispatch } from '../../redux/store'
 
 export const updateActiveSlide = (
 	countSlide: number,

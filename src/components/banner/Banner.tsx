@@ -1,5 +1,8 @@
 import { useEffect } from 'react'
-import { scrollListener, updateActiveSlide } from '../../helpers/homeBanner'
+import {
+	scrollListener,
+	updateActiveSlide,
+} from '../../helpers/homeBanner/homeBanner'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import { fetchFilms } from '../../redux/slices/films/filmsActionsCreators'
 import { setScrollTop } from '../../redux/slices/home/homeSlice'

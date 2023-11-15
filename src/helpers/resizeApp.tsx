@@ -2,6 +2,9 @@ import { resize } from '../redux/slices/app/appSlice'
 import { AppDispatch } from '../redux/store'
 
 export const resizeApp = (dispatch: AppDispatch) => {
+	const { innerWidth } = window
+	dispatch(resize(innerWidth))
+
 	function handleWindowResize() {
 		dispatch(resize(getWindowSize()))
 		console.log('resize', getWindowSize())

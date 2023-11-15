@@ -60,7 +60,9 @@
 		]
 	},
 	"devDependencies": {
+		"@babel/plugin-proposal-private-property-in-object": "^7.21.11",
 		"@types/react-lazy-load-image-component": "^1.6.1",
-		"ember-cli-materialize": "^0.22.0"
+		"ember-cli-materialize": "^0.22.0",
+		"jest": "^27.5.1"
 	}
 }

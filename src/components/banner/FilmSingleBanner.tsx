@@ -1,7 +1,7 @@
 import { MovieDtoV13 } from '@openmoviedb/kinopoiskdev_client'
 import { FC, useEffect } from 'react'
 import { IFilms } from '../../data/filmsLocalData'
-import { scrollListener } from '../../helpers/homeBanner'
+import { scrollListener } from '../../helpers/homeBanner/homeBanner'
 import { useAppDispatch } from '../../hooks/redux'
 import { setScrollTop } from '../../redux/slices/home/homeSlice'
 import BannerBackground from './BannerBackground'
