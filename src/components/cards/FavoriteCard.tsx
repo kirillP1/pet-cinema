@@ -28,9 +28,9 @@ const FavoriteCard: FC<typeFavoriteCard> = ({ item }) => {
 			<Link to={'/films/' + item.id} className='favorites__items-item'>
 				{inView ? (
 					<LazyLoadImage
-						src={item.backdrop && item.backdrop.previewUrl}
+						src={item.poster && item.poster?.url}
 						effect='blur'
-						placeholderSrc={item.backdrop && item.backdrop.previewUrl}
+						placeholderSrc={item.poster && item.poster?.url}
 						width='100%'
 						height='100%'
 						className='favorites__items-item-background'

@@ -10,8 +10,8 @@ interface IPoster {
 	previewUrl: string
 }
 interface IBackdrop {
-	url: string
-	previewUrl: string
+	url: string | null
+	previewUrl: string | null
 }
 interface ILogo {
 	url: string
@@ -24,6 +24,7 @@ interface IRating {
 	imdb: number
 	filmCritics: number
 	russianFilmCritics: number
+	await?: null
 }
 interface IVotes {
 	kp: number
@@ -42,8 +43,8 @@ export interface ITrailer {
 	type: string
 }
 interface IVideo {
-	trailers: ITrailer[]
-	teasers: []
+	trailers?: ITrailer[]
+	teasers?: []
 }
 export interface IPerson {
 	description: string
@@ -61,14 +62,14 @@ export interface IFilms {
 	name: string
 	logo?: ILogo
 	year: number
-	ageRating?: number
+	ageRating?: number | null
 	movieLength: number
 	genres: IGenre[]
-	shortDescription: string
+	shortDescription: string | null
 	rating: IRating
-	votes: IVotes
+	votes?: IVotes
 	countries: ICountry[]
-	videos: IVideo
+	videos?: IVideo
 	description?: string
 	similarMovies?: IFilms[]
 	persons?: IPerson[]

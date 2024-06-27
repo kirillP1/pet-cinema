@@ -17,7 +17,7 @@ const HeaderMenu = () => {
 				<ul className={'header__nav '}>
 					{headerMenu.map((item, index) => (
 						<li key={index}>
-							<NavLink to={item.link} className='header__nav-link'>
+							<NavLink to={item.link} className='header__nav-link' end>
 								{item.img ? item.img : ''}
 								{item.text}
 							</NavLink>
@@ -33,6 +33,7 @@ const HeaderMenu = () => {
 									to={item.link}
 									className='header__nav-link'
 									onClick={e => menuClick(e, false)}
+									end
 								>
 									{item.img ? item.img : ''}
 									{item.text}

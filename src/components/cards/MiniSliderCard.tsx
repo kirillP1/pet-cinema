@@ -20,17 +20,9 @@ const MiniSliderCard: FC<typeMiniSliderCard> = ({ item }) => {
 			<MiniSliderFavButton activeFav={activeFav} item={item} />
 			<Link to={'/films/' + item.id} className='miniSliderCard__items-item'>
 				<LazyLoadImage
-					src={
-						item.backdrop
-							? item.backdrop.previewUrl
-							: item.poster && item.poster.previewUrl
-					}
+					src={item.poster && item.poster.url}
 					effect='blur'
-					placeholderSrc={
-						item.backdrop
-							? item.backdrop.previewUrl
-							: item.poster && item.poster.previewUrl
-					}
+					placeholderSrc={item.poster && item.poster.url}
 					width='100%'
 					className='miniSliderCard__items-item-background'
 				/>

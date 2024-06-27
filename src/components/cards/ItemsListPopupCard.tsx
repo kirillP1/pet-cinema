@@ -45,17 +45,9 @@ const ItemsListPopupCard: FC<typeItemsListPopupCard> = ({ item }) => {
 			<Link to={'/films/' + item.id} className='ItemsListPopupCard__item'>
 				{inView ? (
 					<LazyLoadImage
-						src={
-							item.backdrop
-								? item.backdrop.previewUrl
-								: item.poster && item.poster.previewUrl
-						}
+						src={item.poster && item.poster.url}
 						effect='blur'
-						placeholderSrc={
-							item.backdrop
-								? item.backdrop.previewUrl
-								: item.poster && item.poster.previewUrl
-						}
+						placeholderSrc={item.poster && item.poster.url}
 						width='100%'
 						height='100%'
 						className='ItemsListPopupCard__background'

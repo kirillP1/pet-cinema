@@ -18,9 +18,9 @@ const BannerBackground: FC<typeBannerBackground> = ({ film }) => {
 			}}
 		>
 			<LazyLoadImage
-				src={film.backdrop && film.backdrop.url}
+				src={film.backdrop && (film.backdrop.url as string)}
 				effect='blur'
-				placeholderSrc={film.backdrop && film.backdrop.url}
+				placeholderSrc={film.backdrop && (film.backdrop.url as string)}
 				width='100%'
 				height='100%'
 			/>

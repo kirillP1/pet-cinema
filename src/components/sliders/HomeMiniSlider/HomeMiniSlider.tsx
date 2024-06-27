@@ -9,6 +9,7 @@ import 'swiper/css/autoplay'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import { NolanFilmsData } from '../../../data/NolanFilmsData'
 import { IFilms } from '../../../data/filmsLocalData'
 import { useAppSelector } from '../../../hooks/redux'
 import MiniSliderCard from '../../cards/MiniSliderCard'
@@ -51,7 +52,17 @@ const HomeMiniSlider: FC<typeMiniSlider> = ({
 			const result = async () => {
 				fetchFunction(query).then(
 					(fetchItems: IFilms[] | MovieDtoV13[] | undefined) => {
-						setFItems(fetchItems)
+						if (fetchItems) {
+							setFItems(fetchItems)
+							console.log('HomeMiniSlider then', fetchItems)
+						} else {
+							if (query === 'Кристофер Нолан') {
+								setFItems(NolanFilmsData)
+							}
+							if (query === 'Квентин Тарантино') {
+								setFItems(NolanFilmsData)
+							}
+						}
 					}
 				)
 			}
@@ -60,6 +71,8 @@ const HomeMiniSlider: FC<typeMiniSlider> = ({
 			setFirstTime(false)
 		}
 	}, [inView])
+
+	console.log('fItems', fItems)
 
 	return (
 		<div className='homeMiniSlider' ref={ref}>
@@ -70,7 +83,7 @@ const HomeMiniSlider: FC<typeMiniSlider> = ({
 				speed={2400}
 				navigation
 				spaceBetween={25}
-				height={200}
+				height={500}
 				slidesPerView={width > 1024 ? 4 : 2}
 				autoplay={{ delay: 3000 }}
 			>

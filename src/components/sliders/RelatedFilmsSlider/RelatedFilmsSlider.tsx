@@ -17,29 +17,33 @@ const RelatedFilmsSlider: FC<typeFilmSingleBanner> = ({ film }) => {
 	const { width } = useAppSelector(state => state.app)
 	return (
 		<div className='relatedFilmsSlider' id='related'>
-			<h2 className='relatedFilmsSlider__header'>Похожее</h2>
-			<Swiper
-				className='swiper relatedFilmsSlider__container'
-				modules={[Navigation, Pagination, Autoplay]}
-				pagination={{ clickable: true }}
-				speed={2400}
-				spaceBetween={25}
-				slidesPerView={width > 1024 ? 4 : 1}
-				autoplay={{ delay: 3000 }}
-			>
-				<div className='swiper-wrapper relatedFilmsSlider__wrapper'>
-					{film.similarMovies?.map(
-						(item: LinkedMovie | IFilms, index: number) => (
-							<SwiperSlide
-								className='swiper-slide relatedFilmsSlider__item'
-								key={index}
-							>
-								<RelatedFilmsSlide item={item} />
-							</SwiperSlide>
-						)
-					)}
-				</div>
-			</Swiper>
+			{film.similarMovies && film.similarMovies.length !== 0 && (
+				<>
+					<h2 className='relatedFilmsSlider__header'>Похожее</h2>
+					<Swiper
+						className='swiper relatedFilmsSlider__container'
+						modules={[Navigation, Pagination, Autoplay]}
+						pagination={{ clickable: true }}
+						speed={2400}
+						spaceBetween={25}
+						slidesPerView={width > 1024 ? 4 : 1}
+						autoplay={{ delay: 3000 }}
+					>
+						<div className='swiper-wrapper relatedFilmsSlider__wrapper'>
+							{film.similarMovies?.map(
+								(item: LinkedMovie | IFilms, index: number) => (
+									<SwiperSlide
+										className='swiper-slide relatedFilmsSlider__item'
+										key={index}
+									>
+										<RelatedFilmsSlide item={item} />
+									</SwiperSlide>
+								)
+							)}
+						</div>
+					</Swiper>
+				</>
+			)}
 		</div>
 	)
 }

@@ -5,7 +5,7 @@ import Banner from '../components/banner/Banner'
 import HomeMiniSlider from '../components/sliders/HomeMiniSlider/HomeMiniSlider'
 import { useAppSelector } from '../hooks/redux'
 import { getFavoritesFromLS } from '../redux/slices/favorites/favoriteActionsCreators'
-import { fetchGenreFilms, fetchPersonsFilms } from '../utils/homeFetchSliders'
+import { fetchPersonsFilms } from '../utils/homeFetchSliders'
 
 const Home: FC = () => {
 	const { items } = useAppSelector(state => state.films)
@@ -19,17 +19,17 @@ const Home: FC = () => {
 				<HomeMiniSlider title='Ваше избранное' items={favoriteItems} />
 			)*/}
 			<HomeMiniSlider title='Лучшее из лучшего' items={items} />
-			<HomeMiniSlider
+			{/*<HomeMiniSlider
 				title='Фильмы Квентина Тарантино'
 				fetchFunction={fetchPersonsFilms}
 				query='Квентин Тарантино'
-			/>
+			/>*/}
 			{/*<FranchisesSlider />*/}
-			<HomeMiniSlider
+			{/*<HomeMiniSlider
 				title='Фильмы ужасов'
 				fetchFunction={fetchGenreFilms}
 				query='ужасы'
-			/>
+			/>*/}
 			<HomeMiniSlider
 				title='Фильмы Кристофера Нолана'
 				fetchFunction={fetchPersonsFilms}
