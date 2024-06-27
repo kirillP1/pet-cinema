@@ -32,7 +32,6 @@ const FavoriteCard: FC<typeFavoriteCard> = ({ item }) => {
 						effect='blur'
 						placeholderSrc={item.poster && item.poster?.url}
 						width='100%'
-						height='100%'
 						className='favorites__items-item-background'
 					/>
 				) : (
